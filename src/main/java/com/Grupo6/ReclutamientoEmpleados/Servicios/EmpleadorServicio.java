@@ -1,3 +1,5 @@
+package com.Grupo6.ReclutamientoEmpleados.Servicios;
+
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
