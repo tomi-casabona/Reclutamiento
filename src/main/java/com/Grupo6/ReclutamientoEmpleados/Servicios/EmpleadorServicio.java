@@ -3,6 +3,7 @@ package com.Grupo6.ReclutamientoEmpleados.Servicios;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,19 @@ public class EmpleadorServicio {
         }
         
         return empleadorRepositorio.save(empleador);
+    }
+    
+    @Transactional
+    public void eliminarEmpleador(String id) throws ErrorWeb{
+        Empleador empleador = empleadorRepositorio.findById(id).get();
+        Optional<Empleador> respuesta = empleadorRepositorio.findById(id);
+        
+        if (respuesta.isPresent()){
+            empleadorRepositorio.delete(empleador);
+        }else{
+            throw new ErrorWeb("Ingrese un id correcto");
+        }
+        
     }
     
 }
