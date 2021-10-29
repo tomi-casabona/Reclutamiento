@@ -9,7 +9,8 @@ package com.Grupo6.ReclutamientoEmpleados.Enums;
  *
  * @author Mi Pc
  */
-public enum MovilidadPropia {
-    MOTO, AUTO, NO;
+public enum Sexo {
+    
+    MASCULINO, FEMENINO, OTRO ;
     
 }

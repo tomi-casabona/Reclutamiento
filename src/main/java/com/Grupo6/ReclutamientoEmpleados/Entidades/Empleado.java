@@ -1,6 +1,15 @@
 package com.Grupo6.ReclutamientoEmpleados.Entidades;
 
+import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
+import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
+import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
+import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
+import com.Grupo6.ReclutamientoEmpleados.Enums.SecundarioCompleto;
+import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
+import com.Grupo6.ReclutamientoEmpleados.Enums.TerciarioCompleto;
+import com.Grupo6.ReclutamientoEmpleados.Enums.UniversitarioCompleto;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -12,7 +21,7 @@ public class Empleado extends Usuario {
     private Date fechaNac;
    
     @OneToMany
-    private Categoria categoria;
+    private List<Categoria> categorias;
     
     private Sexo sexo;
     private SecundarioCompleto secundarioCompleto;
@@ -52,14 +61,6 @@ public class Empleado extends Usuario {
 
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     public Sexo getSexo() {
@@ -156,6 +157,20 @@ public class Empleado extends Usuario {
 
     public void setOtrosDatos(String otrosDatos) {
         this.otrosDatos = otrosDatos;
+    }
+
+    /**
+     * @return the categorias
+     */
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    /**
+     * @param categorias the categorias to set
+     */
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
     
     
