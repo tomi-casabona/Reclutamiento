@@ -14,9 +14,9 @@ public class PortalControlador {
     @Autowired
     private EmpleadorServicio empleadorServicio;
     
-    @GetMapping("/")
+    @GetMapping("")
     public String index(){
-        return "inicio";
+        return "index";
     }
     
     @GetMapping("/registrar-empleador")

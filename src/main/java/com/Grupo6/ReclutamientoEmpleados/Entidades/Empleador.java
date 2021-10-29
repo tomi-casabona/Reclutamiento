@@ -1,24 +1,19 @@
 package com.Grupo6.ReclutamientoEmpleados.Entidades;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Empleador extends Usuario{
 
     private String nombreEmpresa;
     
-    @ManyToOne
-    private Categoria categoria;
+    @OneToOne
+    private Foto foto;
 
     public Empleador() {
     }
-
-    public Empleador(String nombreEmpresa, Categoria categoria) {
-        this.nombreEmpresa = nombreEmpresa;
-        this.categoria = categoria;
-    }
-
+    
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }
@@ -27,13 +22,13 @@ public class Empleador extends Usuario{
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public Foto getFoto() {
+        return foto;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
-    
+
     
 }
