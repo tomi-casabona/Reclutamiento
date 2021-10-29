@@ -12,6 +12,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
 import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.SecundarioCompleto;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
+import com.Grupo6.ReclutamientoEmpleados.Enums.TerciarioCompleto;
 import com.Grupo6.ReclutamientoEmpleados.Enums.UniversitarioCompleto;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import java.util.Date;
@@ -31,10 +32,10 @@ public class EmpleadoServicio {
     
     @Autowired
     private EmpleadoRepositorio empleadoRepositorio;
-    @Autowired
-    private FotoServicio fotoServicio;
-    
-    
+//    @Autowired
+//    private FotoServicio fotoServicio;
+//    
+//    
     
 public List<Empleado> listAll (){
     
@@ -43,32 +44,34 @@ public List<Empleado> listAll (){
 }
 
 @Transactional
-public void crearEmpleado (String nombre, Sexo sexo,UniversitarioCompleto universitarioCompleto , SecundarioCompleto secundarioCompleto ,MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico, String apellido,MovilidadPropia movilidadPropia, Date fechaNac,String email, List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir){
+public void crearEmpleado (String nombre,String otrosDatos, Sexo sexo,TerciarioCompleto terciarioCompleto, UniversitarioCompleto universitarioCompleto , SecundarioCompleto secundarioCompleto ,MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico, String apellido,MovilidadPropia movilidadPropia, Date fechaNac,String email, List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir){
     Empleado empleado = new Empleado();
     
     empleado.setNombre(nombre);
     empleado.setApellido(apellido);
     empleado.setFechaNac(fechaNac);
     empleado.setEmail(email);
-     empleado.setNumeroTelefonico(numeroTelefonico);
-  
+    empleado.setNumeroTelefonico(numeroTelefonico);
+    empleado.setOtrosDatos(otrosDatos);
+   
     
     empleado.setCategorias(categorias);
-    
-    empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
-    empleado.setCarnetConducir(carnetConducir);
-    empleado.setMovilidadPropia(movilidadPropia);
     
     Foto fotografia = fotoServicio.crearFoto(foto);    
     
     empleado.setFoto(fotografia);
    
+    
+     
+    empleado.setSexo(sexo);
+    empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
+    empleado.setCarnetConducir(carnetConducir);
+    empleado.setMovilidadPropia(movilidadPropia);  
     empleado.setPosiblereubucacion(posibleReubicacion);
     empleado.setSecundarioCompleto(secundarioCompleto);
-     empleado.setUniversitarioCompleto(universitarioCompleto);
-    
-    empleado.setSexo(sexo);
-   
+    empleado.setTerciarioCompleto(terciarioCompleto);
+    empleado.setUniversitarioCompleto(universitarioCompleto);
+ 
     
     
     
