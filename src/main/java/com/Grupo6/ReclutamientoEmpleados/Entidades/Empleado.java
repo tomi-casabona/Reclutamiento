@@ -166,6 +166,20 @@ public class Empleado extends Usuario {
     public void setOtrosDatos(String otrosDatos) {
         this.otrosDatos = otrosDatos;
     }
+
+    /**
+     * @return the categorias
+     */
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    /**
+     * @param categorias the categorias to set
+     */
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
     
     
     
