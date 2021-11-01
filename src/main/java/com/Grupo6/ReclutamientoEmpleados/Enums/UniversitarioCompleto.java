@@ -10,5 +10,6 @@ package com.Grupo6.ReclutamientoEmpleados.Enums;
  * @author Mi Pc
  */
 public enum UniversitarioCompleto {
+    COMPLETO, INCOMPLETO, CURSANDO ;
     
 }
