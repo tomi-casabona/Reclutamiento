@@ -11,17 +11,17 @@ public class Empleado extends Usuario {
     private String apellido;
     private Date fechaNac;
    
-    @OneToMany
-    private Categoria categoria;
+//    @OneToMany
+//    private Categoria categoria;
     
-    private Sexo sexo;
-    private SecundarioCompleto secundarioCompleto;
-    private TerciarioCompleto TerciarioCompleto;
-    private UniversitarioCompleto universitarioCompleto;
-    private DisponibilidadHoraria disponibilidadHoraria;
-    private MovilidadPropia movilidadPropia;
-    private PosibleReubicacion posiblereubucacion;
-    private CarnetConducir carnetConducir;
+//    private Sexo sexo;
+//    private SecundarioCompleto secundarioCompleto;
+//    private TerciarioCompleto TerciarioCompleto;
+//    private UniversitarioCompleto universitarioCompleto;
+//    private DisponibilidadHoraria disponibilidadHoraria;
+//    private MovilidadPropia movilidadPropia;
+//    private PosibleReubicacion posiblereubucacion;
+//    private CarnetConducir carnetConducir;
     private String email;
     private String numeroTelefonico;
     private String experienciaLaboral;    
@@ -53,111 +53,112 @@ public class Empleado extends Usuario {
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
+//
+//    public Categoria getCategoria() {
+//        return categoria;
+//    }
+//
+//    public void setCategoria(Categoria categoria) {
+//        this.categoria = categoria;
+//    }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
-    }
-
-    public SecundarioCompleto getSecundarioCompleto() {
-        return secundarioCompleto;
-    }
-
-    public void setSecundarioCompleto(SecundarioCompleto secundarioCompleto) {
-        this.secundarioCompleto = secundarioCompleto;
-    }
-
-    public TerciarioCompleto getTerciarioCompleto() {
-        return TerciarioCompleto;
-    }
-
-    public void setTerciarioCompleto(TerciarioCompleto TerciarioCompleto) {
-        this.TerciarioCompleto = TerciarioCompleto;
-    }
-
-    public UniversitarioCompleto getUniversitarioCompleto() {
-        return universitarioCompleto;
-    }
-
-    public void setUniversitarioCompleto(UniversitarioCompleto universitarioCompleto) {
-        this.universitarioCompleto = universitarioCompleto;
-    }
-
-    public DisponibilidadHoraria getDisponibilidadHoraria() {
-        return disponibilidadHoraria;
-    }
-
-    public void setDisponibilidadHoraria(DisponibilidadHoraria disponibilidadHoraria) {
-        this.disponibilidadHoraria = disponibilidadHoraria;
-    }
-
-    public MovilidadPropia getMovilidadPropia() {
-        return movilidadPropia;
-    }
-
-    public void setMovilidadPropia(MovilidadPropia movilidadPropia) {
-        this.movilidadPropia = movilidadPropia;
-    }
-
-    public PosibleReubicacion getPosiblereubucacion() {
-        return posiblereubucacion;
-    }
-
-    public void setPosiblereubucacion(PosibleReubicacion posiblereubucacion) {
-        this.posiblereubucacion = posiblereubucacion;
-    }
-
-    public CarnetConducir getCarnetConducir() {
-        return carnetConducir;
-    }
-
-    public void setCarnetConducir(CarnetConducir carnetConducir) {
-        this.carnetConducir = carnetConducir;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNumeroTelefonico() {
-        return numeroTelefonico;
-    }
-
-    public void setNumeroTelefonico(String numeroTelefonico) {
-        this.numeroTelefonico = numeroTelefonico;
-    }
-
-    public String getExperienciaLaboral() {
-        return experienciaLaboral;
-    }
-
-    public void setExperienciaLaboral(String experienciaLaboral) {
-        this.experienciaLaboral = experienciaLaboral;
-    }
-
-    public String getOtrosDatos() {
-        return otrosDatos;
-    }
-
-    public void setOtrosDatos(String otrosDatos) {
-        this.otrosDatos = otrosDatos;
-    }
-    
+//    public Sexo getSexo() {
+//        return sexo;
+//    }
+//
+//    public void setSexo(Sexo sexo) {
+//        this.sexo = sexo;
+//    }
+//
+//    public SecundarioCompleto getSecundarioCompleto() {
+//        return secundarioCompleto;
+//    }
+//
+//    public void setSecundarioCompleto(SecundarioCompleto secundarioCompleto) {
+//        this.secundarioCompleto = secundarioCompleto;
+//    }
+//
+//    public TerciarioCompleto getTerciarioCompleto() {
+//        return TerciarioCompleto;
+//    }
+//
+//    public void setTerciarioCompleto(TerciarioCompleto TerciarioCompleto) {
+//        this.TerciarioCompleto = TerciarioCompleto;
+//    }
+//
+//    public UniversitarioCompleto getUniversitarioCompleto() {
+//        return universitarioCompleto;
+//    }
+//
+//    public void setUniversitarioCompleto(UniversitarioCompleto universitarioCompleto) {
+//        this.universitarioCompleto = universitarioCompleto;
+//    }
+//
+//    public DisponibilidadHoraria getDisponibilidadHoraria() {
+//        return disponibilidadHoraria;
+//    }
+//
+//    public void setDisponibilidadHoraria(DisponibilidadHoraria disponibilidadHoraria) {
+//        this.disponibilidadHoraria = disponibilidadHoraria;
+//    }
+//
+//    public MovilidadPropia getMovilidadPropia() {
+//        return movilidadPropia;
+//    }
+//
+//    public void setMovilidadPropia(MovilidadPropia movilidadPropia) {
+//        this.movilidadPropia = movilidadPropia;
+//    }
+//
+//    public PosibleReubicacion getPosiblereubucacion() {
+//        return posiblereubucacion;
+//    }
+//
+//    public void setPosiblereubucacion(PosibleReubicacion posiblereubucacion) {
+//        this.posiblereubucacion = posiblereubucacion;
+//    }
+//
+//    public CarnetConducir getCarnetConducir() {
+//        return carnetConducir;
+//    }
+//
+//    public void setCarnetConducir(CarnetConducir carnetConducir) {
+//        this.carnetConducir = carnetConducir;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getNumeroTelefonico() {
+//        return numeroTelefonico;
+//    }
+//
+//    public void setNumeroTelefonico(String numeroTelefonico) {
+//        this.numeroTelefonico = numeroTelefonico;
+//    }
+//
+//    public String getExperienciaLaboral() {
+//        return experienciaLaboral;
+//    }
+//
+//    public void setExperienciaLaboral(String experienciaLaboral) {
+//        this.experienciaLaboral = experienciaLaboral;
+//    }
+//
+//    public String getOtrosDatos() {
+//        return otrosDatos;
+//    }
+//
+//    public void setOtrosDatos(String otrosDatos) {
+//        this.otrosDatos = otrosDatos;
+//    }
+//    
     
     
 }
+
