@@ -1,6 +1,7 @@
 
 package com.Grupo6.ReclutamientoEmpleados.Entidades;
 
+import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,8 @@ public class Usuario implements Serializable{
     private String nombre_usuario;
     
     private String contrasenha;
+    
+    private Rol rol;
     
     @OneToOne
     private Foto foto;
@@ -67,6 +70,15 @@ public class Usuario implements Serializable{
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
     
     
 }
