@@ -56,12 +56,12 @@ public void crearEmpleado (String nombre,String otrosDatos, Sexo sexo,TerciarioC
    
     
     empleado.setCategorias(categorias);
-    
-    Foto fotografia = fotoServicio.crearFoto(foto);    
-    
-    empleado.setFoto(fotografia);
-   
-    
+//    
+//    Foto fotografia = fotoServicio.crearFoto(foto);    
+//    
+//    empleado.setFoto(fotografia);
+//   
+//    
      
     empleado.setSexo(sexo);
     empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
