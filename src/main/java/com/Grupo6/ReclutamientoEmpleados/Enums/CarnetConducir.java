@@ -10,5 +10,8 @@ package com.Grupo6.ReclutamientoEmpleados.Enums;
  * @author Mi Pc
  */
 public enum CarnetConducir {
+
     
+    MOTO, AUTO, CAMION, NO;
+ 
 }

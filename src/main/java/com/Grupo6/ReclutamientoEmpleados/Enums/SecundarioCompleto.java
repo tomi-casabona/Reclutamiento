@@ -11,4 +11,6 @@ package com.Grupo6.ReclutamientoEmpleados.Enums;
  */
 public enum SecundarioCompleto {
     
+    COMPLETO, INCOMPLETO, CURSANDO
+    
 }
