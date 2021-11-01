@@ -17,7 +17,7 @@ public class PortalControlador {
     
     @GetMapping("/")
     public String index(){
-        return "inicio";
+        return "index";
     }
     
     @GetMapping("/registrar-empleador")

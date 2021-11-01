@@ -63,6 +63,14 @@ public class Empleado extends Usuario {
         this.fechaNac = fechaNac;
     }
 
+    public List<Categoria> getCategoria() {
+        return categorias;
+    }
+
+    public void setCategoria(List<Categoria> categoria) {
+        this.categorias = categoria;
+    }
+
     public Sexo getSexo() {
         return sexo;
     }
@@ -176,3 +184,4 @@ public class Empleado extends Usuario {
     
     
 }
+
