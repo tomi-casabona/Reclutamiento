@@ -82,7 +82,7 @@ public class UsuarioServicio implements UserDetailsService {
             throw new ErrorWeb("Ingrese un nombre de usuario correcto");
         }
         
-        if (usuario.getContrasenha()==null && usuario.getContrasenha().length() <=5){
+        if (usuario.getContrasenha()==null || usuario.getContrasenha().length() <=5){
             throw new ErrorWeb("Ingrese una contraseña correcta");
         }
         
