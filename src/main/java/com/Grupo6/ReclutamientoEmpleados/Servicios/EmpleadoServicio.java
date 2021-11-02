@@ -2,25 +2,24 @@
 
 package com.Grupo6.ReclutamientoEmpleados.Servicios;
 
-import java.util.ArrayList;
+
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
 import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
 import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
+import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
 import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
 import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
-import com.Grupo6.ReclutamientoEmpleados.Enums.SecundarioCompleto;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
-import com.Grupo6.ReclutamientoEmpleados.Enums.TerciarioCompleto;
-import com.Grupo6.ReclutamientoEmpleados.Enums.UniversitarioCompleto;
+import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import static org.springframework.transaction.reactive.TransactionalOperatorExtensionsKt.transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -32,10 +31,14 @@ public class EmpleadoServicio {
     
     @Autowired
     private EmpleadoRepositorio empleadoRepositorio;
-//    @Autowired
-//    private FotoServicio fotoServicio;
-//    
-//    
+    @Autowired
+    private FotoServicio fotoServicio;
+    @Autowired 
+    private CategoriaServicio categoriaServicio;
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+       
+    
     
 public List<Empleado> listAll (){
     
@@ -44,37 +47,101 @@ public List<Empleado> listAll (){
 }
 
 @Transactional
-public void crearEmpleado (String nombre,String otrosDatos, Sexo sexo,TerciarioCompleto terciarioCompleto, UniversitarioCompleto universitarioCompleto , SecundarioCompleto secundarioCompleto ,MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico, String apellido,MovilidadPropia movilidadPropia, Date fechaNac,String email, List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir){
+public void crearEmpleado (String username,String password,String password2, String nombre, String apellido,
+        Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
+        MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico,MovilidadPropia movilidadPropia
+        , List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir
+        , String otrosDatos) throws IOException, ErrorWeb{
+    
+    // el usuario se crea aparte ?
+    
+    validarEmpleado(username, password, password2, nombre, apellido, fechaNac, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
+    
+         
     Empleado empleado = new Empleado();
     
     empleado.setNombre(nombre);
     empleado.setApellido(apellido);
+    
     empleado.setFechaNac(fechaNac);
+    
     empleado.setEmail(email);
     empleado.setNumeroTelefonico(numeroTelefonico);
-    empleado.setOtrosDatos(otrosDatos);
-   
     
     empleado.setCategorias(categorias);
-//    
-//    Foto fotografia = fotoServicio.crearFoto(foto);    
-//    
-//    empleado.setFoto(fotografia);
-//   
-//    
+    
+    Foto fotografia = fotoServicio.guardar(foto);    
+    
+    empleado.setFoto(fotografia);    
      
     empleado.setSexo(sexo);
     empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
     empleado.setCarnetConducir(carnetConducir);
     empleado.setMovilidadPropia(movilidadPropia);  
     empleado.setPosiblereubucacion(posibleReubicacion);
-    empleado.setSecundarioCompleto(secundarioCompleto);
-    empleado.setTerciarioCompleto(terciarioCompleto);
-    empleado.setUniversitarioCompleto(universitarioCompleto);
- 
+    empleado.setEstudiosAlcanzados(estudiosAlcanzados);
     
+    empleado.setOtrosDatos(otrosDatos);   
     
+}
+
+private void validarEmpleado(String username,String password,String password2, String nombre, String apellido,
+        Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
+        MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico,MovilidadPropia movilidadPropia
+        , List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir
+        , String otrosDatos) throws ErrorWeb{
     
+        if (username == null){
+            throw new ErrorWeb("El nombre de usuario no debe estar vacio");
+        }        
+        if (password == null || password.isEmpty() || password2 == null || password2.isEmpty()){
+            throw new ErrorWeb("La contraseña no debe estar vacia");
+        }        
+         if (password != password2){
+            throw new ErrorWeb("Las contraseñas no coinciden");
+        }          
+         if (nombre == null){
+            throw new ErrorWeb("Ingrese nombre");
+        }
+         if (apellido == null){
+            throw new ErrorWeb("Ingrese apellido");
+        }
+         if (fechaNac == null){
+            throw new ErrorWeb("Ingrese fecha de nacimiento");
+        }
+         if (email == null){
+            throw new ErrorWeb("Ingrese su email");
+        }
+         if (sexo == null){
+            throw new ErrorWeb("Ingrese su sexo");
+        }
+         if (estudiosAlcanzados == null){
+            throw new ErrorWeb("Ingrese nuvel de estudios alcanzado");
+        }
+         if (email == null){
+            throw new ErrorWeb("Ingrese su email");
+        }
+         if (foto == null){
+            throw new ErrorWeb("Ingrese una imagen");
+        }     
+         if (posibleReubicacion == null){
+            throw new ErrorWeb("Ingrese si esta dispuesto a reubicarse");
+        }     
+         if (numeroTelefonico == null || numeroTelefonico.length() != 10){
+            throw new ErrorWeb("Ingrese su numero telefonico con diez digitos, sin 0 y sin 15 ej: 3417123123");
+        }     
+         if (categorias.isEmpty()){
+            throw new ErrorWeb("Ingrese al menos una categoria");
+        }     
+         if (disponibilidadHoraria == null){
+            throw new ErrorWeb("Ingrese su disponibilidad horaria");
+        }     
+         if (carnetConducir == null){
+            throw new ErrorWeb("Ingrese su tipo de carnet de conducir si posee, o no");
+        }     
+         if (otrosDatos == null){
+            throw new ErrorWeb("Ingrese experiencias laborales o una carta de presentacion breve");
+        }     
 }
 
 

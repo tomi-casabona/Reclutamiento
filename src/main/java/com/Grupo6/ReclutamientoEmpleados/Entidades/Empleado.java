@@ -2,16 +2,15 @@ package com.Grupo6.ReclutamientoEmpleados.Entidades;
 
 import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
 import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
+import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
 import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
 import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
-import com.Grupo6.ReclutamientoEmpleados.Enums.SecundarioCompleto;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
-import com.Grupo6.ReclutamientoEmpleados.Enums.TerciarioCompleto;
-import com.Grupo6.ReclutamientoEmpleados.Enums.UniversitarioCompleto;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Empleado extends Usuario {
@@ -23,10 +22,11 @@ public class Empleado extends Usuario {
     @OneToMany
     private List<Categoria> categorias;
     
+    @OneToOne
+    private Foto foto;
+    
     private Sexo sexo;
-    private SecundarioCompleto secundarioCompleto;
-    private TerciarioCompleto TerciarioCompleto;
-    private UniversitarioCompleto universitarioCompleto;
+    private EstudiosAlcanzados estudiosAlcanzados;
     private DisponibilidadHoraria disponibilidadHoraria;
     private MovilidadPropia movilidadPropia;
     private PosibleReubicacion posiblereubucacion;
@@ -35,6 +35,7 @@ public class Empleado extends Usuario {
     private String numeroTelefonico;
     private String experienciaLaboral;    
     private String otrosDatos;
+    
 
     public Empleado() {
     }
@@ -64,11 +65,11 @@ public class Empleado extends Usuario {
     }
 
     public List<Categoria> getCategoria() {
-        return categorias;
+        return getCategorias();
     }
 
     public void setCategoria(List<Categoria> categoria) {
-        this.categorias = categoria;
+        this.setCategorias(categoria);
     }
 
     public Sexo getSexo() {
@@ -78,31 +79,7 @@ public class Empleado extends Usuario {
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
-
-    public SecundarioCompleto getSecundarioCompleto() {
-        return secundarioCompleto;
-    }
-
-    public void setSecundarioCompleto(SecundarioCompleto secundarioCompleto) {
-        this.secundarioCompleto = secundarioCompleto;
-    }
-
-    public TerciarioCompleto getTerciarioCompleto() {
-        return TerciarioCompleto;
-    }
-
-    public void setTerciarioCompleto(TerciarioCompleto TerciarioCompleto) {
-        this.TerciarioCompleto = TerciarioCompleto;
-    }
-
-    public UniversitarioCompleto getUniversitarioCompleto() {
-        return universitarioCompleto;
-    }
-
-    public void setUniversitarioCompleto(UniversitarioCompleto universitarioCompleto) {
-        this.universitarioCompleto = universitarioCompleto;
-    }
-
+    
     public DisponibilidadHoraria getDisponibilidadHoraria() {
         return disponibilidadHoraria;
     }
@@ -179,6 +156,34 @@ public class Empleado extends Usuario {
      */
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    /**
+     * @return the estudiosAlcanzados
+     */
+    public EstudiosAlcanzados getEstudiosAlcanzados() {
+        return estudiosAlcanzados;
+    }
+
+    /**
+     * @param estudiosAlcanzados the estudiosAlcanzados to set
+     */
+    public void setEstudiosAlcanzados(EstudiosAlcanzados estudiosAlcanzados) {
+        this.estudiosAlcanzados = estudiosAlcanzados;
+    }
+
+    /**
+     * @return the foto
+     */
+    public Foto getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
     
     

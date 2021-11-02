@@ -15,5 +15,7 @@ public class CategoriaServicio {
     
     @Autowired
     private CategoriaRepositorio categoriaRepositorio;
-
+    
+    private List<Categoria> 
+   
 }
