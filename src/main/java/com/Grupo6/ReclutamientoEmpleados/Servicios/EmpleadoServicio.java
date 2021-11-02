@@ -55,7 +55,7 @@ public void crearEmpleado (String nombre,String otrosDatos, Sexo sexo,TerciarioC
     empleado.setOtrosDatos(otrosDatos);
    
     
-    empleado.setCategorias(categorias);
+    empleado.setCategoria(categorias);
 //    
 //    Foto fotografia = fotoServicio.crearFoto(foto);    
 //    
