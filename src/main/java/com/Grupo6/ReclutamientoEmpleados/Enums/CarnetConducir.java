@@ -11,7 +11,6 @@ package com.Grupo6.ReclutamientoEmpleados.Enums;
  */
 public enum CarnetConducir {
 
-    
     MOTO, AUTO, CAMION, NO;
- 
+
 }
