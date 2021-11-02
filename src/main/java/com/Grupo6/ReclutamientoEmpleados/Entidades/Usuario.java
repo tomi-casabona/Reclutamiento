@@ -27,17 +27,24 @@ public class Usuario implements Serializable{
     private Rol rol;
     
     @OneToOne
-    private Foto foto;
+    private Empleador empleador;
+    
+    @OneToOne
+    private Empleado empleado;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre_usuario, String contrasenha, Foto foto) {
+    public Usuario(String id, String nombre_usuario, String contrasenha, Rol rol, Empleador empleador, Empleado empleado) {
         this.id = id;
         this.nombre_usuario = nombre_usuario;
         this.contrasenha = contrasenha;
-        this.foto = foto;
+        this.rol = rol;
+        this.empleador = empleador;
+        this.empleado = empleado;
     }
+
+    
 
     public String getId() {
         return id;
@@ -63,14 +70,6 @@ public class Usuario implements Serializable{
         this.contrasenha = contrasenha;
     }
 
-    public Foto getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Foto foto) {
-        this.foto = foto;
-    }
-
     public Rol getRol() {
         return rol;
     }
@@ -78,6 +77,24 @@ public class Usuario implements Serializable{
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    public Empleador getEmpleador() {
+        return empleador;
+    }
+
+    public void setEmpleador(Empleador empleador) {
+        this.empleador = empleador;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    
+    
     
     
     
