@@ -9,8 +9,9 @@ package com.Grupo6.ReclutamientoEmpleados.Enums;
  *
  * @author Mi Pc
  */
-public enum TerciarioCompleto {
-    
-    COMPLETO, INCOMPLETO, CURSANDO;
+public enum EstudiosAlcanzados {
+    PRIMARIO_COMPLETO, SECUNDARIO_COMPLETO, TERCIARIO_COMPLETO, TERCIARIO_EN_CURSO,
+    UNIVERSITARIO_COMPLETO, UNIVERSITARIO_EN_CURSO , 
+    LICENCIATURA_COMPLETA, LICENCIATURA_EN_CURSO;
     
 }
