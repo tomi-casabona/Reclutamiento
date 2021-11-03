@@ -27,21 +27,29 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
     
-    @GetMapping("/registro")
+    @GetMapping("/registro-empresa")
     public String registro(){
-        return "registro";
+        return "registroEmpleador";
     }
     
-    @PostMapping("/registro-empresa")
-    public String registrarNuevoEmpleador(Model model,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre_empresa){
+    @GetMapping("/registro-empleado")
+    public String registroEmpleado(){
+        return "registroEmpleado";
+    }
+    
+    @PostMapping("/registrar-empresa")
+    public String registrarNuevoEmpleador(Model model,RedirectAttributes redirectAttributes,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre_empresa){
         try {
             usuarioServicio.crearUsuarioEmpresa(username,password,password2, nombre_empresa);
             
-            return "redirect:/registro-empresa";
+            redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
+            
+            return "redirect:/";
         } catch (ErrorWeb e) {
             model.addAttribute("error",e.getMessage());
+            redirectAttributes.addFlashAttribute("error",e.getMessage());
             model.addAttribute("username",username);
-            return "registro";
+            return "redirect:/registro/registro-empresa";
         }
     }
     

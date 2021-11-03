@@ -4,6 +4,7 @@ import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.EmpleadorServicio;
+import com.Grupo6.ReclutamientoEmpleados.Servicios.UsuarioServicio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +29,7 @@ public class EmpleadorControlador {
     
     @GetMapping("")
     public String registro(){
-        return "registro";
+        return "registroEmpleador";
     }
     
     @GetMapping("/editar-empleador")
