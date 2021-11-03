@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-AR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrar como candidato</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cazatalentos</title>
     </head>
     <body>
         <div class="container">
             <h1>Registrar empleado</h1>
-            <form>
+            <form method="POST" th:action="@{/registro/}" th:object="${empleado}">
                 <label>Nombre de usuario</label><br>
                 <input type="text" name="nombreusuario"><br>
                 <label>Contraseña</label><br>
@@ -32,16 +31,13 @@
                 <select name="sexo">
                     <option>Femenino</option>
                     <option>Masculino</option>
+                    <option>Otro</option>
                 </select>
                 <br>
-                <label>Localidad</label><br>
-                <input type="text" name="localidad"><br>
-                <label>Código postal</label><br>
-                <input type="number" name="codigoPostal"><br>
                 <label>Email</label><br>
                 <input type="email" name="email"><br>
                 <label>Numero de contacto</label><br>
-                <input type="number" name="numeroContacto"><br>
+                <input type="text" name="numeroContacto"><br>
                 <label>Nivel de estudios alcanzados</label><br>
                 <select name="estudios">
                     <option>Primario incompleto</option>
@@ -61,7 +57,7 @@
                 </select>
                 <br>
                 <label>Dispone de movilidad propia?</label><br>
-                <select name="movilidadPropia">
+                <select type="text" name="movilidadPropia">
                     <option>Si</option>
                     <option>No</option>
                 </select>

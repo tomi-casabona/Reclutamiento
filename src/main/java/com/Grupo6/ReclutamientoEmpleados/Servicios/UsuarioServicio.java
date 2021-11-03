@@ -13,6 +13,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
+import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,6 +44,9 @@ public class UsuarioServicio implements UserDetailsService {
     @Autowired
     private FotoServicio fotoServicio;
 
+    @Autowired
+    private EmpleadorRepositorio empleadorRepositorio;
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -65,13 +69,33 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = new Usuario();
 
         Empleador empleador1 = new Empleador(nombre_empresa);
+        
+        List<Empleador> empleadores=empleadorRepositorio.findAll();
+        
+        for (Empleador empleadore : empleadores) {
+            if(nombre_empresa.equals(empleadore.getNombreEmpresa())){
+                throw new ErrorWeb("Esta empresa ya esta registrada");
+            }
+        }
+        
+        List<Usuario> usuarios=usuarioRepositorio.findAll();
+        
+        for (Usuario usuario1 : usuarios) {
+            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())){
+                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
+            }
+        }
 
-        if (nombre_usuario == null) {
+        if (nombre_usuario == null || nombre_usuario.isEmpty()) {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
         }
 
         if (contraseña.isEmpty() || contraseña == null || contraseña2 == null || contraseña2.isEmpty()) {
             throw new ErrorWeb("La contraseña no puede estar vacia");
+        }
+        
+        if(nombre_empresa==null || nombre_empresa.isEmpty()){
+            throw new ErrorWeb("Ingrese un nombre de empresa correcto");
         }
 
         usuario.setNombre_usuario(nombre_usuario);
