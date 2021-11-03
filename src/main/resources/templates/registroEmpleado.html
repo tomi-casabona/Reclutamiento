@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cazatalentos</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Registrar empleado</h1>
+            <from>
+                <label>Nombre de usuario</label><br>
+                <input type="text" name="nombreusuario"><br>
+                <label>Contraseña</label><br>
+                <input type="password" name="contraseña"><br>
+                <label>Repetir contraseña</label><br>
+                <input type="password" name="repetircontraseña"><br>
+                <label>Subir foto</label><br>
+                <label>Nombres</label><br>
+                <input type="text" name="nombre"><br>
+                <label>Apellidos</label><br>
+                <input type="text" name="apellido"><br>
+                <label>Fecha de nacimiento</label><br>
+                <input type="date" name="fechaNacimiento"><br>
+                <label>Sexo</label><br>
+                <select name="sexo">
+                    <option>Femenino</option>
+                    <option>Masculino</option>
+                </select>
+                <br>
+                <label>Localidad</label><br>
+                <input type="text" name="localidad"><br>
+                <label>Código postal</label><br>
+                <input type="number" name="codigoPostal"><br>
+                <label>Email</label><br>
+                <input type="email" name="email"><br>
+                <label>Numero de contacto</label><br>
+                <input type="number" name="numeroContacto"><br>
+                <label>Nivel de estudios alcanzados</label><br>
+                <select name="estudios">
+                    <option>Primario incompleto</option>
+                    <option>Primario completo</option>
+                    <option>Secundario incompleto</option>
+                    <option>Secundario completo</option>
+                    <option>Terciario incompleto</option>
+                    <option>Terciario completo</option>
+                    <option>Universitario incompleto</option>
+                    <option>Universitario completo</option>
+                </select>
+                <br>
+                <label>Disponibilidad horaria</label><br>
+                <select name="disponibilidadHoraria">
+                    <option>Part time (Medio tiempo)</option>
+                    <option>Full time (Tiempo completo)</option>
+                </select>
+                <br>
+                <label>Dispone de movilidad propia?</label><br>
+                <select name="movilidadPropia">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+                <br>
+                <label>Si sabe manejar, indique que tipo de carnet de conducir posee</label><br>
+                <select name="carnetConducir">
+
+                </select>
+                <br>
+                <label>Elegir la categoría a la que desea postularse</label><br>
+                <select name="categoria" multiple>
+                    
+                </select>
+                <br>
+                <label>Experiencia laboral</label><br>
+                <textarea name="experienciaLaboral" rows="10" cols="40"></textarea>
+                <br>
+                <label>Si desea dejarnos algún comentario extra u aclaración de algunos de los campos rellenados, hágalo aquí</label><br>
+                <textarea name="otrosDatos" rows="10" cols="40">Deje aquí su comentario</textarea>
+                <br>
+                <button type="submit">Enviar</button>
+            </from>
+        </div>
+    </body>
+</html>
