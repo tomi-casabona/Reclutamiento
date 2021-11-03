@@ -47,20 +47,27 @@ public List<Empleado> listAll (){
 }
 
 @Transactional
-public void crearEmpleado (String username,String password,String password2, String nombre, String apellido,
+public Empleado save(Empleado empleado) throws IOException, ErrorWeb{
+    
+    if (empleado == null) {
+        throw new ErrorWeb("el empleado no existe");        
+    }
+     
+    return empleadoRepositorio.save(empleado);
+    
+}
+
+public Empleado modificarEmpleado (String id, String nombre, String apellido,
         Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
         MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico,MovilidadPropia movilidadPropia
         , List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir
-        , String otrosDatos) throws IOException, ErrorWeb{
+        , String otrosDatos) throws ErrorWeb, IOException{
     
-    // el usuario se crea aparte ?
+      validarModif(id, nombre, apellido, fechaNac, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
     
-    validarEmpleado(username, password, password2, nombre, apellido, fechaNac, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
+       Empleado empleado = empleadoRepositorio.findById(id).get();
     
-         
-    Empleado empleado = new Empleado();
-    
-    empleado.setNombre(nombre);
+          empleado.setNombre(nombre);
     empleado.setApellido(apellido);
     
     empleado.setFechaNac(fechaNac);
@@ -83,9 +90,11 @@ public void crearEmpleado (String username,String password,String password2, Str
     
     empleado.setOtrosDatos(otrosDatos);   
     
+    empleadoRepositorio.save(empleado);
+    return empleado;
 }
 
-private void validarEmpleado(String username,String password,String password2, String nombre, String apellido,
+public void validarEmpleado(String username,String password,String password2, String nombre, String apellido,
         Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
         MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico,MovilidadPropia movilidadPropia
         , List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir
@@ -141,8 +150,60 @@ private void validarEmpleado(String username,String password,String password2, S
         }     
          if (otrosDatos == null){
             throw new ErrorWeb("Ingrese experiencias laborales o una carta de presentacion breve");
-        }     
+        }  
 }
+        public void validarModif(String id, String nombre, String apellido,
+        Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
+        MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico,MovilidadPropia movilidadPropia
+        , List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir
+        , String otrosDatos) throws ErrorWeb{    
+        
+         if (id == null){
+            throw new ErrorWeb("Ingrese id");
+        }
+         if (nombre == null){
+            throw new ErrorWeb("Ingrese nombre");
+        }
+         if (apellido == null){
+            throw new ErrorWeb("Ingrese apellido");
+        }
+         if (fechaNac == null){
+            throw new ErrorWeb("Ingrese fecha de nacimiento");
+        }
+         if (email == null){
+            throw new ErrorWeb("Ingrese su email");
+        }
+         if (sexo == null){
+            throw new ErrorWeb("Ingrese su sexo");
+        }
+         if (estudiosAlcanzados == null){
+            throw new ErrorWeb("Ingrese nuvel de estudios alcanzado");
+        }
+         if (email == null){
+            throw new ErrorWeb("Ingrese su email");
+        }
+         if (foto == null){
+            throw new ErrorWeb("Ingrese una imagen");
+        }     
+         if (posibleReubicacion == null){
+            throw new ErrorWeb("Ingrese si esta dispuesto a reubicarse");
+        }     
+         if (numeroTelefonico == null || numeroTelefonico.length() != 10){
+            throw new ErrorWeb("Ingrese su numero telefonico con diez digitos, sin 0 y sin 15 ej: 3417123123");
+        }     
+         if (categorias.isEmpty()){
+            throw new ErrorWeb("Ingrese al menos una categoria");
+        }     
+         if (disponibilidadHoraria == null){
+            throw new ErrorWeb("Ingrese su disponibilidad horaria");
+        }     
+         if (carnetConducir == null){
+            throw new ErrorWeb("Ingrese su tipo de carnet de conducir si posee, o no");
+        }     
+         if (otrosDatos == null){
+            throw new ErrorWeb("Ingrese experiencias laborales o una carta de presentacion breve");
+        }     
+}  
 
 
 }

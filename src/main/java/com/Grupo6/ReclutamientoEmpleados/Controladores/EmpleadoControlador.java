@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Tomi
  */
 @Controller
-@RequestMapping("/empleado")
+@RequestMapping("/interfaz-empleado")
 public class EmpleadoControlador {
     
     @Autowired
     private EmpleadoServicio empleadoServicio;
+    
     
     @GetMapping("/list")
     public String listarEmpleados(Model model) {
