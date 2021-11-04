@@ -45,7 +45,7 @@ public class UsuarioControlador {
     
     @GetMapping("/registro-empleado")
     public String registroEmpleado(){
-        return "registroEmpleado";
+        return "registroEmpleado2";
     }
     
     @PostMapping("/registrar-empresa")

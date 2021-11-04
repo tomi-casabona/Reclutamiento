@@ -29,7 +29,7 @@
 
             </div>
             <div class="inf">
-                <form>
+                <form  th:action="@{/registro/registro-empleado}">
                     <div class="der">
                         <button class="btn" sec:authorize="!isAuthenticated()">Registrar empleado</button>
                     </div>

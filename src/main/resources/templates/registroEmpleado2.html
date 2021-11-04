@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es-AR" xmlns:th="https://tymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,8 +43,8 @@
                 <input  type="date"  class="form-control" th:value="${fechaNac}" name="fechaNac"><br>
                 </div><div> 
                     <label>Sexo</label><br>
-   ----------             <select name="sexo" th:each="sexo : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.Sexo).values()}"  th:value="${sexo}" th:text="${sexo}"  class="form-control"> 
-                    
+               <select name="sexo" class="form-control"> 
+                    <option th:each="s : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.Sexo).values()}"  th:value="${s}" th:text="${s.toString()}"> </option>
                 </select>
                 <br>
                </div><div>  
@@ -55,44 +55,45 @@
                 <input type="text" class="form-control"   th:value="${numeroTelefonico}"  name="numeroTelefonico"><br>
                 </div><div> 
                     <label>Nivel de estudios alcanzados</label><br>
-                <select name="estudiosAlcanzados" th:value="${estudiosAlcanzados}" >
-                    <option>Primario incompleto</option>
-                    <option>Primario completo</option>
-                    <option>Secundario incompleto</option>
-                    <option>Secundario completo</option>
-                    <option>Terciario incompleto</option>
-                    <option>Terciario completo</option>
-                    <option>Universitario incompleto</option>
-                    <option>Universitario completo</option>
+                <select name="estudiosAlcanzados" >
+                    <option th:each="e : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados).values()}"  th:value="${e}" th:text="${e.toString()}"> </option>
                 </select>
                 <br>
-              </div> <div> 
+              </div>
+              <!--  <div> 
                    <label>Disponibilidad horaria</label><br>
-                <select name="disponibilidadHoraria" th:value="${disponibilidadHoraria}" class="form-control" >
-                    <option>Part time (Medio tiempo)</option>
-                    <option>Full time (Tiempo completo)</option>
+                <select name="disponibilidadHoraria" class="form-control" >
+                    <option th:each="d : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.DisponibildadHoraria).values()}"  th:value="${d}" th:text="${d.toString()}"> </option>
+
                 </select>
                 <br>
-                </div><div> 
+                </div> -->
+
+                <div> 
                     <label>Dispone de movilidad propia?</label><br>
-                <select type="text" class="form-control" th:value="${movilidadPropia}"  name="movilidadPropia">
-                    <option>Si</option>
-                    <option>No</option>
-                </select>
-                <br>
-               </div> <div> 
-                    <label>Si sabe manejar, indique que tipo de carnet de conducir posee</label><br>
-                <select name="carnetConducir" th:value="${carnetConducir}" class="form-control">
+                <select class="form-control" name="movilidadPropia">
+                    <option th:each="mp : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia).values()}"  th:value="${mp}" th:text="${mp.toString()}"> </option>
 
                 </select>
                 <br>
                </div> <div> 
+                    <label>Si sabe manejar, indique que tipo de carnet de conducir posee</label><br>
+                <select name="carnetConducir" class="form-control">
+                    <option th:each="cc : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir).values()}"  th:value="${cc}" th:text="${cc.toString()}"> </option>
+
+                </select>
+                <br>
+               </div> 
+              <!--<div> 
                     <label>Elegir la categoría a la que desea postularse</label><br>
-                <select name="categoria" th:value="${categoria}" class="form-control" multiple>
+                <select name="categoria" class="form-control" multiple>
+                    <option th:each="cat : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.Categoria).values()}"  th:value="${cat}" th:text="${cat.toString()}"> </option>
+
                     
                 </select>
                 <br>
-               </div><div> 
+               </div> -->
+              <div> 
                    <label>Experiencia laboral</label><br>
                 <textarea name="experienciaLaboral"  th:value="${experienciaLaboral}" rows="10" cols="40" class="form-control"></textarea>
                 <br>
