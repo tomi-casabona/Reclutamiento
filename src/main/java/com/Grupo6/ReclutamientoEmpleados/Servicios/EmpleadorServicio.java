@@ -4,6 +4,7 @@ package com.Grupo6.ReclutamientoEmpleados.Servicios;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <title>Registrar una empresa</title>
 </head>
 <body>
     <h1>Registrar empleador</h1>
-    <from>
+    <form method="POST" th:action="@{/registro/registrar-empresa}">
         <label>Nombre de usuario</label><br>
-        <input type="text" name="nombreusuario"><br>
+        <input type="text" class="form-control" name="username"><br>
         <label>Contraseña</label><br>
-        <input type="password" name="contraseña"><br>
+        <input type="password" class="form-control" name="password"><br>
         <label>Repetir contraseña</label><br>
-        <input type="password" name="repetircontraseña"><br>
-        <label>Nombre y apellido o Nombre de la empresa</label><br>
-        <input type="text" name="nombre"><br>
-        <label>Número de contacto</label><br>
-        <input type="number" name="numeroContacto"><br>
+        <input type="password" class="form-control" name="password2"><br>
+        <label>Nombre de la empresa</label><br>
+        <input type="text" class="form-control" name="nombre_empresa"><br>
         <button type="submit">Enviar</button>
-    </from>
+    </form>
+    
+    <p th:text="${error}" style="color: red"></p>
 </body>
 </html>

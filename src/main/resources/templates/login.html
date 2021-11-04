@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/styles.css">
     
     <title>Login</title>
 </head>
@@ -14,13 +14,14 @@
           <div class="login-info-container">
             <h1 class="title">Ingrese sus datos</h1>
            
-            <form class="inputs-container">
-                <input class="input" type="text" placeholder="Username">
-                <input class="input" type="text" placeholder="Password">
-                <p>Forgot password? <span class="span">Click here</span></p>
+            <form class="inputs-container" th:action="@{/logincheck}" method="POST">
+                <input class="input" type="text" placeholder="Username" name="username">
+                <input class="input" type="password" placeholder="Password" name="password">
                 <button class="btn">login</button>
-                <p>Don't have an account? <span class="span">Sign Up</span></p>
+                <p>No tienes cuenta? <a href="/">Vuelve al inicio y crea una</a></p>
             </form>
+            
+            <h2 th:if="${error}" style="color: red; text-align: center" th:text="${error}"></h2>
           </div>
             <img class="image-container" src="images/login.svg" alt="">
       </div>
