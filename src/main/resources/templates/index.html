@@ -12,26 +12,32 @@
         <div class="containerIndex">
             <form th:action="@{/login}">
                 <div class="sup">
-                    <button type="submit" class="btn2">Iniciar sesion</button>
+                    <button type="submit" class="btn2" sec:authorize="!isAuthenticated()">Iniciar sesion</button>
+                </div>
+            </form>
+            <form th:action="@{/logout}">
+                <div class="sup">
+                    <button type="submit" class="btn2" sec:authorize="isAuthenticated()">Cerrar sesion</button>
                 </div>
             </form>
             <div class="medio">
                 <form th:action="@{/busqueda}">
                     <div class="imgIndex">
-                        <button class="btn3" role="button">Comenzar busqueda</button>
+                        <button class="btn3" role="button" sec:authorize="hasRole('ROLE_EMPRESA')">Comenzar busqueda</button>
                     </div>
                 </form>
 
             </div>
             <div class="inf">
-                <form th:action="@{/registro/registro-empleado}">
+                <form>
                     <div class="der">
-                        <button class="btn">Registrar empleado</button>
+                        <button class="btn" sec:authorize="!isAuthenticated()">Registrar empleado</button>
                     </div>
                 </form>
+                
                 <form th:action="@{/registro/registro-empresa}">
                     <div class="izq">
-                        <button class="btn">Registrar empresa</button>
+                        <button class="btn" sec:authorize="!isAuthenticated()">Registrar empresa</button>
                     </div>
                 </form>
             </div>

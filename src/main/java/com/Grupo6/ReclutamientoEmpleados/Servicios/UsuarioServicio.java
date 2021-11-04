@@ -90,8 +90,8 @@ public class UsuarioServicio implements UserDetailsService {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
         }
 
-        if (contraseña.isEmpty() || contraseña == null || contraseña2 == null || contraseña2.isEmpty()) {
-            throw new ErrorWeb("La contraseña no puede estar vacia");
+        if (contraseña.isEmpty() || contraseña == null || contraseña2 == null || contraseña2.isEmpty() || contraseña.length()<=5 || contraseña2.length()<=5) {
+            throw new ErrorWeb("Ingrese una contraseña valida de mas de 5 caracteres");
         }
         
         if(nombre_empresa==null || nombre_empresa.isEmpty()){
