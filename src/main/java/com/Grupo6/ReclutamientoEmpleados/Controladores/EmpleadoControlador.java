@@ -33,25 +33,5 @@ public class EmpleadoControlador {
     }
     
     
-//    
-//      @PostMapping("/save")
-//    public String guardarLibro(ModelMap model, @RequestParam (required = false) String titulo, @RequestParam (required = false) MultipartFile archivo, @RequestParam (required = false) Integer anio, @RequestParam (required = false) Integer ejemplares, @RequestParam (required = false) String autor, @RequestParam (required = false) String editorial) throws ErrorServicio, IOException{
-//        try {
-//         libroServices.cargarLibro(archivo, titulo, anio, ejemplares, autor, editorial);
-//
-//        } catch (ErrorServicio e) {
-//            model.put("error", e.getMessage());
-//            
-//            model.put("foto", archivo);
-//            model.put("titulo", titulo);
-//            model.put("anio", anio);
-//            model.put("ejemplares", ejemplares);
-//            model.put("autor", autor);
-//            model.put("editorial", editorial);
-//            return "libro-form";
-//        }
-//            return "redirect:/empleado/list";
-//    }
-
 
 }

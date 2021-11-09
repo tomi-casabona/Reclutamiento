@@ -10,9 +10,13 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
 import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
+import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
+import com.Grupo6.ReclutamientoEmpleados.Servicios.CategoriaServicio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.UsuarioServicio;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,13 +43,17 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
     
+    @Autowired
+    private CategoriaServicio categoriaServicio;
+    
     @GetMapping("/registro-empresa")
     public String registro(){
         return "registroEmpleador";
     }    
     
     @GetMapping("/registro-empleado")
-    public String registroEmpleado(){
+    public String registroEmpleado(ModelMap model){
+        model.addAttribute("categoria", categoriaServicio.listaCategorias());
         return "registroEmpleado2";
     }
     
@@ -66,21 +75,30 @@ public class UsuarioControlador {
     
     @PostMapping("/registrar-empleado")
     public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre, @RequestParam String apellido,
-        @RequestParam Date fechaNac,@RequestParam String email,@RequestParam  Sexo sexo, @RequestParam EstudiosAlcanzados estudiosAlcanzados,
+        @RequestParam String fechaNac,@RequestParam String email,@RequestParam  Sexo sexo, @RequestParam EstudiosAlcanzados estudiosAlcanzados,
         @RequestParam MultipartFile foto,@RequestParam PosibleReubicacion posibleReubicacion, @RequestParam String numeroTelefonico,@RequestParam MovilidadPropia movilidadPropia
-        , @RequestParam List<Categoria> categorias, @RequestParam DisponibilidadHoraria disponibilidadHoraria,@RequestParam  CarnetConducir carnetConducir
+        , @ RequestParam List<Categoria> categorias, @RequestParam DisponibilidadHoraria disponibilidadHoraria,@RequestParam  CarnetConducir carnetConducir
         , @RequestParam String otrosDatos) throws IOException{
         try {
-            usuarioServicio.crearUsuarioEmpleado(username, password, password2, nombre, apellido, fechaNac, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
+            
+            SimpleDateFormat fechaNac2 = new SimpleDateFormat(fechaNac);
+            
+            Date fechaNac1 = fechaNac2.get2DigitYearStart();
+            
+//            List<Categoria> categorias = new ArrayList<Categoria>();
+//            categorias.add(categoriaServicio.findByid("1"));
+         
+            usuarioServicio.crearUsuarioEmpleado(username, password, password2, nombre, apellido, fechaNac1, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
             
             redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
             
             return "redirect:/";
         } catch (ErrorWeb e) {
             model.addAttribute("error",e.getMessage());
+            e.printStackTrace();
             redirectAttributes.addFlashAttribute("error",e.getMessage());
             model.addAttribute("username",username);
-            return "redirect:/registro/registro-empresa";
+            return "redirect:/registro/registro-empleado2";
         }
     }
     

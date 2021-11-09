@@ -179,7 +179,7 @@ public class UsuarioServicio implements UserDetailsService {
     empleado.setEmail(email);
     empleado.setNumeroTelefonico(numeroTelefonico);   
     
-    empleado.setCategorias(categorias);
+    empleado.setCategoria(categorias);
     
     Foto fotografia = fotoServicio.guardar(foto);    
     

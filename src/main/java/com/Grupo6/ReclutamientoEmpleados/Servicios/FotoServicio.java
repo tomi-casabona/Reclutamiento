@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import sun.print.resources.serviceui;
+
 
 @Service
 public class FotoServicio {
@@ -22,6 +22,7 @@ public class FotoServicio {
         if (archivo != null) {
             try {
                 Foto foto = new Foto();
+             
 
                 foto.setMime(archivo.getContentType());
                 foto.setNombre(archivo.getName());
