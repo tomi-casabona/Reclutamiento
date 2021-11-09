@@ -17,9 +17,14 @@ public class CategoriaServicio {
     
     @Autowired
     private CategoriaRepositorio categoriaRepositorio;
+
     
-    public List<Categoria> listaCategorias(){
-        return categoriaRepositorio.findAll();
-    } 
+    public List<Categoria> listaCategorias (){
+        
+    return categoriaRepositorio.findAll() ;
+    }
+  public Categoria findByid(String id){
+      return categoriaRepositorio.findById(id).get();
+  }
    
 }
