@@ -105,9 +105,8 @@ public void validarEmpleado(String username,String password,String password2, St
         }        
         if (password == null || password.isEmpty() || password2 == null || password2.isEmpty()){
             throw new ErrorWeb("La contraseña no debe estar vacia");
-        }        
-         if (password != password2){
-            throw new ErrorWeb("Las contraseñas no coinciden");
+              
+         
         }          
          if (nombre == null){
             throw new ErrorWeb("Ingrese nombre");
