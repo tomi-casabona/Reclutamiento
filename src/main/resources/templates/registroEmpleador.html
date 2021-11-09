@@ -4,23 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Registrar una empresa</title>
 </head>
+
 <body>
-    <h1>Registrar empleador</h1>
-    <form method="POST" th:action="@{/registro/registrar-empresa}">
-        <label>Nombre de usuario</label><br>
-        <input type="text" class="form-control" name="username"><br>
-        <label>Contraseña</label><br>
-        <input type="password" class="form-control" name="password"><br>
-        <label>Repetir contraseña</label><br>
-        <input type="password" class="form-control" name="password2"><br>
-        <label>Nombre de la empresa</label><br>
-        <input type="text" class="form-control" name="nombre_empresa"><br>
-        <button type="submit">Enviar</button>
-    </form>
-    
-    <p th:text="${error}" style="color: red"></p>
+    <div class="container">
+        <div class="titulo">
+            <span>Registro empleador/empresa</span>
+        </div>
+       
+        <div class="input-container" id="input-container-registros">
+            <form method="POST" th:action="@{/registro/registrar-empleado}" enctype="multipart/form-data" th:object="${empleado}">
+                
+                <div>
+                    <label>Nombre de usuario</label><br>
+                    <input type="text"  class="form-control" th:value="${username}" name="username"><br>
+               </div>
+               <div>
+                    <label>Contraseña</label><br>
+                    <input type="password"  class="form-control"  th:value="${password}" name="password"><br>
+                </div>
+                <div>                    
+                    <label>Repetir contraseña</label><br>
+                    <input type="password" class="form-control"  th:value="${password2} "name="password2"><br>
+                </div>
+                <div>
+                    <label>Nombres y apellido o nombre de empresa</label><br>
+                    <input type="text" class="form-control" th:value="${nombre}" name="nombre"><br>
+                </div>
+              
+                <button class="btn" id="btnRegistro" type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="sup">
+            <button class="btnvolver">
+                <a href="../templates/index.html">Volver</a>
+            </button>
+        </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+</script>
 </body>
 </html>
