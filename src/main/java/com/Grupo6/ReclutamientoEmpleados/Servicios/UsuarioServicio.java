@@ -13,7 +13,6 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
-import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
@@ -47,9 +46,6 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private EmpleadorRepositorio empleadorRepositorio;
-
-    @Autowired
-    private EmpleadoRepositorio empleadoRepositorio;
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -145,14 +141,6 @@ public class UsuarioServicio implements UserDetailsService {
 
         Empleado empleado = new Empleado();
 
-        List<Empleado> empleados = empleadoRepositorio.findAll();
-        
-        for (Empleado empleado1 : empleados) {
-            if (username.equalsIgnoreCase(empleado1.getNombre_usuario() )) {
-              throw new ErrorWeb("El nombre de usuario ya existe");
-            }
-                       
-        }
         empleadoServicio.validarEmpleado(username, password, password2, nombre, apellido, fechaNac,
                 email, sexo, estudiosAlcanzados, foto, posibleReubicacion,
                 numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria,
@@ -174,10 +162,12 @@ public class UsuarioServicio implements UserDetailsService {
         
         
     empleado.setNombre(nombre);
-    empleado.setApellido(apellido);    
-    empleado.setFechaNac(fechaNac);    
+    empleado.setApellido(apellido);
+    
+    empleado.setFechaNac(fechaNac);
+    
     empleado.setEmail(email);
-    empleado.setNumeroTelefonico(numeroTelefonico);   
+    empleado.setNumeroTelefonico(numeroTelefonico);
     
     empleado.setCategorias(categorias);
     

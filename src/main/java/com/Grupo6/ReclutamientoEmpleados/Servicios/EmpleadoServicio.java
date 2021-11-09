@@ -74,12 +74,12 @@ public Empleado modificarEmpleado (String id, String nombre, String apellido,
     
     empleado.setEmail(email);
     empleado.setNumeroTelefonico(numeroTelefonico);
-
-    empleado.setCategoria(categorias);
     
-    Foto fotografia = fotoServicio.crearFoto(foto);    
-       empleado.setFoto(fotografia);
-
+    empleado.setCategorias(categorias);
+    
+    Foto fotografia = fotoServicio.guardar(foto);    
+    
+    empleado.setFoto(fotografia);    
      
     empleado.setSexo(sexo);
     empleado.setDisponibilidadHoraria(disponibilidadHoraria);    

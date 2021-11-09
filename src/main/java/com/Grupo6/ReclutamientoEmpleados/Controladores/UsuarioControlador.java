@@ -1,20 +1,10 @@
 
 package com.Grupo6.ReclutamientoEmpleados.Controladores;
 
-import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Usuario;
-import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
-import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
-import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
-import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
-import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
-import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.UsuarioServicio;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -41,37 +30,17 @@ public class UsuarioControlador {
     @GetMapping("/registro-empresa")
     public String registro(){
         return "registroEmpleador";
-    }    
+    }
     
     @GetMapping("/registro-empleado")
     public String registroEmpleado(){
-        return "registroEmpleado2";
+        return "registroEmpleado";
     }
     
     @PostMapping("/registrar-empresa")
     public String registrarNuevoEmpleador(Model model,RedirectAttributes redirectAttributes,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre_empresa){
         try {
             usuarioServicio.crearUsuarioEmpresa(username,password,password2, nombre_empresa);
-            
-            redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
-            
-            return "redirect:/";
-        } catch (ErrorWeb e) {
-            model.addAttribute("error",e.getMessage());
-            redirectAttributes.addFlashAttribute("error",e.getMessage());
-            model.addAttribute("username",username);
-            return "redirect:/registro/registro-empresa";
-        }
-    }
-    
-    @PostMapping("/registrar-empleado")
-    public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre, @RequestParam String apellido,
-        @RequestParam Date fechaNac,@RequestParam String email,@RequestParam  Sexo sexo, @RequestParam EstudiosAlcanzados estudiosAlcanzados,
-        @RequestParam MultipartFile foto,@RequestParam PosibleReubicacion posibleReubicacion, @RequestParam String numeroTelefonico,@RequestParam MovilidadPropia movilidadPropia
-        , @RequestParam List<Categoria> categorias, @RequestParam DisponibilidadHoraria disponibilidadHoraria,@RequestParam  CarnetConducir carnetConducir
-        , @RequestParam String otrosDatos) throws IOException{
-        try {
-            usuarioServicio.crearUsuarioEmpleado(username, password, password2, nombre, apellido, fechaNac, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
             
             redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
             
