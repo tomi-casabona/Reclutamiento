@@ -47,8 +47,6 @@ public class EmpleadoServicio {
         if (empleado == null) {
             throw new ErrorWeb("el empleado no existe");
         }
-        
-        empleado.setCategoria(empleado.getCategoria());
 
         return empleadoRepositorio.save(empleado);
 
@@ -202,7 +200,8 @@ public class EmpleadoServicio {
     }
     
     public List<Categoria> listAllByCategoria(String categoria){
-        return empleadoRepositorio.listAllByCategoria(categoria);
+        categoria = "%"+categoria+"%";
+        return empleadoRepositorio.prueba(categoria);
     }
 
 }

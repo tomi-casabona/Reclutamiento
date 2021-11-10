@@ -17,7 +17,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmpleadoRepositorio extends JpaRepository<Empleado, String>{
     
-    @Query("select c from Empleado c where c.categoria= :categoria")
-    List<Categoria> listAllByCategoria(@Param("categoria") String categoria);
+    @Query("SELECT e FROM Empleado e left join Categoria c")
+    public List<Categoria> prueba(@Param("categoria") String categoria);
+    
 
 }

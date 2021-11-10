@@ -13,6 +13,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
+import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
@@ -44,6 +45,8 @@ public class UsuarioServicio implements UserDetailsService {
     private EmpleadorServicio empleadorServicio;
     @Autowired
     private FotoServicio fotoServicio;
+    @Autowired
+    private CategoriaServicio categoriaServicio;
 
     @Autowired
     private EmpleadorRepositorio empleadorRepositorio;
@@ -177,13 +180,15 @@ public class UsuarioServicio implements UserDetailsService {
     empleado.setApellido(apellido);    
     empleado.setFechaNac(fechaNac);    
     empleado.setEmail(email);
-    empleado.setNumeroTelefonico(numeroTelefonico);   
-    
-    empleado.setCategoria(categorias);
+    empleado.setNumeroTelefonico(numeroTelefonico);
     
     Foto fotografia = fotoServicio.guardar(foto);    
     
     empleado.setFoto(fotografia);    
+    
+    List<Categoria> categoria = categoriaServicio.save(categorias);
+    
+    empleado.setCategorias(categoria);
      
     empleado.setSexo(sexo);
     empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
