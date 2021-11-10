@@ -19,6 +19,9 @@
 body{
     background: linear-gradient(to top,var(--colorOscuro) 0%, var(--colorClaro) 100%); 
     font-family: "Consolas", monospace;
+    
+}
+#tamañobody{
     height: 100vh;
 }
 
@@ -95,7 +98,7 @@ body{
     justify-content: center; 
 }
 .grid-container{
-    background-color: rgb(150, 218, 138);
+    background-color: var(--colorMuyClaro);
     display: grid;
     width: 100%;
     grid-template-columns: 200px 1fr 1fr;
@@ -104,7 +107,6 @@ body{
 }
 .grid-container div{
     text-align: center;
-    box-shadow: 0 0 2px rgb(0, 0, 0, 0.5);
     color: #fff;
 }
 .titulo{
@@ -120,7 +122,7 @@ body{
     grid-template-rows: auto auto auto;
     color: seashell;
 }
-.foto, .acciones{
+.foto, .acciones, .nombre{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,6 +141,16 @@ body{
 .container-container{
     width: 80%;
 }
+
+.acciones{
+    display: grid;
+    width: 100%;
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    color: seashell;
+}
+
 
 /* ----------------------------------------------------------*/ 
 /*style index*/
@@ -197,7 +209,7 @@ a:link, a:visited, a:active{
     text-decoration: #fff;
 }
 a:-webkit-any-link {
-    color: #fff;
+    color: var(--colorMuyClaro);
     cursor: pointer;
 }
 /* ----------------------------------------------------------*/ 
@@ -220,13 +232,13 @@ a:-webkit-any-link {
     align-items: center;
     text-align: center;
     padding-top: 0.5rem;
-    background-color: var(--login-bg);
+    background-color: var(--colorClaro);
 }
 
 .image-container {
     padding: 2rem;
     width: 50%;
-    background-color: var(--image-bg);
+    background-color: var(--colorClaro);
     box-sizing: border-box;
 }
 
@@ -235,7 +247,7 @@ a:-webkit-any-link {
     font-size: 2.25rem;
     font-weight: 600;
     letter-spacing: 1px;
-    color: var(--title-bg);
+    color: var(--colorClaro);
 }
 
 .social-login {
@@ -252,7 +264,7 @@ a:-webkit-any-link {
     font-weight: 700;
     letter-spacing: 0.5px;
     border-radius: 5px;
-    border: 1px solid var(--button-bg);
+    border: 1px solid var(--colorClaro);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -300,7 +312,7 @@ a:-webkit-any-link {
 }
 
 .input:hover {
-    border: 2px solid var(--button-bg);
+    border: 2px solid var(--colorClaro);
 }
 
 
@@ -313,6 +325,7 @@ a:-webkit-any-link {
     font-weight: 600;
     cursor: pointer;
 }
+
 /* ----------------------------------------------------------*/ 
 /*style registros*/
 
@@ -340,12 +353,13 @@ a:-webkit-any-link {
     color: #fff;
     border: none;
     border-radius: 5px;
-    background-color: var(--colorMuyClaro);
+    background-color: var(--colorClaro);
     cursor: pointer; 
+    padding: 10px;
 }
 #btnRegistro{
     width: 100%;
-    background-color: var(--colorMuyClaro)
+    background-color: var(--colorClaro)
 }
 
 .btn2{
@@ -357,7 +371,7 @@ a:-webkit-any-link {
     color: #fff;
     border: none;
     border-radius: 5px;
-    background-color: var(--colorMuyClaro);
+    background-color: var(--colorOscuro);
     cursor: pointer; 
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -373,11 +387,13 @@ a:-webkit-any-link {
     color: #fff;
     border: none;
     border-radius: 5px;
-    background-color: var(--colorMuyClaro);
+    background-color: var(--colorClaro);
     cursor: pointer; 
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
+#btnlista{
+    width: 98%;
+}
 .button a:link{
   text-decoration: none;
 }
