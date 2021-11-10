@@ -24,23 +24,23 @@
             <div class="medio">
                 <form th:action="@{/busqueda}">
                     <div class="imgIndex">
-                        <button class="btn3" role="button" sec:authorize="hasRole('ROLE_EMPRESA')"><a href="../templates/busqueda.html">Comenzar busqueda</a>
+                        <button class="btn3" role="button" sec:authorize="hasRole('ROLE_EMPRESA')">Comenzar busqueda
 
                         </button>
                     </div>
                 </form>
             </div>
             <div class="inf">
-                <form>
+                <form th:href="@{/registro/registro-empleado}">
                     <div class="der">
-                        <button class="btn3" sec:authorize="!isAuthenticated()" ><a href="../templates/registroEmpleado.html">Registrar empleado</a>
+                        <button class="btn3" sec:authorize="!isAuthenticated()" >Registrar empleado
                         </button>
                     </div>
                 </form>
                 
                 <form th:action="@{/registro/registro-empresa}">
                     <div class="izq">
-                        <button class="btn3" sec:authorize="!isAuthenticated()"><a href="../templates/registroEmpleador.html">Registrar empresa</a>
+                        <button class="btn3" sec:authorize="!isAuthenticated()">Registrar empresa
                         </button>
                     </div>
                 </form>
