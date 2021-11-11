@@ -15,6 +15,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -198,7 +199,20 @@ public void validarEmpleado(String username,String password,String password2, St
          if (otrosDatos == null){
             throw new ErrorWeb("Ingrese experiencias laborales o una carta de presentacion breve");
         }     
-}  
-
+    } 
+    
+    public List<Empleado> listAllByCategoria(String categoria){
+        List<Empleado> lista= new ArrayList<>();
+        
+        List<Empleado> lista1= empleadoRepositorio.findAll();
+        
+        for (Empleado empleado : lista1) {
+            if (empleado.getCategorias().contains(categoria)){
+                lista.add(empleado);
+            }
+        }
+        
+        return lista;
+    }
 
 }

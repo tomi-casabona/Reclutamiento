@@ -22,9 +22,15 @@ public class CategoriaServicio {
     public List<Categoria> listaCategorias (){
         
     return categoriaRepositorio.findAll() ;
+    
     }
+    
   public Categoria findByid(String id){
       return categoriaRepositorio.findById(id).get();
   }
+  
+    public List<Categoria> save(List<Categoria> categoria){
+        return categoriaRepositorio.saveAll(categoria);
+    }
    
 }

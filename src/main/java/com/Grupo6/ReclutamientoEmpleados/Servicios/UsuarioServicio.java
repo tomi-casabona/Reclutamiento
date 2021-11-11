@@ -13,6 +13,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
+import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
@@ -44,13 +45,15 @@ public class UsuarioServicio implements UserDetailsService {
     private EmpleadorServicio empleadorServicio;
     @Autowired
     private FotoServicio fotoServicio;
+    @Autowired
+    private CategoriaServicio categoriaServicio;
 
     @Autowired
     private EmpleadorRepositorio empleadorRepositorio;
 
     @Autowired
     private EmpleadoRepositorio empleadoRepositorio;
-    
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -73,19 +76,19 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = new Usuario();
 
         Empleador empleador1 = new Empleador(nombre_empresa);
-        
-        List<Empleador> empleadores=empleadorRepositorio.findAll();
-        
+
+        List<Empleador> empleadores = empleadorRepositorio.findAll();
+
         for (Empleador empleadore : empleadores) {
-            if(nombre_empresa.equals(empleadore.getNombreEmpresa())){
+            if (nombre_empresa.equals(empleadore.getNombreEmpresa())) {
                 throw new ErrorWeb("Esta empresa ya esta registrada");
             }
         }
-        
-        List<Usuario> usuarios=usuarioRepositorio.findAll();
-        
+
+        List<Usuario> usuarios = usuarioRepositorio.findAll();
+
         for (Usuario usuario1 : usuarios) {
-            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())){
+            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
                 throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
             }
         }
@@ -94,11 +97,11 @@ public class UsuarioServicio implements UserDetailsService {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
         }
 
-        if (contraseña.isEmpty() || contraseña == null || contraseña2 == null || contraseña2.isEmpty() || contraseña.length()<=5 || contraseña2.length()<=5) {
+        if (contraseña.isEmpty() || contraseña == null || contraseña2 == null || contraseña2.isEmpty() || contraseña.length() <= 5 || contraseña2.length() <= 5) {
             throw new ErrorWeb("Ingrese una contraseña valida de mas de 5 caracteres");
         }
-        
-        if(nombre_empresa==null || nombre_empresa.isEmpty()){
+
+        if (nombre_empresa == null || nombre_empresa.isEmpty()) {
             throw new ErrorWeb("Ingrese un nombre de empresa correcto");
         }
 
@@ -140,12 +143,14 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = new Usuario();
 
         List<Empleado> empleados = empleadoRepositorio.findAll();
-        
+
         for (Empleado empleado1 : empleados) {
-            if (empleado.getNombre_usuario().equalsIgnoreCase(empleado1.getNombre_usuario() )) {
-              throw new ErrorWeb("El nombre de usuario ya existe");
+
+            if (empleado.getNombre_usuario().equalsIgnoreCase(empleado1.getNombre_usuario())) {
+                throw new ErrorWeb("El nombre de usuario ya existe");
+
             }
-                       
+
         }
         empleadoServicio.validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), password2, empleado.getNombre(), empleado.getApellido(), empleado.getFechaNac(),
                 empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), foto, empleado.getPosiblereubicacion(),
@@ -161,15 +166,13 @@ public class UsuarioServicio implements UserDetailsService {
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
-     
         usuario.setEmpleado(empleado);
 
-        usuario.setRol(Rol.CANDIDATO);        
-     
-    
-    fotoServicio.guardar((MultipartFile) empleado.getFoto());     
-    
-      empleadoServicio.save(empleado);    
+        usuario.setRol(Rol.CANDIDATO);
+
+        fotoServicio.guardar((MultipartFile) empleado.getFoto());
+
+        empleadoServicio.save(empleado);
 
         return usuarioRepositorio.save(usuario);
     }
