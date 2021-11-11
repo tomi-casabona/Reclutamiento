@@ -31,7 +31,7 @@
                 </form>
             </div>
             <div class="inf">
-                <form th:href="@{/registro/registro-empleado}">
+                <form th:action="@{/registro/registro-empleado}">
                     <div class="der">
                         <button class="btn3" sec:authorize="!isAuthenticated()" >Registrar empleado
                         </button>

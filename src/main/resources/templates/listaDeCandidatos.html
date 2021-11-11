@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
-    <title>listaDeCandidatos</title>
+    <title>Lista de candidatos</title>
 </head>
 <body>
     <div class="containerLista">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="nombre">
-                    <p th:each="empleado : ${empleados}" th:text="${empleado.nombre}"></p>
+                    <p th:each="e : ${empleados}" th:text="${e.nombre}"></p>
                 </div>
                 <div class="acciones">
                     <button class="btn">Ver perfil</button>
