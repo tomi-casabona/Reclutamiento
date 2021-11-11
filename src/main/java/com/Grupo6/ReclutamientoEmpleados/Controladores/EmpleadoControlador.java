@@ -36,7 +36,7 @@ public class EmpleadoControlador {
     
     @GetMapping("")
     public String registro(){
-        return "registroEmpleador";
+        return "registroEmpleado";
     }
     
     @GetMapping("/editar-empleado")
