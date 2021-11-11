@@ -17,11 +17,6 @@ public class PortalControlador {
         return "index";
     }
     
-    @GetMapping("/dont-account")
-    public String indexDHA(){
-        return "index_dont_have_account";
-    }
-    
     @GetMapping("/registrar-empleador")
     public String registroEmpleador(ModelMap model){
         return "registro-empleador";
