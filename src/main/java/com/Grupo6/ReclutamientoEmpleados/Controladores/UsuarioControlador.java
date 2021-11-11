@@ -2,6 +2,7 @@
 package com.Grupo6.ReclutamientoEmpleados.Controladores;
 
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
+import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Usuario;
 import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
 import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
@@ -54,7 +55,8 @@ public class UsuarioControlador {
     @GetMapping("/registro-empleado")
     public String registroEmpleado(ModelMap model){
         model.addAttribute("categoria", categoriaServicio.listaCategorias());
-        return "registroEmpleado2";
+        model.addAttribute("empleado", new Empleado());
+        return "registroEmpleado";
     }
     
     @PostMapping("/registrar-empresa")
@@ -74,31 +76,22 @@ public class UsuarioControlador {
     }
     
     @PostMapping("/registrar-empleado")
-    public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre, @RequestParam String apellido,
-        @RequestParam String fechaNac,@RequestParam String email,@RequestParam  Sexo sexo, @RequestParam EstudiosAlcanzados estudiosAlcanzados,
-        @RequestParam MultipartFile foto,@RequestParam PosibleReubicacion posibleReubicacion, @RequestParam String numeroTelefonico,@RequestParam MovilidadPropia movilidadPropia
-        , @ RequestParam List<Categoria> categorias, @RequestParam DisponibilidadHoraria disponibilidadHoraria,@RequestParam  CarnetConducir carnetConducir
-        , @RequestParam String otrosDatos) throws IOException{
-        try {
-            
-            SimpleDateFormat fechaNac2 = new SimpleDateFormat(fechaNac);
-            
-            Date fechaNac1 = fechaNac2.get2DigitYearStart();
-            
-//            List<Categoria> categorias = new ArrayList<Categoria>();
-//            categorias.add(categoriaServicio.findByid("1"));
+    public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes, @ModelAttribute Empleado empleado, @RequestParam String password2, @RequestParam MultipartFile imagen) throws IOException{
+        try {      
+
+            usuarioServicio.crearUsuarioEmpleado(password2, empleado, imagen);
          
-            usuarioServicio.crearUsuarioEmpleado(username, password, password2, nombre, apellido, fechaNac1, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
-            
             redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
             
             return "redirect:/";
         } catch (ErrorWeb e) {
             model.addAttribute("error",e.getMessage());
             e.printStackTrace();
-            redirectAttributes.addFlashAttribute("error",e.getMessage());
-            model.addAttribute("username",username);
-            return "redirect:/registro/registro-empleado2";
+            model.addAttribute("error",e.getMessage());
+            model.addAttribute("empleado",empleado);
+            model.addAttribute("categoria", categoriaServicio.listaCategorias());
+            model.addAttribute("nombre_usuario",empleado.getNombre_usuario());
+            return "registroEmpleado";
         }
     }
     

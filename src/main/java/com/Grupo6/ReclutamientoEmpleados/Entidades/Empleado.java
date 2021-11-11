@@ -9,33 +9,47 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Empleado extends Usuario {
-    
+
     private String nombre;
     private String apellido;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date fechaNac;
-   
+
     @OneToMany
     private List<Categoria> categorias;
     
     @OneToOne
     private Foto foto;
-    
+
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
+    @Enumerated(EnumType.STRING)
     private EstudiosAlcanzados estudiosAlcanzados;
+    @Enumerated(EnumType.STRING)
     private DisponibilidadHoraria disponibilidadHoraria;
+    @Enumerated(EnumType.STRING)
     private MovilidadPropia movilidadPropia;
-    private PosibleReubicacion posiblereubucacion;
+    @Enumerated(EnumType.STRING)
+    private PosibleReubicacion posiblereubicacion;
+    @Enumerated(EnumType.STRING)
     private CarnetConducir carnetConducir;
+
     private String email;
     private String numeroTelefonico;
-    private String experienciaLaboral;    
-    private String otrosDatos;
-    
+    private String experienciaLaboral;
+  
 
     public Empleado() {
     }
@@ -64,12 +78,20 @@ public class Empleado extends Usuario {
         this.fechaNac = fechaNac;
     }
 
-    public List<Categoria> getCategoria() {
-        return getCategorias();
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setCategoria(List<Categoria> categoria) {
-        this.setCategorias(categoria);
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
 
     public Sexo getSexo() {
@@ -79,7 +101,15 @@ public class Empleado extends Usuario {
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
-    
+
+    public EstudiosAlcanzados getEstudiosAlcanzados() {
+        return estudiosAlcanzados;
+    }
+
+    public void setEstudiosAlcanzados(EstudiosAlcanzados estudiosAlcanzados) {
+        this.estudiosAlcanzados = estudiosAlcanzados;
+    }
+
     public DisponibilidadHoraria getDisponibilidadHoraria() {
         return disponibilidadHoraria;
     }
@@ -96,12 +126,12 @@ public class Empleado extends Usuario {
         this.movilidadPropia = movilidadPropia;
     }
 
-    public PosibleReubicacion getPosiblereubucacion() {
-        return posiblereubucacion;
+    public PosibleReubicacion getPosiblereubicacion() {
+        return posiblereubicacion;
     }
 
-    public void setPosiblereubucacion(PosibleReubicacion posiblereubucacion) {
-        this.posiblereubucacion = posiblereubucacion;
+    public void setPosiblereubicacion(PosibleReubicacion posiblereubicacion) {
+        this.posiblereubicacion = posiblereubicacion;
     }
 
     public CarnetConducir getCarnetConducir() {
@@ -136,57 +166,7 @@ public class Empleado extends Usuario {
         this.experienciaLaboral = experienciaLaboral;
     }
 
-    public String getOtrosDatos() {
-        return otrosDatos;
-    }
-
-    public void setOtrosDatos(String otrosDatos) {
-        this.otrosDatos = otrosDatos;
-    }
-
-    /**
-     * @return the categorias
-     */
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    /**
-     * @param categorias the categorias to set
-     */
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    /**
-     * @return the estudiosAlcanzados
-     */
-    public EstudiosAlcanzados getEstudiosAlcanzados() {
-        return estudiosAlcanzados;
-    }
-
-    /**
-     * @param estudiosAlcanzados the estudiosAlcanzados to set
-     */
-    public void setEstudiosAlcanzados(EstudiosAlcanzados estudiosAlcanzados) {
-        this.estudiosAlcanzados = estudiosAlcanzados;
-    }
-
-    /**
-     * @return the foto
-     */
-    public Foto getFoto() {
-        return foto;
-    }
-
-    /**
-     * @param foto the foto to set
-     */
-    public void setFoto(Foto foto) {
-        this.foto = foto;
-    }
     
     
     
 }
-

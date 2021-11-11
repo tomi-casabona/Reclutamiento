@@ -135,67 +135,41 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Transactional
-    public Usuario crearUsuarioEmpleado(String username, String password, String password2, String nombre, String apellido,
-            Date fechaNac, String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
-            MultipartFile foto, PosibleReubicacion posibleReubicacion, String numeroTelefonico, MovilidadPropia movilidadPropia,
-             List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir,
-             String otrosDatos) throws ErrorWeb, IOException {
+    public Usuario crearUsuarioEmpleado(String password2, Empleado empleado, MultipartFile foto) throws ErrorWeb, IOException {
 
         Usuario usuario = new Usuario();
-
-        Empleado empleado = new Empleado();
 
         List<Empleado> empleados = empleadoRepositorio.findAll();
         
         for (Empleado empleado1 : empleados) {
-            if (username.equalsIgnoreCase(empleado1.getNombre_usuario() )) {
+            if (empleado.getNombre_usuario().equalsIgnoreCase(empleado1.getNombre_usuario() )) {
               throw new ErrorWeb("El nombre de usuario ya existe");
             }
                        
         }
-        empleadoServicio.validarEmpleado(username, password, password2, nombre, apellido, fechaNac,
-                email, sexo, estudiosAlcanzados, foto, posibleReubicacion,
-                numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria,
-                carnetConducir, otrosDatos);
+        empleadoServicio.validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), password2, empleado.getNombre(), empleado.getApellido(), empleado.getFechaNac(),
+                empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), foto, empleado.getPosiblereubicacion(),
+                empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(), empleado.getCategorias(), empleado.getDisponibilidadHoraria(),
+                empleado.getCarnetConducir());
 
-        usuario.setNombre_usuario(username);
+        usuario.setNombre_usuario(empleado.getNombre_usuario());
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        if (password.equals(password2)) {
-            usuario.setContrasenha(encoder.encode(password));
+        if (empleado.getContrasenha().equals(password2)) {
+            usuario.setContrasenha(encoder.encode(empleado.getContrasenha()));
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
      
         usuario.setEmpleado(empleado);
 
-        usuario.setRol(Rol.CANDIDATO);
-        
-        
-    empleado.setNombre(nombre);
-    empleado.setApellido(apellido);    
-    empleado.setFechaNac(fechaNac);    
-    empleado.setEmail(email);
-    empleado.setNumeroTelefonico(numeroTelefonico);   
-    
-    empleado.setCategoria(categorias);
-    
-    Foto fotografia = fotoServicio.guardar(foto);    
-    
-    empleado.setFoto(fotografia);    
+        usuario.setRol(Rol.CANDIDATO);        
      
-    empleado.setSexo(sexo);
-    empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
-    empleado.setCarnetConducir(carnetConducir);
-    empleado.setMovilidadPropia(movilidadPropia);  
-    empleado.setPosiblereubucacion(posibleReubicacion);
-    empleado.setEstudiosAlcanzados(estudiosAlcanzados);
     
-    empleado.setOtrosDatos(otrosDatos);   
+    fotoServicio.guardar((MultipartFile) empleado.getFoto());     
     
-      empleadoServicio.save(empleado);
-    
+      empleadoServicio.save(empleado);    
 
         return usuarioRepositorio.save(usuario);
     }

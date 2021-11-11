@@ -85,10 +85,10 @@ public Empleado modificarEmpleado (String id, String nombre, String apellido,
     empleado.setDisponibilidadHoraria(disponibilidadHoraria);    
     empleado.setCarnetConducir(carnetConducir);
     empleado.setMovilidadPropia(movilidadPropia);  
-    empleado.setPosiblereubucacion(posibleReubicacion);
+    empleado.setPosiblereubicacion(posibleReubicacion);
     empleado.setEstudiosAlcanzados(estudiosAlcanzados);
     
-    empleado.setOtrosDatos(otrosDatos);   
+   
     
     empleadoRepositorio.save(empleado);
     return empleado;
@@ -98,14 +98,13 @@ public void validarEmpleado(String username,String password,String password2, St
         Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
         MultipartFile foto,PosibleReubicacion posibleReubicacion, String numeroTelefonico,MovilidadPropia movilidadPropia
         , List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir
-        , String otrosDatos) throws ErrorWeb{
+        ) throws ErrorWeb{
     
         if (username == null){
             throw new ErrorWeb("El nombre de usuario no debe estar vacio");
         }        
         if (password == null || password.isEmpty() || password2 == null || password2.isEmpty()){
-            throw new ErrorWeb("La contraseña no debe estar vacia");
-              
+            throw new ErrorWeb("La contraseña no debe estar vacia");              
          
         }          
          if (nombre == null){
@@ -146,10 +145,7 @@ public void validarEmpleado(String username,String password,String password2, St
         }     
          if (carnetConducir == null){
             throw new ErrorWeb("Ingrese su tipo de carnet de conducir si posee, o no");
-        }     
-         if (otrosDatos == null){
-            throw new ErrorWeb("Ingrese experiencias laborales o una carta de presentacion breve");
-        }  
+        }    
 }
         public void validarModif(String id, String nombre, String apellido,
         Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
