@@ -30,10 +30,12 @@ public class FotoServicio {
 
                 return fotoRepositorio.save(foto);
             } catch (IOException e) {
-                System.err.println(e.getMessage());
+                throw new IOException("No se ha podido subir su foto "+e.getMessage());
             }
+        }else{
+            throw new ErrorWeb("La foto no puede ser nula");
         }
-        return null;
+                
     }
 
     @Transactional

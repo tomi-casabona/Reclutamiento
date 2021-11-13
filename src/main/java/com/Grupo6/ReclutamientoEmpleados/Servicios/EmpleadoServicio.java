@@ -212,7 +212,11 @@ public void validarEmpleado(String username,String password,String password2, St
             }
         }
         
-        return lista;
+        return lista1;
+    }
+    
+    public Empleado findById(String id){
+        return empleadoRepositorio.findById(id).get();
     }
 
 }
