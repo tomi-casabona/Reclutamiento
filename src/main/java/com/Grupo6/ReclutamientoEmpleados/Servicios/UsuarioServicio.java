@@ -1,5 +1,6 @@
 package com.Grupo6.ReclutamientoEmpleados.Servicios;
 
+import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
@@ -134,7 +135,7 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public Usuario crearUsuarioEmpleado(String password2, Empleado empleado, MultipartFile foto) throws ErrorWeb, IOException {
 
-        Foto fotox=fotoServicio.guardar((MultipartFile) empleado.getFoto());
+        Foto fotox=fotoServicio.guardar(foto);
         
         Empleado empleado2= new Empleado(empleado.getNombre(),empleado.getApellido(),empleado.getFechaNac(),empleado.getCategorias(),fotox,empleado.getSexo(),empleado.getEstudiosAlcanzados()
                 ,empleado.getDisponibilidadHoraria(),empleado.getMovilidadPropia(),empleado.getPosiblereubicacion(),empleado.getCarnetConducir(),empleado.getEmail(),empleado.getNumeroTelefonico()

@@ -23,16 +23,16 @@ public class BusquedaControlador {
     private CategoriaServicio categoriaServicio;
     
     @GetMapping("")
-    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
     public String buscar(ModelMap model){
         model.addAttribute("categoria",categoriaServicio.listaCategorias());
         return "busqueda";
     }
     
     @GetMapping("/filtrar")
-    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
     public String filtro(ModelMap model,@RequestParam String categoria){
         model.addAttribute("empleados",empleadoServicio.listAllByCategoria(categoria));
-        return "listaDeCandidatos";
+        return "listaDeCandidatos2";
     }
 }

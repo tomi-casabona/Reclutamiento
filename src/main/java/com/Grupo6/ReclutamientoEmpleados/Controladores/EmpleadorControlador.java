@@ -33,7 +33,7 @@ public class EmpleadorControlador {
     }
     
     @GetMapping("/editar-empleador")
-    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
     public String editarEmpleador(Model model,@RequestParam(required = false) String id){
         if (id != null){
             Optional<Empleador> optional= empleadorRepositorio.findById(id);
@@ -50,7 +50,7 @@ public class EmpleadorControlador {
     }
     
     @PostMapping("/save-empleador")
-    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
     public String saveEmpleador(Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleador empleador){
         try {
             empleadorServicio.save(empleador);
