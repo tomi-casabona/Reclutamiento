@@ -54,6 +54,23 @@ public class Empleado extends Usuario {
     public Empleado() {
     }
 
+    public Empleado(String nombre, String apellido, Date fechaNac, List<Categoria> categorias, Foto foto, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados, DisponibilidadHoraria disponibilidadHoraria, MovilidadPropia movilidadPropia, PosibleReubicacion posiblereubicacion, CarnetConducir carnetConducir, String email, String numeroTelefonico, String experienciaLaboral) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNac = fechaNac;
+        this.categorias = categorias;
+        this.foto = foto;
+        this.sexo = sexo;
+        this.estudiosAlcanzados = estudiosAlcanzados;
+        this.disponibilidadHoraria = disponibilidadHoraria;
+        this.movilidadPropia = movilidadPropia;
+        this.posiblereubicacion = posiblereubicacion;
+        this.carnetConducir = carnetConducir;
+        this.email = email;
+        this.numeroTelefonico = numeroTelefonico;
+        this.experienciaLaboral = experienciaLaboral;
+    }
+
     public String getNombre() {
         return nombre;
     }

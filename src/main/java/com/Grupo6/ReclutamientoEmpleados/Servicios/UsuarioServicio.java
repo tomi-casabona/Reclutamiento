@@ -5,24 +5,15 @@ import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Usuario;
-import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
-import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
-import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
-import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
-import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
-import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
-import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,12 +30,16 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    
     @Autowired
     private EmpleadoServicio empleadoServicio;
+    
     @Autowired
     private EmpleadorServicio empleadorServicio;
+    
     @Autowired
     private FotoServicio fotoServicio;
+    
     @Autowired
     private CategoriaServicio categoriaServicio;
 
@@ -140,6 +135,12 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public Usuario crearUsuarioEmpleado(String password2, Empleado empleado, MultipartFile foto) throws ErrorWeb, IOException {
 
+        Foto fotox=fotoServicio.guardar(foto);
+        
+        Empleado empleado2= new Empleado(empleado.getNombre(),empleado.getApellido(),empleado.getFechaNac(),empleado.getCategorias(),fotox,empleado.getSexo(),empleado.getEstudiosAlcanzados()
+                ,empleado.getDisponibilidadHoraria(),empleado.getMovilidadPropia(),empleado.getPosiblereubicacion(),empleado.getCarnetConducir(),empleado.getEmail(),empleado.getNumeroTelefonico()
+                ,empleado.getExperienciaLaboral());
+        
         Usuario usuario = new Usuario();
 
         List<Empleado> empleados = empleadoRepositorio.findAll();
@@ -165,11 +166,13 @@ public class UsuarioServicio implements UserDetailsService {
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
-        usuario.setEmpleado(empleado);
+
+
+        Empleado empleado3= empleadoRepositorio.save(empleado2);
+        
+        usuario.setEmpleado(empleado3);
 
         usuario.setRol(Rol.CANDIDATO);
-
-        fotoServicio.guardar((MultipartFile) empleado.getFoto());
 
         return usuarioRepositorio.save(usuario);
     }
