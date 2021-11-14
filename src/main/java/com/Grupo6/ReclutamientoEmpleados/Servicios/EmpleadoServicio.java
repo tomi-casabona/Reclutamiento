@@ -15,6 +15,9 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -103,20 +106,35 @@ public void validarEmpleado(String username,String password,String password2, St
     
         if (username == null){
             throw new ErrorWeb("El nombre de usuario no debe estar vacio");
-        }        
-        if (password == null || password.isEmpty() || password2 == null || password2.isEmpty()){
-            throw new ErrorWeb("La contraseña no debe estar vacia");              
-         
-        }          
-         if (nombre == null){
-            throw new ErrorWeb("Ingrese nombre");
+        }       
+        
+        if (password == null || password.isEmpty()){
+            throw new ErrorWeb("La contraseña no debe estar vacia");   
         }
-         if (apellido == null){
-            throw new ErrorWeb("Ingrese apellido");
+        if (password2 == null || password2.isEmpty()){
+            throw new ErrorWeb("Debe completar el capo de validacion de contraseña");   
         }
-         if (fechaNac == null){
+        if (password.length() < 6){
+            throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");   
+        } 
+        
+        
+         if (nombre == null || nombre.length() < 3){
+            throw new ErrorWeb("El nombre debe contener al menos 3 caracteres");
+        }
+         if (apellido == null || apellido.length() < 2){
+            throw new ErrorWeb("El apellido debe contener al menos 2 caracteres");
+        }
+         if (fechaNac == null) {
             throw new ErrorWeb("Ingrese fecha de nacimiento");
         }
+         
+         Date hoy = new Date();
+         
+          if ( hoy.getYear() - fechaNac.getYear() <= 18 ) {
+            throw new ErrorWeb("Debe ser mayor de edad");
+        }        
+        
          if (email == null){
             throw new ErrorWeb("Ingrese su email");
         }
@@ -124,11 +142,9 @@ public void validarEmpleado(String username,String password,String password2, St
             throw new ErrorWeb("Ingrese su sexo");
         }
          if (estudiosAlcanzados == null){
-            throw new ErrorWeb("Ingrese nuvel de estudios alcanzado");
+            throw new ErrorWeb("Ingrese nivel de estudios alcanzado");
         }
-         if (email == null){
-            throw new ErrorWeb("Ingrese su email");
-        }
+        
          if (foto == null){
             throw new ErrorWeb("Ingrese una imagen");
         }     

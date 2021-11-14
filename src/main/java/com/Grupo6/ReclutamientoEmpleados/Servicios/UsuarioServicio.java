@@ -148,10 +148,9 @@ public class UsuarioServicio implements UserDetailsService {
 
             if (empleado.getNombre_usuario().equalsIgnoreCase(empleado1.getNombre_usuario())) {
                 throw new ErrorWeb("El nombre de usuario ya existe");
-
             }
-
         }
+        
         empleadoServicio.validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), password2, empleado.getNombre(), empleado.getApellido(), empleado.getFechaNac(),
                 empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), foto, empleado.getPosiblereubicacion(),
                 empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(), empleado.getCategorias(), empleado.getDisponibilidadHoraria(),
@@ -171,8 +170,6 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setRol(Rol.CANDIDATO);
 
         fotoServicio.guardar((MultipartFile) empleado.getFoto());
-
-        empleadoServicio.save(empleado);
 
         return usuarioRepositorio.save(usuario);
     }

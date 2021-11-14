@@ -53,11 +53,10 @@ public class FotoServicio {
                 return fotoRepositorio.save(foto);
             } catch (Exception e) {
                 System.err.println(e.getMessage());
-            }
+            }}
             return null;
 
         }
         
-        return null;
+       
     }
-}
