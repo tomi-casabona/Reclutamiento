@@ -6,8 +6,10 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
 import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
 import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,7 +29,8 @@ public class Empleado extends Usuario {
     @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date fechaNac;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    
     private List<Categoria> categorias;
     
     @OneToOne
@@ -70,6 +73,10 @@ public class Empleado extends Usuario {
         this.numeroTelefonico = numeroTelefonico;
         this.experienciaLaboral = experienciaLaboral;
     }
+    
+    public void addCategoria(Categoria e){
+   this.categorias.add(e);   
+    }
 
     public String getNombre() {
         return nombre;
@@ -102,6 +109,7 @@ public class Empleado extends Usuario {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
+    
 
     public Foto getFoto() {
         return foto;

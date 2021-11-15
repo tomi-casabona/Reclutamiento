@@ -109,7 +109,7 @@
                     </div> 
                     <div> 
                         <label>Elegir la categoría a la que desea postularse</label><br>
-                        <input class="form-check-input"  th:each="C : ${categoria}" th:text="${C.nombre}" th:value="${C}" type="checkbox" th:field="*{categorias}" name="categorias" id="flexCheckDefault">
+                        <input class="form-check-input"  th:each="C : ${categoria}" th:field="*{categorias}" th:text="${C.nombre}" th:value="${{C}}" type="checkbox" name="categorias">
                         <label class="form-check-label" for="flexCheckDefault">
 
                         </label>

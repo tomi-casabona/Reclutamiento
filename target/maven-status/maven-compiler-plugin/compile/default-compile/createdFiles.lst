@@ -1,4 +1,5 @@
 com\Grupo6\ReclutamientoEmpleados\Servicios\FotoServicio.class
+com\Grupo6\ReclutamientoEmpleados\Controladores\FotoControlador.class
 com\Grupo6\ReclutamientoEmpleados\Enums\PosibleReubicacion.class
 com\Grupo6\ReclutamientoEmpleados\Repositorios\CategoriaRepositorio.class
 com\Grupo6\ReclutamientoEmpleados\Repositorios\EmpleadorRepositorio.class
@@ -8,6 +9,7 @@ com\Grupo6\ReclutamientoEmpleados\Controladores\EmpleadorControlador.class
 com\Grupo6\ReclutamientoEmpleados\Enums\DisponibilidadHoraria.class
 com\Grupo6\ReclutamientoEmpleados\Repositorios\UsuarioRepositorio.class
 com\Grupo6\ReclutamientoEmpleados\Enums\CarnetConducir.class
+com\Grupo6\ReclutamientoEmpleados\Controladores\BusquedaControlador.class
 com\Grupo6\ReclutamientoEmpleados\Entidades\Categoria.class
 com\Grupo6\ReclutamientoEmpleados\Servicios\EmpleadoServicio.class
 com\Grupo6\ReclutamientoEmpleados\Errores\ErrorWeb.class

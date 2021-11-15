@@ -118,6 +118,10 @@ public void validarEmpleado(String username,String password,String password2, St
             throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");   
         } 
         
+        if (foto.getSize() > 1000000) {
+         throw new ErrorWeb("la foto debe ser mas pequeña que 10mb");   
+    }
+        
         
          if (nombre == null || nombre.length() < 3){
             throw new ErrorWeb("El nombre debe contener al menos 3 caracteres");
@@ -163,6 +167,10 @@ public void validarEmpleado(String username,String password,String password2, St
          if (carnetConducir == null){
             throw new ErrorWeb("Ingrese su tipo de carnet de conducir si posee, o no");
         }    
+         if (categorias.isEmpty() || categorias == null) {
+             throw new ErrorWeb("El campo categoria esta vacio");
+        
+    }
 }
         public void validarModif(String id, String nombre, String apellido,
         Date fechaNac,String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
