@@ -21,12 +21,10 @@ public class Foto {
     
     private String mime;
     
-    @Lob @Basic(fetch = FetchType.LAZY)
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] contenido;
-
-    public Foto() {
-    }
-
+    
     public String getId() {
         return id;
     }
