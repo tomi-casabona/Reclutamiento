@@ -68,7 +68,6 @@ public class UsuarioServicio implements UserDetailsService {
     
     @Transactional
     public Usuario crearUsuarioEmpresa(String nombre_usuario, String contraseña, String contraseña2, String nombre_empresa) throws ErrorWeb {
-        Usuario usuario = new Usuario();
         
         Empleador empleador1 = new Empleador();
         empleador1.setContrasenha(contraseña);
@@ -104,21 +103,14 @@ public class UsuarioServicio implements UserDetailsService {
             throw new ErrorWeb("Ingrese un nombre de empresa correcto");
         }
         
-        usuario.setNombre_usuario(nombre_usuario);
-        
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         
         if (contraseña.equals(contraseña2)) {
-            usuario.setContrasenha(encoder.encode(contraseña));
+            empleador1.setContrasenha(encoder.encode(contraseña));
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
-//
-//        Empleador empleador = empleadorServicio.save(empleador1);
-
-//        usuario.setEmpleador(empleador);
-//
-//        usuario.setRol(Rol.EMPRESA);
+        
         return empleadorRepositorio.save(empleador1);
     }
     
@@ -144,8 +136,6 @@ public class UsuarioServicio implements UserDetailsService {
         
         validarUsername(empleado.getNombre_usuario());
         
-//        Usuario usuario = new Usuario();
-//        
 //        List<Empleado> empleados = empleadoRepositorio.findAll();
 //        
 //        for (Empleado empleado1 : empleados) {
@@ -160,13 +150,11 @@ public class UsuarioServicio implements UserDetailsService {
 //                throw new ErrorWeb("El email ya corresponde a un usuario");
 //            }
 //        }        
-//        
+        
         empleadoServicio.validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), password2, empleado.getNombre(), empleado.getApellido(), empleado.getFechaNac(),
                 empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), foto, empleado.getPosiblereubicacion(),
                 empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(), empleado.getCategorias(), empleado.getDisponibilidadHoraria(),
                 empleado.getCarnetConducir());
-        
-//        usuario.setNombre_usuario(empleado.getNombre_usuario());
         
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         
@@ -177,12 +165,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
         
         empleado.setRol(Rol.CANDIDATO);
-        
-//        Empleado empleado3 = empleadoRepositorio.save(empleado);
-//        
-//        usuario.setEmpleado(empleado3);
-//        
-//        usuario.setRol(Rol.CANDIDATO);
         
         return empleadoRepositorio.save(empleado);
     }

@@ -20,6 +20,7 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -231,12 +232,14 @@ public void validarEmpleado(String username,String password,String password2, St
         List<Empleado> lista1= empleadoRepositorio.findAll();
         
         for (Empleado empleado : lista1) {
-            if (empleado.getCategorias().contains(categoria)){
-                lista.add(empleado);
+            for (Categoria empleado1 : empleado.getCategorias()) {
+                if (empleado1.getNombre().equals(categoria)){
+                    lista.add(empleado);
+                }
             }
         }
         
-        return lista1;
+        return lista;
     }
     
     public Empleado findById(String id){
