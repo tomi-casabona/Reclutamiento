@@ -78,7 +78,7 @@ public class UsuarioControlador {
     @PostMapping("/registrar-empleado")
     public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes, @ModelAttribute Empleado empleado, @RequestParam String password2, MultipartFile imagen) throws IOException{
         try {      
-
+           
             usuarioServicio.crearUsuarioEmpleado(password2, empleado, imagen);
          
             redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
