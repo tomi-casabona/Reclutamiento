@@ -33,6 +33,6 @@ public class BusquedaControlador {
     @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
     public String filtro(ModelMap model,@RequestParam String categoria){
         model.addAttribute("empleados",empleadoServicio.listAllByCategoria(categoria));
-        return "listaDeCandidatos2";
+        return "listaDeCandidatos";
     }
 }
