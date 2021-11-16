@@ -84,13 +84,15 @@ public class UsuarioServicio implements UserDetailsService {
             }
         }
         
-        List<Usuario> usuarios = usuarioRepositorio.findAll();
+        validarUsername(nombre_usuario);
         
-        for (Usuario usuario1 : usuarios) {
-            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
-                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
-            }
-        }
+//        List<Usuario> usuarios = usuarioRepositorio.findAll();
+//        
+//        for (Usuario usuario1 : usuarios) {
+//            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
+//                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
+//            }
+//        }
         
         if (nombre_usuario == null || nombre_usuario.isEmpty()) {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
