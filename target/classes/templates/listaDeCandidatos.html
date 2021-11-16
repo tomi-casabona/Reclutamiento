@@ -29,7 +29,9 @@
                     <tr th:each="empleado : ${empleados}">
                         <th class="col-4"><img th:src="${'/foto/usuario?id='+ empleado.id}"></th>
                         <td class="col-4" th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></td>
-                        <td class="col-4">Otto</td>
+                        <td class="col-4">
+                            <a class="btn btn-warning" th:href="@{/busqueda/filtrar/visualizar-perfil}+'?id='+${empleado.id}">Ver perfil</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
