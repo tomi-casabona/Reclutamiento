@@ -1,0 +1,26 @@
+
+section {
+    position: relative;
+    background-color: transparent !important;
+}
+
+section .img {
+    position: absolute;
+    left:0; top:0;
+    background-size: cover;
+    min-height: 950px; /** En esta linea se define de la imagen*/
+    width: 100%;
+    opacity: 0.45;
+    background-image: url("laptop-1205256_960_720.jpg");
+    z-index: -1;
+}
+
+section .container {
+    background-color: transparent;
+}
+
+section .container .row {
+    padding: 1.5em;
+}
+.jumbotron {
+     background-color: gray}
