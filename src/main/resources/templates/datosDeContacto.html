@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-AR" xmlns:th="https://tymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,21 +15,21 @@
             <span>Datos de contacto</span>
         </div>
         
-        <div class="input-container" id="input-container-registros">>
+        <div class="input-container" id="input-container-registros">
             <form action="POST">
                 <span><strong>Número de teléfono:</strong></span>
                 <br>
-                <span>3415048180</span>
+                <span th:text="${empleado.numeroTelefonico}"></span>
                 <br>
                 <br>
                 <span><strong>E-mail:</strong></span>
                 <br>
-                <span>gabrielsoda@gmail.com</span>
+                <span th:text="${empleado.email}"></span>
             </form>
         </div>
         <div class="sup">
             <button class="btnvolver">
-                <a href="../templates/index.html">Volver</a>
+                <a th:href="@{/}">Volver</a>
             </button>
         </div>
     </div>

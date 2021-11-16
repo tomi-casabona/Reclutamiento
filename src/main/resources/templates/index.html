@@ -4,46 +4,62 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Registrar como candidato</title>
+        <title>Inicio</title>
         <link rel="stylesheet" href="/css/styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
         <h2 th:text="${success}" style="text-align: center ; color: green"></h2>
         <div class="containerIndex">
             <div class="sup">
-            <form th:action="@{/login}">
-                <button type="submit" class="btn2" sec:authorize="!isAuthenticated()">Iniciar sesion</button>
-                
-            </form>
-            <form th:action="@{/logout}">
-                <button type="submit" class="btn2" sec:authorize="isAuthenticated()">Cerrar sesion</button> 
-            </form>
+                <form th:action="@{/login}" sec:authorize="!isAuthenticated()">
+                    <button type="submit" class="btn2">Iniciar sesion</button>
+
+                </form>
+                <form th:action="@{/logout}"  sec:authorize="isAuthenticated()">
+                    <button type="submit" class="btn2">Cerrar sesion</button> 
+                </form>
             </div>
             <div class="medio">
-                <form th:action="@{/busqueda}">
+                <form th:action="@{/busqueda}" sec:authorize="hasRole('ROLE_EMPRESA')">
                     <div class="imgIndex">
-                        <button class="btn3" role="button" sec:authorize="hasRole('ROLE_EMPRESA')">Comenzar busqueda
+                        <button class="btn3" role="button">Comenzar busqueda
+
+                        </button>
+                    </div>
+                </form>
+
+                <form th:action="@{/interfaz-empleado}" sec:authorize="hasRole('ROLE_CANDIDATO')">
+                    <div class="imgIndex">
+                        <button type="submit" class="btn3" role="button">Ver mi perfil
 
                         </button>
                     </div>
                 </form>
             </div>
             <div class="inf">
-                <form th:action="@{/registro/registro-empleado}">
+                <form th:action="@{/registro/registro-empleado}" sec:authorize="!isAuthenticated()">
                     <div class="der">
 
-                        <button class="btn3" sec:authorize="!isAuthenticated()" ><a th:href="@{/registro/registro-empleado}">Registrar empleado</a>
+                        <button class="btn3">Registrar empleado
 
                         </button>
                     </div>
                 </form>
-                
-                <form th:action="@{/registro/registro-empresa}">
+
+                <form th:action="@{/registro/registro-empresa}" sec:authorize="!isAuthenticated()">
                     <div class="izq">
 
-                        <button class="btn3" sec:authorize="!isAuthenticated()"><a th:href="@{/registro/registro-empleador}">Registrar empresa</a>
+                        <button class="btn3">Registrar empresa
+
+                        </button>
+                    </div>
+                </form>
+
+                <form th:action="@{/editar-empleador}" sec:authorize="hasRole('ROLE_EMPRESA')">
+                    <div class="izq">
+                        <button type="submit" class="btn3" role="button">Editar perfil
 
                         </button>
                     </div>
