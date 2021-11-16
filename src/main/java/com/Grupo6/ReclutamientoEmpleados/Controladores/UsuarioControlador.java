@@ -76,9 +76,9 @@ public class UsuarioControlador {
     }
     
     @PostMapping("/registrar-empleado")
-    public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes, @ModelAttribute Empleado empleado, @RequestParam String password2, @RequestParam MultipartFile imagen) throws IOException{
+    public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes, @ModelAttribute Empleado empleado, @RequestParam String password2, MultipartFile imagen) throws IOException{
         try {      
-
+           
             usuarioServicio.crearUsuarioEmpleado(password2, empleado, imagen);
          
             redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
@@ -96,7 +96,7 @@ public class UsuarioControlador {
     }
     
     @GetMapping("/modificar-usuario")
-    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR','ROLE_EMPLEADO')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR','ROLE_CANDIDATO')")
     public String modificarUsuario(Model model,@RequestParam(required = false) String id){
         if (id != null){
             Optional<Usuario> optional= usuarioRepositorio.findById(id);
@@ -113,7 +113,7 @@ public class UsuarioControlador {
     }
     
     @PostMapping("/save-usuario")
-    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR','ROLE_EMPLEADO')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR','ROLE_CANDIDATO')")
     public String saveUsuario(Model model,RedirectAttributes redirectAttributes,@ModelAttribute Usuario usuario){
         try {
             usuarioServicio.save(usuario);
