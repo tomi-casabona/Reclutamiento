@@ -19,14 +19,25 @@ public class EmpleadorServicio{
     
     @Transactional
     public Empleador save(Empleador empleador) throws ErrorWeb{
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         
         if (empleador==null){
             throw new ErrorWeb("El usuario no puede ser nulo");
         }
         
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (empleador.getContrasenha().length() <= 5 || empleador.getContrasenha().isEmpty()){
+            throw new ErrorWeb("Ingrese una contraseña correcta");
+        }else{
+            empleador.setContrasenha(encoder.encode(empleador.getContrasenha()));
+        }
         
-        empleador.setContrasenha(encoder.encode(empleador.getContrasenha()));
+        if (empleador.getNombreEmpresa()==null){
+            throw new ErrorWeb("Ingrese un nombre de empresa");
+        }
+        
+        if (empleador.getNombre_usuario()==null){
+            throw new ErrorWeb("Ingrese un nombre de usuario");
+        }
         
         empleador.setRol(Rol.EMPRESA);
         
