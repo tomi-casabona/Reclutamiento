@@ -6,6 +6,7 @@ import com.Grupo6.ReclutamientoEmpleados.Servicios.EmpleadoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,19 @@ public class BusquedaControlador {
     public String filtro(ModelMap model,@RequestParam String categoria){
         model.addAttribute("empleados",empleadoServicio.listAllByCategoria(categoria));
         return "listaDeCandidatos";
+    }
+    
+    @GetMapping("/filtrar/visualizar-perfil")
+    @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
+    public String visualizar(@RequestParam (required=false) String id,Model model){
+        model.addAttribute("empleado",empleadoServicio.findById(id));
+        return "visualizaciones";
+    }
+    
+    @GetMapping("/filtrar/visualizar-perfil/contactar")
+    @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
+    public String datosContacto(@RequestParam (required=false) String id,Model model){
+        model.addAttribute("empleado",empleadoServicio.findById(id));
+        return "datosDeContacto";
     }
 }
