@@ -17,7 +17,8 @@
         </div>
        
         <div class="input-container" id="input-container-registros">
-            <form action="/enviarmail" method="POST">
+            <form th:action="@{/filtrar/visualizar-perfil/contactar/enviar-mail/enviarmail}" method="POST" th:object="${empleado}">
+                <input hidden th:field="*{id}">
                 <div>
                     <label>Asunto</label>
                     <input type="text" name="asunto">
@@ -26,7 +27,7 @@
                 <div>
                     <label>Contenido</label>
                     <br>
-                    <textarea name="contenido" id="" cols="40" rows="5"></textarea>
+                    <textarea type="text" name="contenido" id="" cols="40" rows="5"></textarea>
                 </div>
                 <br>
                 
