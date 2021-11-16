@@ -16,22 +16,24 @@
                     <img th:src="${'/foto/usuario?id='+ empleado.id}">
                 </div>
                 <div class="info">
-                    <span th:text="'Nombre:' + ${empleado.nombre}"></span>
-                    <span th:text="'Apellido:' + ${empleado.apellido}">Apellido:</span>
-                    <span th:text="'Fecha de nacimiento:' + ${empleado.fechaNac}"></span>
-                    <span th:text="'Sexo:' + ${empleado.sexo}"></span>
-                    <span th:text="'Estudios alcanzados:' + ${empleado.estudiosAlcanzados}"></span>
-                    <span th:text="'Disponibilidad horaria:' + ${empleado.disponibilidadHoraria}"></span>
-                    <span th:text="'Movilidad propia:' + ${empleado.movilidadPropia}"></span>
-                    <span th:text="'Categorias:' + ${empleado.categorias}"></span>
-                    <span th:text="'Experiencia:' + ${empleado.experienciaLaboral}"></span>
+                    <span th:text="'Nombre:  ' + ${empleado.nombre}"></span>
+                    <span th:text="'Apellido:  ' + ${empleado.apellido}">Apellido:</span>
+                    <span th:text="'Fecha de nacimiento:  ' + ${empleado.fechaNac}"></span>
+                    <span th:text="'Sexo:  ' + ${empleado.sexo}"></span>
+                    <span th:text="'Estudios alcanzados:  ' + ${empleado.estudiosAlcanzados}"></span>
+                    <span th:text="'Disponibilidad horaria:  ' + ${empleado.disponibilidadHoraria}"></span>
+                    <span th:text="'Movilidad propia:  ' + ${empleado.movilidadPropia}"></span>
+                    <span th:text="'Categorias:  ' + ${empleado.categorias}"></span>
+                    <span th:text="'Experiencia:  ' + ${empleado.experienciaLaboral}"></span>
                 </div>
+                   <br><br>
+                <div>
+                    <a type="submit" class="btn" id="btnRegistro"  sec:authorize="hasRole('ROLE_EMPRESA')" th:href="@{/busqueda/filtrar/visualizar-perfil/contactar}+'?id='+${empleado.id}">Contactar</a>
+               
+                    <a class="btn" id="btnRegistro" sec:authorize="hasRole('ROLE_CANDIDATO')" th:href="@{/interfaz-empleado/editar}+'?id='+${empleado.id}">Editar datos</a>
+                </div>
+                
             </div>
-            <br><br>
-                <div class="buttonContactar">
-                    <a type="submit" class= "btn btn-warning" sec:authorize="hasRole('ROLE_EMPRESA')" th:href="@{/busqueda/filtrar/visualizar-perfil/contactar}+'?id='+${empleado.id}">Contactar</a>
-                </div>
-            <a class="btn btn-warning" sec:authorize="hasRole('ROLE_CANDIDATO')" th:href="@{/interfaz-empleado/editar}+'?id='+${empleado.id}">Editar datos</a>
         </div>
     </body>
 </html>
