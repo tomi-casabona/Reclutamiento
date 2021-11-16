@@ -1,33 +1,80 @@
 package com.Grupo6.ReclutamientoEmpleados.Entidades;
 
+import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
+import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
+import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
+import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
+import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
+import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Empleado extends Usuario {
-    
+
     private String nombre;
     private String apellido;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date fechaNac;
-   
-    @OneToMany
-    private Categoria categoria;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     
+    private List<Categoria> categorias;
+    
+    @OneToOne
+    private Foto foto;
+
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    private SecundarioCompleto secundarioCompleto;
-    private TerciarioCompleto TerciarioCompleto;
-    private UniversitarioCompleto universitarioCompleto;
+    @Enumerated(EnumType.STRING)
+    private EstudiosAlcanzados estudiosAlcanzados;
+    @Enumerated(EnumType.STRING)
     private DisponibilidadHoraria disponibilidadHoraria;
+    @Enumerated(EnumType.STRING)
     private MovilidadPropia movilidadPropia;
-    private PosibleReubicacion posiblereubucacion;
+    @Enumerated(EnumType.STRING)
+    private PosibleReubicacion posiblereubicacion;
+    @Enumerated(EnumType.STRING)
     private CarnetConducir carnetConducir;
+
     private String email;
     private String numeroTelefonico;
-    private String experienciaLaboral;    
-    private String otrosDatos;
+    private String experienciaLaboral;
+  
 
     public Empleado() {
+    }
+
+    public Empleado(String nombre, String apellido, Date fechaNac, List<Categoria> categorias, Foto foto, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados, DisponibilidadHoraria disponibilidadHoraria, MovilidadPropia movilidadPropia, PosibleReubicacion posiblereubicacion, CarnetConducir carnetConducir, String email, String numeroTelefonico, String experienciaLaboral) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNac = fechaNac;
+        this.categorias = categorias;
+        this.foto = foto;
+        this.sexo = sexo;
+        this.estudiosAlcanzados = estudiosAlcanzados;
+        this.disponibilidadHoraria = disponibilidadHoraria;
+        this.movilidadPropia = movilidadPropia;
+        this.posiblereubicacion = posiblereubicacion;
+        this.carnetConducir = carnetConducir;
+        this.email = email;
+        this.numeroTelefonico = numeroTelefonico;
+        this.experienciaLaboral = experienciaLaboral;
+    }
+    
+    public void addCategoria(Categoria e){
+   this.categorias.add(e);   
     }
 
     public String getNombre() {
@@ -54,12 +101,21 @@ public class Empleado extends Usuario {
         this.fechaNac = fechaNac;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+    
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
 
     public Sexo getSexo() {
@@ -70,28 +126,12 @@ public class Empleado extends Usuario {
         this.sexo = sexo;
     }
 
-    public SecundarioCompleto getSecundarioCompleto() {
-        return secundarioCompleto;
+    public EstudiosAlcanzados getEstudiosAlcanzados() {
+        return estudiosAlcanzados;
     }
 
-    public void setSecundarioCompleto(SecundarioCompleto secundarioCompleto) {
-        this.secundarioCompleto = secundarioCompleto;
-    }
-
-    public TerciarioCompleto getTerciarioCompleto() {
-        return TerciarioCompleto;
-    }
-
-    public void setTerciarioCompleto(TerciarioCompleto TerciarioCompleto) {
-        this.TerciarioCompleto = TerciarioCompleto;
-    }
-
-    public UniversitarioCompleto getUniversitarioCompleto() {
-        return universitarioCompleto;
-    }
-
-    public void setUniversitarioCompleto(UniversitarioCompleto universitarioCompleto) {
-        this.universitarioCompleto = universitarioCompleto;
+    public void setEstudiosAlcanzados(EstudiosAlcanzados estudiosAlcanzados) {
+        this.estudiosAlcanzados = estudiosAlcanzados;
     }
 
     public DisponibilidadHoraria getDisponibilidadHoraria() {
@@ -110,12 +150,12 @@ public class Empleado extends Usuario {
         this.movilidadPropia = movilidadPropia;
     }
 
-    public PosibleReubicacion getPosiblereubucacion() {
-        return posiblereubucacion;
+    public PosibleReubicacion getPosiblereubicacion() {
+        return posiblereubicacion;
     }
 
-    public void setPosiblereubucacion(PosibleReubicacion posiblereubucacion) {
-        this.posiblereubucacion = posiblereubucacion;
+    public void setPosiblereubicacion(PosibleReubicacion posiblereubicacion) {
+        this.posiblereubicacion = posiblereubicacion;
     }
 
     public CarnetConducir getCarnetConducir() {
@@ -150,14 +190,7 @@ public class Empleado extends Usuario {
         this.experienciaLaboral = experienciaLaboral;
     }
 
-    public String getOtrosDatos() {
-        return otrosDatos;
-    }
+    
+    
 
-    public void setOtrosDatos(String otrosDatos) {
-        this.otrosDatos = otrosDatos;
-    }
-    
-    
-    
 }
