@@ -29,7 +29,7 @@
                         </button>
                     </div>
                 </form>
-
+               
                 <form th:action="@{/interfaz-empleado}" sec:authorize="hasRole('ROLE_CANDIDATO')">
                     <div class="imgIndex">
                         <button type="submit" class="btn3" role="button">Ver mi perfil
@@ -58,10 +58,8 @@
                 </form>
 
                 <form th:action="@{/editar-empleador}" sec:authorize="hasRole('ROLE_EMPRESA')">
-                    <div class="izq">
-                        <button type="submit" class="btn3" role="button">Editar perfil
-
-                        </button>
+                    <div class="der">
+                        <button type="submit" class="btn3" role="button">Editar perfil</button>
                     </div>
                 </form>
             </div>
