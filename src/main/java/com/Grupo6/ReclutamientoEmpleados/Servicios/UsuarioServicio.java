@@ -12,6 +12,7 @@ import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -63,6 +64,7 @@ public class UsuarioServicio implements UserDetailsService {
             return new User(username, user.getContrasenha(), authorities);
         } catch (Exception e) {
             throw new UsernameNotFoundException("El usuario no existe");
+            
         }
     }
     
@@ -83,13 +85,15 @@ public class UsuarioServicio implements UserDetailsService {
             }
         }
         
-        List<Usuario> usuarios = usuarioRepositorio.findAll();
+        validarUsername(nombre_usuario);
         
-        for (Usuario usuario1 : usuarios) {
-            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
-                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
-            }
-        }
+//        List<Usuario> usuarios = usuarioRepositorio.findAll();
+//        
+//        for (Usuario usuario1 : usuarios) {
+//            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
+//                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
+//            }
+//        }
         
         if (nombre_usuario == null || nombre_usuario.isEmpty()) {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
@@ -134,22 +138,8 @@ public class UsuarioServicio implements UserDetailsService {
         
         empleado.setFoto(fotox);   
         
-        validarUsername(empleado.getNombre_usuario());
-        
-//        List<Empleado> empleados = empleadoRepositorio.findAll();
-//        
-//        for (Empleado empleado1 : empleados) {
-//            
-//            if (empleado.getNombre_usuario().equalsIgnoreCase(empleado1.getNombre_usuario())) {
-//                throw new ErrorWeb("El nombre de usuario ya existe");
-//            }
-//        }
-//        for (Empleado empleado1 : empleados) {
-//            
-//            if (empleado.getEmail().equalsIgnoreCase(empleado1.getEmail())) {
-//                throw new ErrorWeb("El email ya corresponde a un usuario");
-//            }
-//        }        
+        validarUsername(empleado.getNombre_usuario());        
+   
         
         empleadoServicio.validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), password2, empleado.getNombre(), empleado.getApellido(), empleado.getFechaNac(),
                 empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), foto, empleado.getPosiblereubicacion(),
@@ -163,6 +153,12 @@ public class UsuarioServicio implements UserDetailsService {
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
+        
+        Date nuevoDate=empleado.getFechaNac();
+        
+        nuevoDate.setDate(nuevoDate.getDate()+2);
+        
+        empleado.setFechaNac(nuevoDate);
         
         empleado.setRol(Rol.CANDIDATO);
         

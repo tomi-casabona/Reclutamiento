@@ -17,9 +17,14 @@ public class EmpleadorServicio{
     @Autowired
     private EmpleadorRepositorio empleadorRepositorio;
     
+    @Autowired 
+    private UsuarioServicio usuarioServicio;
+    
     @Transactional
     public Empleador save(Empleador empleador) throws ErrorWeb{
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        
+        usuarioServicio.validarUsername(empleador.getNombre_usuario());
         
         if (empleador==null){
             throw new ErrorWeb("El usuario no puede ser nulo");
@@ -30,7 +35,7 @@ public class EmpleadorServicio{
         }else{
             empleador.setContrasenha(encoder.encode(empleador.getContrasenha()));
         }
-        
+
         if (empleador.getNombreEmpresa()==null){
             throw new ErrorWeb("Ingrese un nombre de empresa");
         }
