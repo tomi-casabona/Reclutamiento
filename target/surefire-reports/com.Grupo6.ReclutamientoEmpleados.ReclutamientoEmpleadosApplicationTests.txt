@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.Grupo6.ReclutamientoEmpleados.ReclutamientoEmpleadosApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.592 s - in com.Grupo6.ReclutamientoEmpleados.ReclutamientoEmpleadosApplicationTests
+=======
+<<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.621 s - in com.Grupo6.ReclutamientoEmpleados.ReclutamientoEmpleadosApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 34.48 s - in com.Grupo6.ReclutamientoEmpleados.ReclutamientoEmpleadosApplicationTests
+>>>>>>> develop
+>>>>>>> 270ff4d5b076412d44b6f7ff237be37f2174ae8c

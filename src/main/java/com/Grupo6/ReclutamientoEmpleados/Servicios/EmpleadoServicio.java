@@ -12,15 +12,10 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
-import com.Grupo6.ReclutamientoEmpleados.Repositorios.FotoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,8 +36,6 @@ public class EmpleadoServicio {
     private FotoServicio fotoServicio;
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    @Autowired
-    private UsuarioServicio usuarioServicio;
 
     public List<Empleado> listAll() {
 
@@ -51,15 +44,18 @@ public class EmpleadoServicio {
     }
 
     @Transactional
-    public Empleado save(Empleado empleado, MultipartFile imagen) throws IOException, ErrorWeb {
-        
-usuarioServicio.validarUsername(empleado.getNombre_usuario());
+    public Empleado save(String id,Empleado empleado, MultipartFile imagen) throws IOException, ErrorWeb {
+
+        empleado.setNombre_usuario(validarUsername(id,empleado.getNombre_usuario()));
+
 
         validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), empleado.getContrasenha(), empleado.getNombre(),
                 empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo() , empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
 
         if (empleado.getFoto() != null) {
+
+       
             empleado.setFoto(fotoServicio.guardar(imagen));
         }
 
@@ -262,5 +258,18 @@ usuarioServicio.validarUsername(empleado.getNombre_usuario());
     public Empleado findByUsername(String username) {
         Empleado empleado = (Empleado) usuarioRepositorio.findByUsername(username);
         return empleado;
+    }
+    
+    public String validarUsername(String id,String username) throws ErrorWeb{
+    
+        if (usuarioRepositorio.findById(id).get().getNombre_usuario().equals(username)) {
+            return username;
+        }else{
+            if (usuarioRepositorio.findByUsername(username) != null){
+                throw new ErrorWeb("El nombre de usuario ya se encuentra registrado");
+            }else{
+                return username;
+            }
+        }
     }
 }

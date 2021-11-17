@@ -70,13 +70,13 @@ public class EmpleadoControlador {
     
     @PostMapping("/save-empleado")
     @PreAuthorize("hasAnyRole('ROLE_CANDIDATO')")
-    public String saveEmpleado(Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleado empleado,MultipartFile imagen) throws IOException{
+    public String saveEmpleado(@RequestParam (required = false) String id ,Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleado empleado,MultipartFile imagen) throws IOException{
         try {
-            empleadoServicio.save(empleado,imagen);
+            empleadoServicio.save(id,empleado,imagen);
             redirectAttributes.addFlashAttribute("success","Empleado cambiado con exito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
-            return "redirect:/interfaz-empleado/editar";
+            return "redirect:/interfaz-empleado/editar?id=" + id;
         }
         
         return "redirect:/";
