@@ -1,6 +1,5 @@
 package com.Grupo6.ReclutamientoEmpleados.Servicios;
 
-import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
@@ -36,13 +35,7 @@ public class UsuarioServicio implements UserDetailsService {
     private EmpleadoServicio empleadoServicio;
     
     @Autowired
-    private EmpleadorServicio empleadorServicio;
-    
-    @Autowired
     private FotoServicio fotoServicio;
-    
-    @Autowired
-    private CategoriaServicio categoriaServicio;
     
     @Autowired
     private EmpleadorRepositorio empleadorRepositorio;
@@ -86,14 +79,6 @@ public class UsuarioServicio implements UserDetailsService {
         }
         
         validarUsername(nombre_usuario);
-        
-//        List<Usuario> usuarios = usuarioRepositorio.findAll();
-//        
-//        for (Usuario usuario1 : usuarios) {
-//            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
-//                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
-//            }
-//        }
         
         if (nombre_usuario == null || nombre_usuario.isEmpty()) {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
