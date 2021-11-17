@@ -32,7 +32,7 @@
         
           <button class="btn" id="btnRegistro">login</button>
           <br><br>
-          <p > <br> <a href="../templates/index.html" id="href">No tienes cuenta?</a></p>
+          <p > <br> <a th:href="@{/}" id="href">No tienes cuenta? Ve al inicio y crea una</a></p>
         </form>
         
         <h2 th:if="${error}" style="color: red; text-align: center" th:text="${error}"></h2>
