@@ -25,18 +25,19 @@
                 <span><strong>E-mail:</strong></span>
                 <br>
                 <span th:text="${empleado.email}"></span>
+                <br><br>
+                    <button class="btn3">
+                        <a th:href="@{/filtrar/visualizar-perfil/contactar/enviar-mail}+'?id='+${empleado.id}">Contactar via mail</a>
+                    </button>
+                
             </form>
         </div>
         <div class="sup">
-            <button class="btnvolver">
+            <button class="btnContactar">
                 <a th:href="@{/}">Volver</a>
             </button>
         </div>
-        <div class="sup">
-        <button class="btnvolver">
-                <a th:href="@{/filtrar/visualizar-perfil/contactar/enviar-mail}+'?id='+${empleado.id}">Contactar via mail</a>
-            </button>
-        </div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
