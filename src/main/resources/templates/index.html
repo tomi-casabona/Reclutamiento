@@ -8,23 +8,82 @@
         <link rel="stylesheet" href="/css/styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      
     </head>
     <body>
         <h2 th:text="${success}" style="text-align: center ; color: green"></h2>
         <div class="containerIndex">
             <div class="sup">
-                <form th:action="@{/login}" sec:authorize="!isAuthenticated()">
-                    <button type="submit" class="btn2">Iniciar sesion</button>
-
-                </form>
-                <form th:action="@{/logout}"  sec:authorize="isAuthenticated()">
-                    <button type="submit" class="btn2">Cerrar sesion</button> 
-                </form>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu
+                    </button>
+                    <ul class="dropdown-menu" id="d-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><form th:action="@{/login}" sec:authorize="!isAuthenticated()">
+                        <button type="submit" class="btn2">Iniciar sesion</button>
+                    </form></li>
+                      <li><form th:action="@{/logout}"  sec:authorize="isAuthenticated()">
+                        <button type="submit" class="btn2">Cerrar sesion</button> 
+                    </form></li>
+                      <li><form th:action="@{/editar-empleador}" sec:authorize="hasRole('ROLE_EMPRESA')">
+                        <div class="der">
+                            <button type="submit" class="btn2" role="button">Editar perfil</button>
+                        </div>
+                    </form></li>
+                    <li><form th:action="@{/registro/registro-empresa}" sec:authorize="!isAuthenticated()">
+                        <div class="izq">
+    
+                            <button class="btn2">Registrar empresa
+    
+                            </button>
+                        </div>
+                    </form></li>
+                    <li>
+                        <form th:action="@{/registro/registro-empleado}" sec:authorize="!isAuthenticated()">
+                            <div class="der">
+        
+                                <button class="btn2">Registrar empleado
+        
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+                    </ul>
+                  </div>
+                
+                
             </div>
+            <div id="carouselExampleIndicators" class="carousel slide carrusel" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img  src="/img/20181024eltrabajo-min.jpg" class="d-block w-100 img-carrusel">
+                </div>
+                <div class="carousel-item">
+                  <img  src="/img/apreton-de-manos-pixabay.jpeg" class="d-block w-100 img-carrusel">
+                </div>
+                <div class="carousel-item">
+                  <img  src="/img/trucos-electricistas.webp" class="d-block w-100 img-carrusel">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+           
             <div class="medio">
                 <form th:action="@{/busqueda}" sec:authorize="hasRole('ROLE_EMPRESA')">
                     <div class="imgIndex">
-                        <button class="btn3" role="button">Comenzar busqueda
+                        <button class="btnContactar" role="button">Comenzar busqueda
 
                         </button>
                     </div>
@@ -32,37 +91,39 @@
                
                 <form th:action="@{/interfaz-empleado}" sec:authorize="hasRole('ROLE_CANDIDATO')">
                     <div class="imgIndex">
-                        <button type="submit" class="btn3" role="button">Ver mi perfil
+                        <button type="submit" class="btnContactar" role="button">Ver mi perfil
 
                         </button>
                     </div>
                 </form>
             </div>
-            <div class="inf">
-                <form th:action="@{/registro/registro-empleado}" sec:authorize="!isAuthenticated()">
-                    <div class="der">
-
-                        <button class="btn3">Registrar empleado
-
-                        </button>
-                    </div>
-                </form>
-
-                <form th:action="@{/registro/registro-empresa}" sec:authorize="!isAuthenticated()">
-                    <div class="izq">
-
-                        <button class="btn3">Registrar empresa
-
-                        </button>
-                    </div>
-                </form>
-
-                <form th:action="@{/editar-empleador}" sec:authorize="hasRole('ROLE_EMPRESA')">
-                    <div class="der">
-                        <button type="submit" class="btn3" role="button">Editar perfil</button>
-                    </div>
-                </form>
+            <div class="inf" sec:authorize="!isAuthenticated()"> 
+                <div class="espacio"></div>
+               <div class="quienes-somos">
+                   <br>
+                <span  class="fs-2">¿Quienes somos?</span>
+                <span class="fs-5">   Somos líderes en Argentina en la provisión de servicios de Capital Humano.
+                    Conectamos el talento con las necesidades, apoyando a las personas y organizaciones para que alcancen su verdadero potencial</span>
+               </div>
+               <div class="crea-tu-cuenta">
+                <span  class="fs-2">Crea tu cuenta</span>
+                <span class="fs-5"> Con unas preguntas sencillas podemos llegar a conocerte mejor.</span>
+               </div>
+               <div class="areas-de-trabajo">
+                <span  class="fs-2">Nuestras areas de trabajo</span>
+                <span class="fs-5"> Programacion, Elctricidad, Cocina, Limpieza, Administracion, Cuidado personal, Veterinarias, Medicos...</span>
+               </div>
+               <div class="busqueda-lab">
+                <span  class="fs-2">Busqueda de personal</span>
+                <span class="fs-5"> Buscamos a la persona que necesitás de manera ágil 100% online</span>
+               </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
     </body>
 </html>

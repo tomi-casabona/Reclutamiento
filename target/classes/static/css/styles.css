@@ -161,51 +161,21 @@ body{
     flex-direction: column;
     height: 100vh; 
     grid-template-rows: 1fr 3fr 1fr;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .sup{
     align-items: flex-start;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 10px;
-    
 }
+
 .medio{
-    padding: 10px;
     width: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background-image: url(https://www.elplural.com/uploads/s1/55/90/18/apreton-de-manos-pixabay.jpeg);
-    background-repeat: no-repeat;
-    background-position-x: center;
 }
-.inf{
-    width: 100%;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.inf .der{
-    width: 40%;
-    align-items: flex-start;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-right: auto;
-    padding: 50px;
-}
-.inf .izq{
-    width: 40%;
-    align-items: flex-end;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: auto;
-    padding: 50px;
-}
-
+ 
 a:link, a:visited, a:active{
     text-decoration: none;
     text-decoration: #fff;
@@ -213,6 +183,48 @@ a:link, a:visited, a:active{
 a:-webkit-any-link {
     color: var(--colorMuyClaro);
     cursor: pointer;
+}
+.img-carrusel{
+    max-height:467px;
+}
+.espacio{
+    background-color:#0b2644;
+    width: 100%;
+    height: 100px;
+}
+.quienes-somos{
+    background-color: rgb(215, 222, 228);
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    display: grid;
+}
+.crea-tu-cuenta{
+    background-color: #5d6874;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    display: grid;
+}
+.areas-de-trabajo{
+    background-color: #7287a0;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    display: grid;
+}
+.busqueda-lab{
+    background-color: #3e4349;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    display: grid;
+}
+#d-menu{
+    background-color: #0b2644;
+}
+#dropdownMenuButton1{
+    background-color: #0b2644;
 }
 /* ----------------------------------------------------------*/ 
 /*style login*/
@@ -365,7 +377,7 @@ a:-webkit-any-link {
 }
 
 .btn2{
-    width: 90%;
+    width: 100%;
     height: 3.125rem;
     font-size: 1em;
     letter-spacing: 1px;
@@ -383,7 +395,7 @@ a:-webkit-any-link {
 .btn3{
     height: 3.125rem;
     font-size: 1em;
-    width: 110%;
+    width: 100%;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #fff;
@@ -421,7 +433,7 @@ a:-webkit-any-link {
 .btnContactar{
     border: 2px solid #fff;
     background: none;
-    padding: 10px 20px;
+    padding: 10px;
     font-size: 20px;
     cursor: pointer;
     margin: 10px;
