@@ -4,7 +4,6 @@ import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.EmpleadorServicio;
-import com.Grupo6.ReclutamientoEmpleados.Servicios.UsuarioServicio;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -49,13 +49,13 @@ public class EmpleadorControlador {
     
     @PostMapping("/save-empleador")
     @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
-    public String saveEmpleador(Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleador empleador){
+    public String saveEmpleador(@RequestParam (required = false) String id,Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleador empleador){
         try {
-            empleadorServicio.save(empleador);
+            empleadorServicio.save(id,empleador);
             redirectAttributes.addFlashAttribute("success","Empleador cambiado con exito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
-            return "redirect:/editar-empleador";
+            return "redirect:/editar-empleador?id=" + id;
         }
         
         return "redirect:/";

@@ -18,7 +18,7 @@
        
         <div class="input-container" id="input-container-registros">
             <form method="POST" th:action="@{/editar-empleador/save-empleador}" th:object="${empleador}">
-                <input hidden th:field="*{id}">
+                <input hidden th:field="*{id}" name="id">
                 
                 <div>
                     <label>Nombre de usuario</label><br>
