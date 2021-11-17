@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="es-AR">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Perfil</title>
-        <link rel="stylesheet" href="/css/styles.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    </head>
-    <body id="tamañobody">
-        <div class="container">
-            <div class="cv-container" >
-                <div class="fotoCv">
-                    <img style="border-radius: 40px;" img th:src="${'/foto/usuario?id='+ empleado.id}">
-                </div>
-                <div class="info">
-                    <span th:text="'Nombre: ' + ${empleado.nombre}"></span>
-                    <span th:text="'Apellido: ' + ${empleado.apellido}">Apellido:</span>
-                    <span th:text="'Fecha de nacimiento: ' + ${empleado.fechaNac}"></span>
-                    <span th:text="'Sexo: ' + ${empleado.sexo}"></span>
-                    <span th:text="'Estudios alcanzados: ' + ${empleado.estudiosAlcanzados}"></span>
-                    <span th:text="'Disponibilidad horaria: ' + ${empleado.disponibilidadHoraria}"></span>
-                    <span th:text="'Movilidad propia: ' + ${empleado.movilidadPropia}"></span>
-                    <span th:text="'Categorias: ' + ${empleado.categorias}"></span>
-                    <span th:text="'Experiencia: ' + ${empleado.experienciaLaboral}"></span>
-                </div>
-                   <br><br>
-                
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body id="tamañobody">
+    <div class="container">
+        <div class="cv-container">
+            <div class="fotoCv">
+                <img style="border-radius: 40px;" img th:src="${'/foto/usuario?id='+ empleado.id}">
+            </div>
+            <div class="info">
+                <span th:text="'Nombre: ' + ${empleado.nombre}"></span>
+                <span th:text="'Apellido: ' + ${empleado.apellido}">Apellido:</span>
+                <span th:text="'Fecha de nacimiento: ' + ${empleado.fechaNac}"></span>
+                <span th:text="'Sexo: ' + ${empleado.sexo}"></span>
+                <span th:text="'Estudios alcanzados: ' + ${empleado.estudiosAlcanzados}"></span>
+                <span th:text="'Disponibilidad horaria: ' + ${empleado.disponibilidadHoraria}"></span>
+                <span th:text="'Movilidad propia: ' + ${empleado.movilidadPropia}"></span>
+                <span th:text="'Categorias: ' + ${empleado.categorias}"></span>
+                <span th:text="'Experiencia: ' + ${empleado.experienciaLaboral}"></span>
+
                 
             </div>
-            <div>
-                    <a type="submit" class="btnContactar"  sec:authorize="hasRole('ROLE_EMPRESA')" th:href="@{/busqueda/filtrar/visualizar-perfil/contactar}+'?id='+${empleado.id}">Contactar</a>
-               
-                    <a type="submit" class="btnContactar" sec:authorize="hasRole('ROLE_CANDIDATO')" th:href="@{/interfaz-empleado/editar}+'?id='+${empleado.id}">Editar datos</a>
-                </div>
+            <br><br>
+           
+
         </div>
-    </body>
+       
+        
+        <div class="sup">
+            <div>
+                <a type="submit" class="btnContactar" sec:authorize="hasRole('ROLE_EMPRESA')"
+                    th:href="@{/busqueda/filtrar/visualizar-perfil/contactar}+'?id='+${empleado.id}">Contactar</a>
+    
+                <a type="submit" class="btnContactar" sec:authorize="hasRole('ROLE_CANDIDATO')"
+                    th:href="@{/interfaz-empleado/editar}+'?id='+${empleado.id}">Editar datos</a>
+            </div>
+            <a type="submit" class="btnContactar"  th:href="@{/}">Volver</a>
+        </div>
+    </div>
+</body>
+
 </html>

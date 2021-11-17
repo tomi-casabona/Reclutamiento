@@ -70,15 +70,15 @@
                         <input type="text" class="form-control"   th:field="*{numeroTelefonico}"  name="numeroTelefonico"><br>
                     </div>
                     <div> 
-                        <label>Nivel de estudios alcanzados</label><br>
-                        <select name="estudiosAlcanzados" th:field="*{estudiosAlcanzados}" >
+                        <label>Nivel de estudios alcanzados </label><br>
+                        <select name="estudiosAlcanzados" th:field="*{estudiosAlcanzados}" class="form-control" >
                             <option th:each="e : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados).values()}"  th:value="${e}" th:text="${e.toString()}"> </option>
                         </select>
                         <br>
                     </div>
                     <div> 
                         <label>Esta dispuesto a reubicarse ? </label><br>
-                        <select name="posibleReubicacion" th:field="*{posiblereubicacion}" >
+                        <select name="posibleReubicacion" th:field="*{posiblereubicacion}" class="form-control">
                             <option th:each="e : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion).values()}"  th:value="${e}" th:text="${e.toString()}"> </option>
                         </select>
                         <br>
