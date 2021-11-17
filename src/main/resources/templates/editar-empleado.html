@@ -25,7 +25,7 @@
             <div class="input-container" id="input-container-registros">
 
                 <form method="POST" th:action="@{/interfaz-empleado/save-empleado}" enctype="multipart/form-data" th:object="${empleado}">
-                    <input hidden th:field="*{id}">
+                    <input hidden th:field="*{id}" name="id">
 
                     <div>
                         <label>Nombre de usuario</label><br>
@@ -120,11 +120,9 @@
                     <br>
                     
                 </form>
-                 <div class="sup">
-                <button class="btnvolver">
-                    <a th:href="@{/}">Volver</a>
-                </button>
-            </div>
+                <div class="sup">
+                <a type="submit" class="btnContactar"  th:href="@{/}">Volver</a>
+                </div>
             </div>
            
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
