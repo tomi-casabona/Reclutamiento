@@ -55,6 +55,10 @@ public class EmpleadoServicio {
         
 usuarioServicio.validarUsername(empleado.getNombre_usuario());
 
+        validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), empleado.getContrasenha(), empleado.getNombre(),
+                empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo() , empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
+                empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
+
         if (empleado.getFoto() != null) {
             empleado.setFoto(fotoServicio.guardar(imagen));
         }
