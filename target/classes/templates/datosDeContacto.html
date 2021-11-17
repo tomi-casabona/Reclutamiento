@@ -30,7 +30,14 @@
             </form>
         </div>
         <div class="sup">
-                <a type="submit" class="btnContactar"  th:href="@{/}">Volver</a>
+            <button class="btnvolver">
+                <a th:href="@{/}">Volver</a>
+            </button>
+        </div>
+        <div class="sup">
+        <button class="btnvolver">
+                <a th:href="@{/filtrar/visualizar-perfil/contactar/enviar-mail}+'?id='+${empleado.id}">Contactar via mail</a>
+            </button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

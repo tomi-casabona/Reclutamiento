@@ -41,6 +41,8 @@ public class EmpleadoServicio {
     private FotoServicio fotoServicio;
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     public List<Empleado> listAll() {
 
@@ -50,6 +52,8 @@ public class EmpleadoServicio {
 
     @Transactional
     public Empleado save(Empleado empleado, MultipartFile imagen) throws IOException, ErrorWeb {
+        
+usuarioServicio.validarUsername(empleado.getNombre_usuario());
 
         if (empleado.getFoto() != null) {
             empleado.setFoto(fotoServicio.guardar(imagen));
