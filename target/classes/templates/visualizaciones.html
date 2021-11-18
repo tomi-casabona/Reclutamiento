@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+zs<!DOCTYPE html>
 <html lang="es-AR">
 
 <head>
@@ -20,7 +20,7 @@
             <div class="info">
                 <span th:text="'Nombre: ' + ${empleado.nombre}"></span>
                 <span th:text="'Apellido: ' + ${empleado.apellido}">Apellido:</span>
-                <span th:text="'Fecha de nacimiento: ' + ${empleado.fechaNac}"></span>
+                <span th:text="'Fecha de nacimiento: ' + ${#dates.format(empleado.fechaNac, 'dd/MM/yyyy')}"></span>
                 <span th:text="'Sexo: ' + ${empleado.sexo}"></span>
                 <span th:text="'Estudios alcanzados: ' + ${empleado.estudiosAlcanzados}"></span>
                 <span th:text="'Disponibilidad horaria: ' + ${empleado.disponibilidadHoraria}"></span>
