@@ -25,12 +25,12 @@ public class Usuario implements Serializable{
     private String contrasenha;
     
     private Rol rol;
-    
-    @OneToOne
-    private Empleador empleador;
-    
-    @OneToOne
-    private Empleado empleado;
+//    
+//    @OneToOne
+//    private Empleador empleador;
+//    
+//    @OneToOne
+//    private Empleado empleado;
 
     public Usuario() {
     }
@@ -40,8 +40,8 @@ public class Usuario implements Serializable{
         this.nombre_usuario = nombre_usuario;
         this.contrasenha = contrasenha;
         this.rol = rol;
-        this.empleador = empleador;
-        this.empleado = empleado;
+//        this.empleador = empleador;
+//        this.empleado = empleado;
     }
 
     
@@ -78,21 +78,21 @@ public class Usuario implements Serializable{
         this.rol = rol;
     }
 
-    public Empleador getEmpleador() {
-        return empleador;
-    }
-
-    public void setEmpleador(Empleador empleador) {
-        this.empleador = empleador;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
+//    public Empleador getEmpleador() {
+//        return empleador;
+//    }
+//
+//    public void setEmpleador(Empleador empleador) {
+//        this.empleador = empleador;
+//    }
+//
+//    public Empleado getEmpleado() {
+//        return empleado;
+//    }
+//
+//    public void setEmpleado(Empleado empleado) {
+//        this.empleado = empleado;
+//    }
     
     
     

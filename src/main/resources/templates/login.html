@@ -13,29 +13,33 @@
   <body id="tamañobody">
     <div class="container">
       <div class="titulo">
-        <span>Registro empleado</span>
+        <span>Iniciar Sesion</span>
       </div>
         
       <div class="input-container" id="input-container-registros">      
         <form th:action="@{/logincheck}" method="POST" enctype="multipart/form-data" th:object="${empleado}">
           <div>
+            <br>
             <input class="input" type="text" placeholder="Username" name="username">
+            <br>
+            <br>
           </div>
           <div>
             <input class="input" type="password" placeholder="Password" name="password">
+            <br>
+            <br>
           </div>
         
           <button class="btn" id="btnRegistro">login</button>
-          <p>No tienes cuenta? <a href="/">Vuelve al inicio y crea una</a></p>
+          <br><br>
+          <p > <br> <a th:href="@{/}" id="href">No tienes cuenta? Ve al inicio y crea una</a></p>
         </form>
         
         <h2 th:if="${error}" style="color: red; text-align: center" th:text="${error}"></h2>
       </div>
       <div class="sup">
-        <button class="btnvolver">
-            <a th:href="@{/}">Volver</a>
-        </button>
-    </div>
+        <a type="submit" class="btnContactar"  th:href="@{/}">Volver</a>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

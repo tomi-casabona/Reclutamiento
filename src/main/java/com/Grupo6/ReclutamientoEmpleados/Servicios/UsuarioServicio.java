@@ -1,19 +1,11 @@
 package com.Grupo6.ReclutamientoEmpleados.Servicios;
 
-import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleador;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Usuario;
-import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
-import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
-import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
-import com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia;
-import com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
-import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
-import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadorRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
@@ -22,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,14 +30,12 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+
     @Autowired
     private EmpleadoServicio empleadoServicio;
-    @Autowired
-    private EmpleadorServicio empleadorServicio;
+
     @Autowired
     private FotoServicio fotoServicio;
-    @Autowired
-    private CategoriaServicio categoriaServicio;
 
     @Autowired
     private EmpleadorRepositorio empleadorRepositorio;
@@ -68,14 +57,18 @@ public class UsuarioServicio implements UserDetailsService {
             return new User(username, user.getContrasenha(), authorities);
         } catch (Exception e) {
             throw new UsernameNotFoundException("El usuario no existe");
+
         }
     }
 
     @Transactional
     public Usuario crearUsuarioEmpresa(String nombre_usuario, String contraseña, String contraseña2, String nombre_empresa) throws ErrorWeb {
-        Usuario usuario = new Usuario();
 
-        Empleador empleador1 = new Empleador(nombre_empresa);
+        Empleador empleador1 = new Empleador();
+        empleador1.setContrasenha(contraseña);
+        empleador1.setNombreEmpresa(nombre_empresa);
+        empleador1.setNombre_usuario(nombre_usuario);
+        empleador1.setRol(Rol.EMPRESA);
 
         List<Empleador> empleadores = empleadorRepositorio.findAll();
 
@@ -85,13 +78,7 @@ public class UsuarioServicio implements UserDetailsService {
             }
         }
 
-        List<Usuario> usuarios = usuarioRepositorio.findAll();
-
-        for (Usuario usuario1 : usuarios) {
-            if (nombre_usuario.equalsIgnoreCase(usuario1.getNombre_usuario())) {
-                throw new ErrorWeb("Ese nombre de usuario ya esta en uso");
-            }
-        }
+        validarUsername(nombre_usuario);
 
         if (nombre_usuario == null || nombre_usuario.isEmpty()) {
             throw new ErrorWeb("El nombre de usuario no puede ser nulo");
@@ -105,23 +92,15 @@ public class UsuarioServicio implements UserDetailsService {
             throw new ErrorWeb("Ingrese un nombre de empresa correcto");
         }
 
-        usuario.setNombre_usuario(nombre_usuario);
-
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         if (contraseña.equals(contraseña2)) {
-            usuario.setContrasenha(encoder.encode(contraseña));
+            empleador1.setContrasenha(encoder.encode(contraseña));
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
 
-        Empleador empleador = empleadorServicio.save(empleador1);
-
-        usuario.setEmpleador(empleador);
-
-        usuario.setRol(Rol.EMPRESA);
-
-        return usuarioRepositorio.save(usuario);
+        return empleadorRepositorio.save(empleador1);
     }
 
     @Transactional
@@ -140,40 +119,36 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public Usuario crearUsuarioEmpleado(String password2, Empleado empleado, MultipartFile foto) throws ErrorWeb, IOException {
 
-        Usuario usuario = new Usuario();
+        Foto fotox = fotoServicio.guardar(foto);
 
-        List<Empleado> empleados = empleadoRepositorio.findAll();
+        empleado.setFoto(fotox);
 
-        for (Empleado empleado1 : empleados) {
-            if (empleado.getNombre_usuario().equalsIgnoreCase(empleado1.getNombre_usuario())) {
-                throw new ErrorWeb("El nombre de usuario ya existe");
-            }
+        validarUsername(empleado.getNombre_usuario());
 
-        }
         empleadoServicio.validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), password2, empleado.getNombre(), empleado.getApellido(), empleado.getFechaNac(),
                 empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), foto, empleado.getPosiblereubicacion(),
                 empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(), empleado.getCategorias(), empleado.getDisponibilidadHoraria(),
                 empleado.getCarnetConducir());
 
-        usuario.setNombre_usuario(empleado.getNombre_usuario());
-
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         if (empleado.getContrasenha().equals(password2)) {
-            usuario.setContrasenha(encoder.encode(empleado.getContrasenha()));
+            empleado.setContrasenha(encoder.encode(empleado.getContrasenha()));
         } else {
             throw new ErrorWeb("Las contraseñas deben coincidir");
         }
 
-        usuario.setEmpleado(empleado);
+        empleado.setRol(Rol.CANDIDATO);
 
-        usuario.setRol(Rol.CANDIDATO);
+        return empleadoRepositorio.save(empleado);
+    }
 
-        fotoServicio.guardar((MultipartFile) empleado.getFoto());
+    public void validarUsername(String username) throws ErrorWeb {
 
-        empleadoServicio.save(empleado);
+        if (usuarioRepositorio.findByUsername(username) != null) {
+            throw new ErrorWeb("El nombre de usuario ya existe");
 
-        return usuarioRepositorio.save(usuario);
+        }
     }
 
 }
