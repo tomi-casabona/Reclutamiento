@@ -3,6 +3,7 @@ com\Grupo6\ReclutamientoEmpleados\Controladores\FotoControlador.class
 com\Grupo6\ReclutamientoEmpleados\Repositorios\CategoriaRepositorio.class
 com\Grupo6\ReclutamientoEmpleados\Repositorios\EmpleadorRepositorio.class
 com\Grupo6\ReclutamientoEmpleados\Servicios\UsuarioServicio.class
+com\Grupo6\ReclutamientoEmpleados\Controladores\MailController.class
 com\Grupo6\ReclutamientoEmpleados\Controladores\EmpleadoControlador.class
 com\Grupo6\ReclutamientoEmpleados\Controladores\EmpleadorControlador.class
 com\Grupo6\ReclutamientoEmpleados\Enums\DisponibilidadHoraria.class
@@ -20,6 +21,7 @@ com\Grupo6\ReclutamientoEmpleados\Controladores\LoginController.class
 com\Grupo6\ReclutamientoEmpleados\Controladores\ErrorsController.class
 com\Grupo6\ReclutamientoEmpleados\Enums\MovilidadPropia.class
 com\Grupo6\ReclutamientoEmpleados\Enums\PosibleReubicacion.class
+com\Grupo6\ReclutamientoEmpleados\Servicios\MailService.class
 com\Grupo6\ReclutamientoEmpleados\Controladores\BusquedaControlador.class
 com\Grupo6\ReclutamientoEmpleados\Entidades\Categoria.class
 com\Grupo6\ReclutamientoEmpleados\Servicios\EmpleadoServicio.class

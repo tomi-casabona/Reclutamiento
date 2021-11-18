@@ -39,11 +39,11 @@ public class EmpleadorServicio{
             empleador.setContrasenha(encoder.encode(empleador.getContrasenha()));
         }
 
-        if (empleador.getNombreEmpresa()==null){
+        if (empleador.getNombreEmpresa()==null || empleador.getNombreEmpresa().isEmpty()){
             throw new ErrorWeb("Ingrese un nombre de empresa");
         }
         
-        if (empleador.getNombre_usuario()==null){
+        if (empleador.getNombre_usuario()==null || empleador.getNombre_usuario().isEmpty()){
             throw new ErrorWeb("Ingrese un nombre de usuario");
         }
         
