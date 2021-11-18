@@ -25,7 +25,7 @@ public class Empleado extends Usuario {
     private String apellido;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "YYYY-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaNac;
 
     @ManyToMany(cascade = CascadeType.ALL)
