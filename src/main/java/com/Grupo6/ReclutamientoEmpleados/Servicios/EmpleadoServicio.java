@@ -127,9 +127,9 @@ public class EmpleadoServicio {
         if (password.length() < 6) {
             throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");
         }
-
-        if (foto.getSize() > 1000000) {
-            throw new ErrorWeb("la foto debe ser mas pequeña que 10mb");
+        
+        if(foto==null){
+            throw new ErrorWeb("La foto no puede estar vacia");
         }
 
         if (nombre == null || nombre.length() < 3) {

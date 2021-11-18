@@ -76,9 +76,10 @@ public class EmpleadoControlador {
             redirectAttributes.addFlashAttribute("success","Empleado cambiado con exito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
+            model.addAttribute("error",e.getMessage());
+            redirectAttributes.addFlashAttribute("error",e.getMessage());
             return "redirect:/interfaz-empleado/editar?id=" + id;
-        }
-        
+        } 
         return "redirect:/";
     }
 }
