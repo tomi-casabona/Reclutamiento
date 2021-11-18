@@ -48,16 +48,15 @@ public class EmpleadoServicio {
 
         empleado.setNombre_usuario(validarUsername(id,empleado.getNombre_usuario()));
 
-
         validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), empleado.getContrasenha(), empleado.getNombre(),
                 empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo() , empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
 
-        if (empleado.getFoto() != null) {
+        if (empleado.getFoto() == null) {
 
-       
-            empleado.setFoto(fotoServicio.guardar(imagen));
-        }
+       empleado.setFoto(empleadoRepositorio.findById(id).get().getFoto());
+        }else {
+            empleado.setFoto(fotoServicio.guardar(imagen));}
 
         if (empleado == null) {
             throw new ErrorWeb("el empleado no existe");
@@ -71,41 +70,6 @@ public class EmpleadoServicio {
 
         return empleadoRepositorio.save(empleado);
 
-    }
-
-    public Empleado modificarEmpleado(String id, String nombre, String apellido,
-            Date fechaNac, String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
-            MultipartFile foto, PosibleReubicacion posibleReubicacion, String numeroTelefonico, MovilidadPropia movilidadPropia,
-            List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir,
-            String otrosDatos) throws ErrorWeb, IOException {
-
-        validarModif(id, nombre, apellido, fechaNac, email, sexo, estudiosAlcanzados, foto, posibleReubicacion, numeroTelefonico, movilidadPropia, categorias, disponibilidadHoraria, carnetConducir, otrosDatos);
-
-        Empleado empleado = empleadoRepositorio.findById(id).get();
-
-        empleado.setNombre(nombre);
-        empleado.setApellido(apellido);
-
-        empleado.setFechaNac(fechaNac);
-
-        empleado.setEmail(email);
-        empleado.setNumeroTelefonico(numeroTelefonico);
-
-        empleado.setCategorias(categorias);
-
-        Foto fotografia = fotoServicio.guardar(foto);
-
-        empleado.setFoto(fotografia);
-
-        empleado.setSexo(sexo);
-        empleado.setDisponibilidadHoraria(disponibilidadHoraria);
-        empleado.setCarnetConducir(carnetConducir);
-        empleado.setMovilidadPropia(movilidadPropia);
-        empleado.setPosiblereubicacion(posibleReubicacion);
-        empleado.setEstudiosAlcanzados(estudiosAlcanzados);
-
-        empleadoRepositorio.save(empleado);
-        return empleado;
     }
 
     public void validarEmpleado(String username, String password, String password2, String nombre, String apellido,
@@ -179,59 +143,6 @@ public class EmpleadoServicio {
         if (categorias.isEmpty() || categorias == null) {
             throw new ErrorWeb("El campo categoria esta vacio");
 
-        }
-    }
-
-    public void validarModif(String id, String nombre, String apellido,
-            Date fechaNac, String email, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados,
-            MultipartFile foto, PosibleReubicacion posibleReubicacion, String numeroTelefonico, MovilidadPropia movilidadPropia,
-            List<Categoria> categorias, DisponibilidadHoraria disponibilidadHoraria, CarnetConducir carnetConducir,
-            String otrosDatos) throws ErrorWeb {
-
-        if (id == null) {
-            throw new ErrorWeb("Ingrese id");
-        }
-        if (nombre == null) {
-            throw new ErrorWeb("Ingrese nombre");
-        }
-        if (apellido == null) {
-            throw new ErrorWeb("Ingrese apellido");
-        }
-        if (fechaNac == null) {
-            throw new ErrorWeb("Ingrese fecha de nacimiento");
-        }
-        if (email == null) {
-            throw new ErrorWeb("Ingrese su email");
-        }
-        if (sexo == null) {
-            throw new ErrorWeb("Ingrese su sexo");
-        }
-        if (estudiosAlcanzados == null) {
-            throw new ErrorWeb("Ingrese nuvel de estudios alcanzado");
-        }
-        if (email == null) {
-            throw new ErrorWeb("Ingrese su email");
-        }
-        if (foto == null) {
-            throw new ErrorWeb("Ingrese una imagen");
-        }
-        if (posibleReubicacion == null) {
-            throw new ErrorWeb("Ingrese si esta dispuesto a reubicarse");
-        }
-        if (numeroTelefonico == null || numeroTelefonico.length() != 10) {
-            throw new ErrorWeb("Ingrese su numero telefonico con diez digitos, sin 0 y sin 15 ej: 3417123123");
-        }
-        if (categorias.isEmpty()) {
-            throw new ErrorWeb("Ingrese al menos una categoria");
-        }
-        if (disponibilidadHoraria == null) {
-            throw new ErrorWeb("Ingrese su disponibilidad horaria");
-        }
-        if (carnetConducir == null) {
-            throw new ErrorWeb("Ingrese su tipo de carnet de conducir si posee, o no");
-        }
-        if (otrosDatos == null) {
-            throw new ErrorWeb("Ingrese experiencias laborales o una carta de presentacion breve");
         }
     }
 
