@@ -1,14 +1,9 @@
 /* ----------------------------------------------------------*/ 
 /*style search*/
 :root{
-    --colorClaro:#37577c;
-    --colorOscuro:#0b2644;
-    --colorMuyClaro:#7287a0;
-    /*--login-bg:#f8f3ff;
-    --title-bg: #9089cc;
-    --button-bg: #674baf;
-    --light-pink: #e882e8;
-    --image-bg:  #eadbff ;*/
+    --colorClaro:#91b0d4;
+    --colorOscuro:#0f1941;
+    --colorMuyClaro: #cfe2ff;
 }
 
 *{
@@ -17,8 +12,8 @@
     box-sizing: border-box;
 }
 body{
-    background: linear-gradient(to top,var(--colorOscuro) 0%, var(--colorClaro) 100%); 
-    font-family: "Consolas", monospace;
+    font-family: "Cottonwood", monospace !important;
+    background-color: var(--colorOscuro) !important;
     
 }
 #tamañobody{
@@ -34,18 +29,17 @@ body{
 }
 
 .input-container{
-    width: 900px;
+    width: 90%;
     padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
     background: #fff;
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
     border-radius: 15px;
 }
 
 .input{
-    width: 50%;
+    width: 100%;
     height: 40px;
     position: relative;
     display: inline-block;
@@ -130,6 +124,12 @@ body{
     justify-content: center;
     padding: 10px;
 }
+.img-lista{
+    max-height:100px;
+    max-width: 100px;
+    min-width: 100px;
+    min-height: 100px;
+}
 .circuloimg{
     width: 150px;
     height: 150px;
@@ -153,7 +153,9 @@ body{
     color: seashell;
 }
 
-
+#tabla{
+    color: var(--colorMuyClaro) !important;
+}
 /* ----------------------------------------------------------*/ 
 /*style index*/
 .containerIndex{
@@ -188,7 +190,7 @@ a:-webkit-any-link {
     max-height:467px;
 }
 .espacio{
-    background-color:#0b2644;
+    background-color:var(--colorOscuro);
     width: 100%;
     height: 100px;
 }
@@ -198,25 +200,31 @@ a:-webkit-any-link {
     text-align: center;
     display: grid;
 }
+.cuadrados h2{
+    padding: 50px 30px 0;
+}
+.cuadrados span{
+    padding: 0 15%;
+}
 
 .quienes-somos{
-    background-color: rgb(211, 211, 211);
+    background-color: var(--colorClaro);
 } 
 .crea-tu-cuenta{
-    background-color: #37577c;
+    background-color: var(--colorMuyClaro);
 }
 .areas-de-trabajo{
-    background-color: rgb(211, 211, 211);
+    background-color: var(--colorClaro);
     
 }
 .busqueda-lab{
-    background-color: #37577c;
+    background-color: var(--colorMuyClaro);
 }
 #d-menu{
-    background-color: #0b2644;
+    background-color: var(--colorOscuro);
 }
 #dropdownMenuButton1{
-    background-color: #0b2644;
+    background-color: var(--colorOscuro);
 }
 /* ----------------------------------------------------------*/ 
 /*style login*/
@@ -309,7 +317,6 @@ a:-webkit-any-link {
 }
 
 .input {
-    padding-left: 20px;
     border: none;
     border-radius: 5px;
     font-weight: 600;
@@ -332,6 +339,17 @@ a:-webkit-any-link {
     cursor: pointer;
 }
 
+.input-container2 {
+    width: 90%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+
 /* ----------------------------------------------------------*/ 
 /*style registros*/
 
@@ -342,30 +360,11 @@ a:-webkit-any-link {
 /* ----------------------------------------------------------*/ 
 /*botones*/
 .botonSearch{
-    width: 30%;
     height: 40px;
     display: inline-block;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-left: 90px;
-}
-.btnvolver {
-    height: 3.125rem;
-    font-size: 1em;
-    width: 100%;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--colorClaro);
-    cursor: pointer; 
-    padding: 10px;
-}
-#btnRegistro{
-    width: 100%;
-    background-color: var(--colorClaro)
 }
 
 .btn2{
@@ -379,26 +378,16 @@ a:-webkit-any-link {
     border-radius: 5px;
     background-color: var(--colorOscuro);
     cursor: pointer; 
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 10px;
+    
 }
 .btn2:hover, .btn:hover, .btn3:hover{
     background-color: var(--colorClaro);
 }
-.btn3{
-    height: 3.125rem;
-    font-size: 1em;
-    width: 100%;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--colorOscuro);
-    cursor: pointer; 
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+
 #btnlista{
     width: 98%;
+    background-color: var(--colorClaro);
 }
 .button a:link{
   text-decoration: none;
@@ -406,23 +395,7 @@ a:-webkit-any-link {
 .buttonContactar{
     width: 150px;
 }
-/*
-.btn {
-    width: 90%;
-    height: 3.5rem;
-    font-size: 1em;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--colorOscuro);
-    border: none;
-    border-radius: 5px;
-    background-color: var(--colorMuyClaro);
-    padding: 20px;
-    cursor: pointer;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}*/
-
-.btnContactar{
+.btnA{
     border: 2px solid #fff;
     background: none;
     padding: 10px;
@@ -436,10 +409,10 @@ a:-webkit-any-link {
     border-radius: 10px;
 
 }
-.btnContactar:hover{
+.btnA:hover{
     color: #fff;
 }
-.btnContactar:before{
+.btnA:before{
     content: "";
     position: absolute;
     left: 0;
@@ -451,6 +424,6 @@ a:-webkit-any-link {
     bottom: 0;
     border-radius: 50% 50% 0 0;
 }
-.btnContactar:hover::before{
+.btnA:hover::before{
     height: 180%;
 }
