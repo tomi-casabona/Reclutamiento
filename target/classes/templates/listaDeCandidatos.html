@@ -26,6 +26,7 @@
                             <th style="margin: 5%" scope="col"></th>
                             <th style="margin-left: 2%" scope="col">Foto</th>
                             <th style="margin-left: 2%" scope="col">Nombre</th>
+                            <th style="margin-left: 2%" scope="col">Localidad</th>
                             <th style="margin-left: 2%" scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                             <td></td>
                             <th style="width:200px"><img style="border-radius: 70px;" class="img-lista" height="auto" width="50%"  img th:src="${'/foto/usuario?id='+ empleado.id}"></th>
                             <td th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></td>
+                            <!-- <td th:text="${empleado.localidad}"></td> -->
                             <td><br/>
                                     <a class="btn" id="btnlista" style="margin-left: 2%" th:href="@{/busqueda/filtrar/visualizar-perfil}+'?id='+${empleado.id}">Ver CV</a>
                                 <br/><br/>

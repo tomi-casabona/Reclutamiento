@@ -22,6 +22,7 @@ zs<!DOCTYPE html>
                 <span th:text="'Nombre: ' + ${empleado.nombre}"></span>
                 <span th:text="'Apellido: ' + ${empleado.apellido}">Apellido:</span>
                 <span th:text="'Fecha de nacimiento: ' + ${#dates.format(empleado.fechaNac, 'dd/MM/yyyy')}"></span>
+                <!-- <span th:text="'Localidad: ' + ${empleado.localidad}"></span> -->
                 <span th:text="'Sexo: ' + ${empleado.sexo}"></span>
                 <span th:text="'Estudios alcanzados: ' + ${empleado.estudiosAlcanzados}"></span>
                 <span th:text="'Disponibilidad horaria: ' + ${empleado.disponibilidadHoraria}"></span>
