@@ -6,6 +6,7 @@ zs<!DOCTYPE html>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+    <link rel="icon" href="https://genfavicon.com/tmp/icon_cc56a755300bb96a71749e6e21c4837a.ico">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -21,6 +22,7 @@ zs<!DOCTYPE html>
                 <span th:text="'Nombre: ' + ${empleado.nombre}"></span>
                 <span th:text="'Apellido: ' + ${empleado.apellido}">Apellido:</span>
                 <span th:text="'Fecha de nacimiento: ' + ${#dates.format(empleado.fechaNac, 'dd/MM/yyyy')}"></span>
+                <!-- <span th:text="'Localidad: ' + ${empleado.localidad}"></span> -->
                 <span th:text="'Sexo: ' + ${empleado.sexo}"></span>
                 <span th:text="'Estudios alcanzados: ' + ${empleado.estudiosAlcanzados}"></span>
                 <span th:text="'Disponibilidad horaria: ' + ${empleado.disponibilidadHoraria}"></span>
@@ -38,13 +40,13 @@ zs<!DOCTYPE html>
         
         <div class="sup">
             <div>
-                <a type="submit" class="btnContactar" sec:authorize="hasRole('ROLE_EMPRESA')"
+                <a type="submit" class="btnA" sec:authorize="hasRole('ROLE_EMPRESA')"
                     th:href="@{/busqueda/filtrar/visualizar-perfil/contactar}+'?id='+${empleado.id}">Contactar</a>
     
-                <a type="submit" class="btnContactar" sec:authorize="hasRole('ROLE_CANDIDATO')"
+                <a type="submit" class="btnA" sec:authorize="hasRole('ROLE_CANDIDATO')"
                     th:href="@{/interfaz-empleado/editar}+'?id='+${empleado.id}">Editar datos</a>
             </div>
-            <a type="submit" class="btnContactar"  th:href="@{/}">Volver</a>
+            <a type="submit" class="btnA"  th:href="@{/}">Volver</a>
         </div>
     </div>
 </body>
