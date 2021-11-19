@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>e-jobs</title>
+    <link rel="icon" href="https://genfavicon.com/tmp/icon_cc56a755300bb96a71749e6e21c4837a.ico">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -18,7 +19,7 @@
     <div class="containerIndex">
         <div class="sup">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn3" type="button" id="dropdownMenuButton1"
+                <button class="btn btn-secondary dropdown-toggle btn2" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Menu
                 </button>
@@ -99,7 +100,7 @@
         <div class="medio">
             <form th:action="@{/busqueda}" sec:authorize="hasRole('ROLE_EMPRESA')">
                 <div class="imgIndex">
-                    <button class="btnContactar" role="button">Comenzar busqueda
+                    <button class="btnA" role="button">Comenzar busqueda
 
                     </button>
                 </div>
@@ -107,7 +108,7 @@
 
             <form th:action="@{/interfaz-empleado}" sec:authorize="hasRole('ROLE_CANDIDATO')">
                 <div class="imgIndex">
-                    <button type="submit" class="btnContactar" role="button">Ver mi perfil
+                    <button type="submit" class="btnA" role="button">Ver mi perfil
 
                     </button>
                 </div>
@@ -119,22 +120,22 @@
         </div>
         <div sec:authorize="!isAuthenticated()">
             <div class="cuadrados quienes-somos">
-                <span class="fs-2">¿Quienes somos?</span>
+                <h2 class="fs-2">¿Quienes somos?</h2>
                 <span class="fs-5"> Somos líderes en Argentina en la provisión de servicios de Capital Humano.
                     Conectamos el talento con las necesidades, apoyando a las personas y organizaciones para que alcancen su
                     verdadero potencial</span>
             </div>
             <div class="cuadrados crea-tu-cuenta">
-                <span class="fs-2">Crea tu cuenta</span>
+                <h2 class="fs-2">Crea tu cuenta</h2>
                 <span class="fs-5"> Con unas preguntas sencillas podemos llegar a conocerte mejor.</span>
             </div>
             <div class="cuadrados areas-de-trabajo">
-                <span class="fs-2">Nuestras areas de trabajo</span>
+                <h2 class="fs-2">Nuestras areas de trabajo</h2>
                 <span class="fs-5"> Programacion, Elctricidad, Cocina, Limpieza, Administracion, Cuidado personal,
                     Veterinarias, Medicos...</span>
             </div>
             <div class="cuadrados busqueda-lab">
-                <span class="fs-2">Busqueda de personal</span>
+                <h2 class="fs-2">Busqueda de personal</h2>
                 <span class="fs-5"> Buscamos a la persona que necesitás de manera ágil 100% online</span>
             </div>
         </div>
