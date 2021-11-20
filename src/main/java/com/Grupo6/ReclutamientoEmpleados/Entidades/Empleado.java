@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,9 +30,9 @@ public class Empleado extends Usuario {
     private Date fechaNac;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    
+
     private List<Categoria> categorias;
-    
+
     @OneToOne
     private Foto foto;
 
@@ -51,7 +52,7 @@ public class Empleado extends Usuario {
     private String email;
     private String numeroTelefonico;
     private String experienciaLaboral;
-  
+    private String localidad;
 
     public Empleado() {
     }
@@ -72,9 +73,9 @@ public class Empleado extends Usuario {
         this.numeroTelefonico = numeroTelefonico;
         this.experienciaLaboral = experienciaLaboral;
     }
-    
-    public void addCategoria(Categoria e){
-   this.categorias.add(e);   
+
+    public void addCategoria(Categoria e) {
+        this.categorias.add(e);
     }
 
     public String getNombre() {
@@ -108,7 +109,6 @@ public class Empleado extends Usuario {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    
 
     public Foto getFoto() {
         return foto;
@@ -190,7 +190,12 @@ public class Empleado extends Usuario {
         this.experienciaLaboral = experienciaLaboral;
     }
 
-    
-    
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
 
 }
