@@ -26,7 +26,6 @@
                             <th style="margin: 5%" scope="col"></th>
                             <th style="margin-left: 2%" scope="col">Foto</th>
                             <th style="margin-left: 2%" scope="col">Nombre</th>
-                            <th style="margin-left: 2%" scope="col">Localidad</th>
                             <th style="margin-left: 2%" scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -38,7 +37,7 @@
                             <td th:text="${empleado.nombre} + ' ' + ${empleado.apellido}"></td>
                             <!-- <td th:text="${empleado.localidad}"></td> -->
                             <td><br/>
-                                    <a class="btn" id="btnlista" style="margin-left: 2%" th:href="@{/busqueda/filtrar/visualizar-perfil}+'?id='+${empleado.id}">Ver CV</a>
+                                    <a class="btn" id="btnlista" style="margin-left: 2%" th:href="@{/busqueda/filtrar/visualizar-perfil}+'?id='+${empleado.id}">Ver datos</a>
                                 <br/><br/>
                             </td>
                         </tr>

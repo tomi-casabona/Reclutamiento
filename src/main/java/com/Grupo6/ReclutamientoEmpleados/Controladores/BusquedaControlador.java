@@ -32,8 +32,8 @@ public class BusquedaControlador {
     
     @GetMapping("/filtrar")
     @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
-    public String filtro(ModelMap model,@RequestParam String categoria){
-        model.addAttribute("empleados",empleadoServicio.listAllByCategoria(categoria));
+    public String filtro(ModelMap model,@RequestParam String categoria,@RequestParam String localidad){
+        model.addAttribute("empleados",empleadoServicio.listAllByCategoriaYLocalidad(categoria,localidad));
         return "listaDeCandidatos";
     }
     
