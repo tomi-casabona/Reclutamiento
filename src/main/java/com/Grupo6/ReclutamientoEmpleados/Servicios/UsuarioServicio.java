@@ -121,6 +121,10 @@ public class UsuarioServicio implements UserDetailsService {
 
         Foto fotox = fotoServicio.guardar(foto);
 
+        if (empleado.getLocalidad() == null) {
+            throw new ErrorWeb("Ingrese una localidad valida");
+        }
+
         empleado.setFoto(fotox);
 
         validarUsername(empleado.getNombre_usuario());

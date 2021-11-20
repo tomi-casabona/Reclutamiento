@@ -1,4 +1,3 @@
-
 package com.Grupo6.ReclutamientoEmpleados.Controladores;
 
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
@@ -37,93 +36,92 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/registro")
 public class UsuarioControlador {
-    
+
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    
+
     @Autowired
     private UsuarioServicio usuarioServicio;
-    
+
     @Autowired
     private CategoriaServicio categoriaServicio;
-    
+
     @GetMapping("/registro-empresa")
-    public String registro(){
+    public String registro() {
         return "registroEmpleador";
-    }    
-    
+    }
+
     @GetMapping("/registro-empleado")
-    public String registroEmpleado(ModelMap model){
+    public String registroEmpleado(ModelMap model) {
         model.addAttribute("categoria", categoriaServicio.listaCategorias());
         model.addAttribute("empleado", new Empleado());
         return "registroEmpleado";
     }
-    
+
     @PostMapping("/registrar-empresa")
-    public String registrarNuevoEmpleador(Model model,RedirectAttributes redirectAttributes,@RequestParam String username,@RequestParam String password,@RequestParam String password2,@RequestParam String nombre_empresa){
+    public String registrarNuevoEmpleador(Model model, RedirectAttributes redirectAttributes, @RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String nombre_empresa) {
         try {
-            usuarioServicio.crearUsuarioEmpresa(username,password,password2, nombre_empresa);
-            
-            redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
-            
+            usuarioServicio.crearUsuarioEmpresa(username, password, password2, nombre_empresa);
+
+            redirectAttributes.addFlashAttribute("success", "Usuario creado con exito");
+
             return "redirect:/";
         } catch (ErrorWeb e) {
-            model.addAttribute("error",e.getMessage());
-            redirectAttributes.addFlashAttribute("error",e.getMessage());
-            model.addAttribute("username",username);
+            model.addAttribute("error", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            model.addAttribute("username", username);
             return "redirect:/registro/registro-empresa";
         }
     }
-    
+
     @PostMapping("/registrar-empleado")
-    public String registrarNuevoEmpleado(Model model,RedirectAttributes redirectAttributes, @ModelAttribute Empleado empleado, @RequestParam String password2, MultipartFile imagen) throws IOException{
-        try {      
+    public String registrarNuevoEmpleado(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Empleado empleado, @RequestParam String password2, MultipartFile imagen) throws IOException {
+        try {
 
             usuarioServicio.crearUsuarioEmpleado(password2, empleado, imagen);
-         
-            redirectAttributes.addFlashAttribute("success","Usuario creado con exito");
-            
+
+            redirectAttributes.addFlashAttribute("success", "Usuario creado con exito");
+
             return "redirect:/";
         } catch (ErrorWeb e) {
-            model.addAttribute("error",e.getMessage());
+            model.addAttribute("error", e.getMessage());
             e.printStackTrace();
-            model.addAttribute("error",e.getMessage());
-            model.addAttribute("empleado",empleado);
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("empleado", empleado);
             model.addAttribute("categoria", categoriaServicio.listaCategorias());
-            model.addAttribute("nombre_usuario",empleado.getNombre_usuario());
+            model.addAttribute("nombre_usuario", empleado.getNombre_usuario());
             return "registroEmpleado";
         }
     }
-    
+
     @GetMapping("/modificar-usuario")
     @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR','ROLE_CANDIDATO')")
-    public String modificarUsuario(Model model,@RequestParam(required = false) String id){
-        if (id != null){
-            Optional<Usuario> optional= usuarioRepositorio.findById(id);
-            if (optional.isPresent()){
-                model.addAttribute("usuario",optional.get());
-            }else{
+    public String modificarUsuario(Model model, @RequestParam(required = false) String id) {
+        if (id != null) {
+            Optional<Usuario> optional = usuarioRepositorio.findById(id);
+            if (optional.isPresent()) {
+                model.addAttribute("usuario", optional.get());
+            } else {
                 return "redirect:/modificar-usuario";
             }
-        }else{
-            model.addAttribute("usuario",new Usuario());
+        } else {
+            model.addAttribute("usuario", new Usuario());
         }
-        
+
         return "modificar-usuario";
     }
-    
+
     @PostMapping("/save-usuario")
     @PreAuthorize("hasAnyRole('ROLE_EMPLEADOR','ROLE_CANDIDATO')")
-    public String saveUsuario(Model model,RedirectAttributes redirectAttributes,@ModelAttribute Usuario usuario){
+    public String saveUsuario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Usuario usuario) {
         try {
             usuarioServicio.save(usuario);
-            redirectAttributes.addFlashAttribute("success","Datos cambiados con exito");
+            redirectAttributes.addFlashAttribute("success", "Datos cambiados con exito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
             return "redirect:/registro/modificar-usuario";
         }
-        
+
         return "redirect:/lista-usuario";
     }
 }
- 

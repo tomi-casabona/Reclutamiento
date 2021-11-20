@@ -23,13 +23,13 @@
                     </select>
                 </div>
                 <div>
-                    <input class="form-control input" list="datalistOptions" id="exampleDataList"
+                    <input class="form-control input" name="localidad" list="datalistOptions" id="exampleDataList"
                         placeholder="Buscar Localidad" />
                     <datalist id="datalistOptions">
                         <option selected="selected" disabled="disabled">
                             Elige una opcion
                         </option>
-                        <option th:each="c : ${categoria}" th:text="${c.nombre}"></option>
+                        <option th:each="c : ${localidad}" th:text="${c.nombre}"></option>
                     </datalist>
                 </div>
                 
