@@ -22,6 +22,15 @@
                         <option th:each="c : ${categoria}" th:text="${c.nombre}"></option>
                     </select>
                 </div>
+                <div class="input">
+                    <select class="form-control" type="text" name="localidad">
+                        <option selected="selected" disabled="disabled">
+                            Elige una opcion
+                        </option>
+                        <option th:each="l : ${localidad}" th:text="${l.nombre}"></option>
+                    </select>
+                </div>
+<!--                
                 <div>
                     <input class="form-control input" name="localidad" list="datalistOptions" id="exampleDataList"
                         placeholder="Buscar Localidad" />
@@ -31,7 +40,7 @@
                         </option>
                         <option th:each="c : ${localidad}" th:text="${c.nombre}"></option>
                     </datalist>
-                </div>
+                </div>-->
                 
 
                 <div class="botonSearch">
