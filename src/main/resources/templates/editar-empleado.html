@@ -66,7 +66,7 @@
                         <input type="text"  class="form-control" th:field="*{localidad}" name="localidad"><br>
                     </div>
                     <div> 
-                        <label>Numero de contacto</label><br>
+                        <label>Número de contacto</label><br>
                         <input type="text" class="form-control"   th:field="*{numeroTelefonico}"  name="numeroTelefonico"><br>
                     </div>
                     <div> 
@@ -77,7 +77,7 @@
                         <br>
                     </div>
                     <div> 
-                        <label>Esta dispuesto a reubicarse? </label><br>
+                        <label>Está dispuesto a reubicarse? </label><br>
                         <select name="posibleReubicacion" th:field="*{posiblereubicacion}" class="form-control">
                             <option th:each="e : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion).values()}"  th:value="${e}" th:text="${e.toString()}"> </option>
                         </select>

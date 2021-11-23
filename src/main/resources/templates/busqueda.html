@@ -17,7 +17,7 @@
                 <div class="input">
                     <select class="form-control" type="text" name="categoria">
                         <option selected="selected" disabled="disabled">
-                            Elige una opcion
+                            Elige una opción
                         </option>
                         <option th:each="c : ${categoria}" th:text="${c.nombre}"></option>
                     </select>
@@ -27,7 +27,7 @@
                         placeholder="Buscar Localidad" />
                     <datalist id="datalistOptions">
                         <option selected="selected" disabled="disabled">
-                            Elige una opcion
+                            Elige una opción
                         </option>
                         <option th:each="c : ${localidad}" th:text="${c.nombre}"></option>
                     </datalist>
@@ -35,7 +35,7 @@
                 
 
                 <div class="botonSearch">
-                    <button class="btn2" type="submit">Iniciar busqueda</button>
+                    <button class="btn2" type="submit">Iniciar búsqueda</button>
                 </div>
             </div>
         </form>

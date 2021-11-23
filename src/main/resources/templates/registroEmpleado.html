@@ -68,7 +68,7 @@
                         <input type="text"  class="form-control" th:field="*{localidad}" name="localidad"><br>
                     </div>
                     <div> 
-                        <label>Numero de contacto</label><br>
+                        <label>Número de contacto</label><br>
                         <input type="text" class="form-control" placeholder="Ingrese su numero sin 0 y sin 15. ej 3415000000"  th:field="*{numeroTelefonico}"  name="numeroTelefonico"><br>
                     </div>
                     <div> 
@@ -79,7 +79,7 @@
                         <br>
                     </div>
                     <div> 
-                        <label>Esta dispuesto a reubicarse ? </label><br>
+                        <label>Está dispuesto a reubicarse? </label><br>
                         <select name="posibleReubicacion" th:field="*{posiblereubicacion}" class="form-control">
                             <option th:each="e : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.PosibleReubicacion).values()}"  th:value="${e}" th:text="${e.toString()}"> </option>
                         </select>
@@ -95,7 +95,7 @@
                     </div>
 
                     <div> 
-                        <label>Si dispone de movilidad propia, seleccione cual</label><br>
+                        <label>Si dispone de movilidad propia, seleccione cuál</label><br>
                         <select class="form-control" name="movilidadPropia" th:field="*{movilidadPropia}">
                             <option th:each="mp : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.MovilidadPropia).values()}"  th:value="${mp}"  th:text="${mp.toString()}"> </option>
 
@@ -103,7 +103,7 @@
                         <br>
                     </div> 
                     <div> 
-                        <label>Si sabe manejar, indique que tipo de carnet de conducir posee</label><br>
+                        <label>Si posee carnet de conducir, indique el tipo</label><br>
                         <select name="carnetConducir"  th:field="*{carnetConducir}" class="form-control">
                             <option th:each="cc : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir).values()}" th:value="${cc}" th:text="${cc.toString()}"> </option>
                         </select>

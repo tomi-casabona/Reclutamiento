@@ -63,7 +63,7 @@ public class UsuarioControlador {
         try {
             usuarioServicio.crearUsuarioEmpresa(username, password, password2, nombre_empresa);
 
-            redirectAttributes.addFlashAttribute("success", "Usuario creado con exito");
+            redirectAttributes.addFlashAttribute("success", "Usuario creado con éxito");
 
             return "redirect:/";
         } catch (ErrorWeb e) {
@@ -80,7 +80,7 @@ public class UsuarioControlador {
 
             usuarioServicio.crearUsuarioEmpleado(password2, empleado, imagen);
 
-            redirectAttributes.addFlashAttribute("success", "Usuario creado con exito");
+            redirectAttributes.addFlashAttribute("success", "Usuario creado con éxito");
 
             return "redirect:/";
         } catch (ErrorWeb e) {
@@ -116,7 +116,7 @@ public class UsuarioControlador {
     public String saveUsuario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute Usuario usuario) {
         try {
             usuarioServicio.save(usuario);
-            redirectAttributes.addFlashAttribute("success", "Datos cambiados con exito");
+            redirectAttributes.addFlashAttribute("success", "Datos cambiados con éxito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
             return "redirect:/registro/modificar-usuario";
