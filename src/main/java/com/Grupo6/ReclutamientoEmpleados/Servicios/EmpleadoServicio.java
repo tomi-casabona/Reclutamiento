@@ -44,19 +44,24 @@ public class EmpleadoServicio {
     }
 
     @Transactional
-    public Empleado save(String id,Empleado empleado, MultipartFile imagen) throws IOException, ErrorWeb {
+    public Empleado save(String id, Empleado empleado, MultipartFile imagen) throws IOException, ErrorWeb {
 
-        empleado.setNombre_usuario(validarUsername(id,empleado.getNombre_usuario()));
+        empleado.setNombre_usuario(validarUsername(id, empleado.getNombre_usuario()));
 
         validarEmpleado(empleado.getNombre_usuario(), empleado.getContrasenha(), empleado.getContrasenha(), empleado.getNombre(),
-                empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo() , empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
+                empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
+
+        if (empleado.getLocalidad() == null) {
+            throw new ErrorWeb("Ingrese una localidad valida");
+        }
 
         if (empleado.getFoto() == null) {
 
-       empleado.setFoto(empleadoRepositorio.findById(id).get().getFoto());
-        }else {
-            empleado.setFoto(fotoServicio.guardar(imagen));}
+            empleado.setFoto(empleadoRepositorio.findById(id).get().getFoto());
+        } else {
+            empleado.setFoto(fotoServicio.guardar(imagen));
+        }
 
         if (empleado == null) {
             throw new ErrorWeb("el empleado no existe");
@@ -91,8 +96,8 @@ public class EmpleadoServicio {
         if (password.length() < 6) {
             throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");
         }
-        
-        if(foto==null){
+
+        if (foto == null) {
             throw new ErrorWeb("La foto no puede estar vacia");
         }
 
@@ -146,10 +151,10 @@ public class EmpleadoServicio {
         }
     }
 
-    public List<Empleado> listAllByCategoria(String categoria) {
+    public List<Empleado> listAllByCategoriaYLocalidad(String categoria,String localidad) {
         List<Empleado> lista = new ArrayList<>();
 
-        List<Empleado> lista1 = empleadoRepositorio.findAll();
+        List<Empleado> lista1 = empleadoRepositorio.findByLocalidad(localidad);
 
         for (Empleado empleado : lista1) {
             for (Categoria empleado1 : empleado.getCategorias()) {
@@ -170,15 +175,15 @@ public class EmpleadoServicio {
         Empleado empleado = (Empleado) usuarioRepositorio.findByUsername(username);
         return empleado;
     }
-    
-    public String validarUsername(String id,String username) throws ErrorWeb{
-    
+
+    public String validarUsername(String id, String username) throws ErrorWeb {
+
         if (usuarioRepositorio.findById(id).get().getNombre_usuario().equals(username)) {
             return username;
-        }else{
-            if (usuarioRepositorio.findByUsername(username) != null){
+        } else {
+            if (usuarioRepositorio.findByUsername(username) != null) {
                 throw new ErrorWeb("El nombre de usuario ya se encuentra registrado");
-            }else{
+            } else {
                 return username;
             }
         }
