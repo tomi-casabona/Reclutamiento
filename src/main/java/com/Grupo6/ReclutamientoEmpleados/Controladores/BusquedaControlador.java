@@ -3,6 +3,7 @@ package com.Grupo6.ReclutamientoEmpleados.Controladores;
 
 import com.Grupo6.ReclutamientoEmpleados.Servicios.CategoriaServicio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.EmpleadoServicio;
+import com.Grupo6.ReclutamientoEmpleados.Servicios.LocalidadServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,14 @@ public class BusquedaControlador {
     @Autowired
     private CategoriaServicio categoriaServicio;
     
+    @Autowired
+    private LocalidadServicio localidadServicio;
+    
     @GetMapping("")
     @PreAuthorize("hasAnyRole('ROLE_EMPRESA')")
     public String buscar(ModelMap model){
         model.addAttribute("categoria",categoriaServicio.listaCategorias());
+        model.addAttribute("localidad",localidadServicio.listarLocalidad());
         return "busqueda";
     }
     

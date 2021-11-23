@@ -119,13 +119,18 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public Usuario crearUsuarioEmpleado(String password2, Empleado empleado, MultipartFile foto) throws ErrorWeb, IOException {
 
+        if (foto == null || foto.isEmpty()) {
+            throw new ErrorWeb("La foto no puede estar vacia");
+        }else{
         Foto fotox = fotoServicio.guardar(foto);
+           empleado.setFoto(fotox);
+        }
 
         if (empleado.getLocalidad() == null) {
             throw new ErrorWeb("Ingrese una localidad valida");
         }
 
-        empleado.setFoto(fotox);
+     
 
         validarUsername(empleado.getNombre_usuario());
 

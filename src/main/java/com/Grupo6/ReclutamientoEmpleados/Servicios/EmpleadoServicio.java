@@ -3,6 +3,7 @@ package com.Grupo6.ReclutamientoEmpleados.Servicios;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
+import com.Grupo6.ReclutamientoEmpleados.Entidades.Localidad;
 import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
 import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
 import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
@@ -52,7 +53,7 @@ public class EmpleadoServicio {
                 empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
 
-        if (empleado.getLocalidad() == null) {
+        if (empleado.getLocalidad() == null ) {
             throw new ErrorWeb("Ingrese una localidad valida");
         }
 
@@ -151,7 +152,7 @@ public class EmpleadoServicio {
         }
     }
 
-    public List<Empleado> listAllByCategoriaYLocalidad(String categoria,String localidad) {
+    public List<Empleado> listAllByCategoriaYLocalidad(String categoria, String localidad) {
         List<Empleado> lista = new ArrayList<>();
 
         List<Empleado> lista1 = empleadoRepositorio.findByLocalidad(localidad);
