@@ -61,14 +61,14 @@
                         <label>Email</label><br>
                         <input type="email"  class="form-control"  th:field="*{email}"  name="email"><br>
                     </div> 
-
-                    <label>Numero de contacto</label><br>
-                    <input type="text" class="form-control"   th:field="*{numeroTelefonico}"  name="numeroTelefonico"><br>
+                    <div> 
+                        <label>Numero de contacto</label><br>
+                        <input type="text" class="form-control"   th:field="*{numeroTelefonico}"  name="numeroTelefonico"><br>
                     </div>
                     <div> 
                         <label>Nivel de estudios alcanzados</label><br>
                         <select name="estudiosAlcanzados" th:field="*{estudiosAlcanzados}" class="form-control" >
-                            <option th:each="e : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados).values()}"  th:value="${e}" th:text="${e.toString()}"> </option>
+                            <option th:each="es : ${T(com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados).values()}"  th:value="${es}" th:text="${es.toString()}"> </option>
                         </select>
                         <br>
                     </div>
@@ -103,21 +103,30 @@
                         </select>
                         <br>
                     </div> 
-              <div> 
-                        <label>Seleccione su Localidad</label>
-                        <br>
-                        <input class="form-check-input"  th:each="L : ${localidad}" th:field="*{localidad}" th:text="${L.nombre}" th:value="${{L}}" type="checkbox" name="localidad">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        </label>
-                    </div> 
+                    <!--                    <div> 
+                                            <label>Seleccione su Localidad</label>
+                                            <br>
+                                            <input class="form-check-input"  th:each="L : ${localidad}" th:field="*{localidad}" th:text="${L.nombre}" th:value="${{L}}" type="checkbox" name="localidad">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                            </label>
+                                        </div> -->
+                    <div >
+                        <select class="form-control" th:field="*{localidad}">
+                            <option value="0">Seleccione Localidad</option>
+                            <option th:each="l : ${localidad}" th:value="${{l}}" th:text="${l.nombre}"></option>
+                        </select>
+                    </div>
 
                     <div> 
+                        <br>
                         <label>Elegir nueva categoria</label><br>
                         <input class="form-check-input"  th:each="C : ${categoria}" th:field="*{categorias}" th:text="${C.nombre}" th:value="${{C}}" type="checkbox" name="categorias">
-                        <label class="form-check-label" for="flexCheckDefault">
-
+                        <br>
+                        <label class="form-check-label" for="flexCheckDefault">                          
                         </label>
+                       
                     </div> 
+                    <br>
                     <label>Experiencia laboral</label><br>
                     <textarea name="experienciaLaboral"  th:field="*{experienciaLaboral}" th:value="${experienciaLaboral}" rows="10" cols="40" class="form-control"></textarea>
                     <br>
