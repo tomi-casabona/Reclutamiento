@@ -13,7 +13,6 @@ import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.CategoriaServicio;
-import com.Grupo6.ReclutamientoEmpleados.Servicios.LocalidadServicio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.UsuarioServicio;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -46,10 +45,6 @@ public class UsuarioControlador {
 
     @Autowired
     private CategoriaServicio categoriaServicio;
-    
-    @Autowired
-    private LocalidadServicio localidadServicio;
-    
 
     @GetMapping("/registro-empresa")
     public String registro() {
@@ -59,7 +54,6 @@ public class UsuarioControlador {
     @GetMapping("/registro-empleado")
     public String registroEmpleado(ModelMap model) {
         model.addAttribute("categoria", categoriaServicio.listaCategorias());
-        model.addAttribute("localidad", localidadServicio.listarLocalidad());
         model.addAttribute("empleado", new Empleado());
         return "registroEmpleado";
     }

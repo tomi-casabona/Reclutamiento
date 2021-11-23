@@ -14,7 +14,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,11 +30,8 @@ public class Empleado extends Usuario {
     private Date fechaNac;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Categoria> categorias;
 
-    
-    @ManyToOne
-    private Localidad localidad;
+    private List<Categoria> categorias;
 
     @OneToOne
     private Foto foto;
@@ -56,11 +52,12 @@ public class Empleado extends Usuario {
     private String email;
     private String numeroTelefonico;
     private String experienciaLaboral;
+    private String localidad;
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, String apellido, Date fechaNac, List<Categoria> categorias, Foto foto, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados, DisponibilidadHoraria disponibilidadHoraria, MovilidadPropia movilidadPropia, PosibleReubicacion posiblereubicacion, CarnetConducir carnetConducir, String email, String numeroTelefonico, String experienciaLaboral, Localidad localidad) {
+    public Empleado(String nombre, String apellido, Date fechaNac, List<Categoria> categorias, Foto foto, Sexo sexo, EstudiosAlcanzados estudiosAlcanzados, DisponibilidadHoraria disponibilidadHoraria, MovilidadPropia movilidadPropia, PosibleReubicacion posiblereubicacion, CarnetConducir carnetConducir, String email, String numeroTelefonico, String experienciaLaboral) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNac = fechaNac;
@@ -75,7 +72,6 @@ public class Empleado extends Usuario {
         this.email = email;
         this.numeroTelefonico = numeroTelefonico;
         this.experienciaLaboral = experienciaLaboral;
-        this.localidad = localidad;
     }
 
     public void addCategoria(Categoria e) {
@@ -194,14 +190,12 @@ public class Empleado extends Usuario {
         this.experienciaLaboral = experienciaLaboral;
     }
 
-    public Localidad getLocalidad() {
+    public String getLocalidad() {
         return localidad;
     }
 
-    public void setLocalidad(Localidad localidad) {
+    public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-
-
 
 }

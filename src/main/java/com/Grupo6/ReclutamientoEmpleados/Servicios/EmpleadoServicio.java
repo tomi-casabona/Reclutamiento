@@ -52,7 +52,7 @@ public class EmpleadoServicio {
                 empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
 
-        if (empleado.getLocalidad() == null ) {
+        if (empleado.getLocalidad() == null) {
             throw new ErrorWeb("Ingrese una localidad valida");
         }
 
@@ -151,7 +151,7 @@ public class EmpleadoServicio {
         }
     }
 
-    public List<Empleado> listAllByCategoriaYLocalidad(String categoria, String localidad) {
+    public List<Empleado> listAllByCategoriaYLocalidad(String categoria,String localidad) {
         List<Empleado> lista = new ArrayList<>();
 
         List<Empleado> lista1 = empleadoRepositorio.findByLocalidad(localidad);
