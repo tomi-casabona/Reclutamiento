@@ -8,6 +8,7 @@ import com.Grupo6.ReclutamientoEmpleados.Repositorios.CategoriaRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.CategoriaServicio;
 import com.Grupo6.ReclutamientoEmpleados.Servicios.EmpleadoServicio;
+import com.Grupo6.ReclutamientoEmpleados.Servicios.LocalidadServicio;
 import java.io.IOException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,9 @@ public class EmpleadoControlador {
     @Autowired
     private CategoriaServicio categoriaServicio;
     
+    @Autowired
+    private LocalidadServicio localidadServicio;
+    
     @GetMapping("")
     public String verPerfil(ModelMap model){
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
@@ -57,6 +61,7 @@ public class EmpleadoControlador {
             Optional<Empleado> optional= empleadoRepositorio.findById(id);
             if (optional.isPresent()){
                 model.addAttribute("categoria",categoriaServicio.listaCategorias());
+                model.addAttribute("localidad", localidadServicio.listarLocalidad());
                 model.addAttribute("empleado",optional.get());
             }else{
                 return "redirect:/editar-empleado";

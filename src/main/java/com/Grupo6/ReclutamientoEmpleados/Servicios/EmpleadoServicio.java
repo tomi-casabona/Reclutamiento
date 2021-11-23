@@ -3,6 +3,7 @@ package com.Grupo6.ReclutamientoEmpleados.Servicios;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
+import com.Grupo6.ReclutamientoEmpleados.Entidades.Localidad;
 import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
 import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
 import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
@@ -12,6 +13,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
+import com.Grupo6.ReclutamientoEmpleados.Repositorios.LocalidadRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class EmpleadoServicio {
     private FotoServicio fotoServicio;
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    @Autowired
+    private LocalidadRepositorio localidadRepositorio;
 
     public List<Empleado> listAll() {
 
@@ -52,13 +56,14 @@ public class EmpleadoServicio {
                 empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
 
-        if (empleado.getLocalidad() == null) {
+        if (empleado.getLocalidad() == null ) {
             throw new ErrorWeb("Ingrese una localidad valida");
         }
 
-        if (empleado.getFoto() == null) {
+        if (imagen == null) {
 
             empleado.setFoto(empleadoRepositorio.findById(id).get().getFoto());
+            
         } else {
             empleado.setFoto(fotoServicio.guardar(imagen));
         }
@@ -95,11 +100,7 @@ public class EmpleadoServicio {
         }
         if (password.length() < 6) {
             throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");
-        }
-
-        if (foto == null) {
-            throw new ErrorWeb("La foto no puede estar vacia");
-        }
+        }       
 
         if (nombre == null || nombre.length() < 3) {
             throw new ErrorWeb("El nombre debe contener al menos 3 caracteres");
@@ -126,10 +127,7 @@ public class EmpleadoServicio {
         if (estudiosAlcanzados == null) {
             throw new ErrorWeb("Ingrese nivel de estudios alcanzado");
         }
-
-        if (foto == null) {
-            throw new ErrorWeb("Ingrese una imagen");
-        }
+        
         if (posibleReubicacion == null) {
             throw new ErrorWeb("Ingrese si esta dispuesto a reubicarse");
         }
@@ -151,7 +149,7 @@ public class EmpleadoServicio {
         }
     }
 
-    public List<Empleado> listAllByCategoriaYLocalidad(String categoria,String localidad) {
+    public List<Empleado> listAllByCategoriaYLocalidad(String categoria, String localidad) {
         List<Empleado> lista = new ArrayList<>();
 
         List<Empleado> lista1 = empleadoRepositorio.findByLocalidad(localidad);
