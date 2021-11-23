@@ -11,7 +11,7 @@
 </head>
 
 <body id="tamañobody">
-    <div class="container">
+    <div class="container" id="imagenDeFondo">
         <form th:action="@{/busqueda/filtrar}">
             <div class="input-container">
                 <div class="input">
@@ -48,7 +48,12 @@
                 </div>
             </div>
         </form>
+        <div class="sup">
+            <a class="btnA" th:href="@{/}">Volver</a>
+            
+        </div>
     </div>
+    
 </body>
 
 </html>

@@ -122,7 +122,9 @@
                                             </label>
                                         </div> -->
                     <div >
+                        <label>Elegir la localidad de residencia</label><br>
                         <select class="form-control" th:field="*{localidad}">
+                            
                             <option value="0">Seleccione Localidad</option>
                             <option th:each="l : ${localidad}" th:value="${{l}}" th:text="${l.nombre}"></option>
                         </select>
