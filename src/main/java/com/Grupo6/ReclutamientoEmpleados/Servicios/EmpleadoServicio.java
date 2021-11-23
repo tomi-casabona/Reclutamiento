@@ -13,6 +13,7 @@ import com.Grupo6.ReclutamientoEmpleados.Enums.Rol;
 import com.Grupo6.ReclutamientoEmpleados.Enums.Sexo;
 import com.Grupo6.ReclutamientoEmpleados.Errores.ErrorWeb;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.EmpleadoRepositorio;
+import com.Grupo6.ReclutamientoEmpleados.Repositorios.LocalidadRepositorio;
 import com.Grupo6.ReclutamientoEmpleados.Repositorios.UsuarioRepositorio;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class EmpleadoServicio {
     private FotoServicio fotoServicio;
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    @Autowired
+    private LocalidadRepositorio localidadRepositorio;
 
     public List<Empleado> listAll() {
 
@@ -57,9 +60,10 @@ public class EmpleadoServicio {
             throw new ErrorWeb("Ingrese una localidad valida");
         }
 
-        if (empleado.getFoto() == null) {
+        if (imagen == null) {
 
             empleado.setFoto(empleadoRepositorio.findById(id).get().getFoto());
+            
         } else {
             empleado.setFoto(fotoServicio.guardar(imagen));
         }
@@ -96,11 +100,7 @@ public class EmpleadoServicio {
         }
         if (password.length() < 6) {
             throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");
-        }
-
-        if (foto == null) {
-            throw new ErrorWeb("La foto no puede estar vacia");
-        }
+        }       
 
         if (nombre == null || nombre.length() < 3) {
             throw new ErrorWeb("El nombre debe contener al menos 3 caracteres");
@@ -127,10 +127,7 @@ public class EmpleadoServicio {
         if (estudiosAlcanzados == null) {
             throw new ErrorWeb("Ingrese nivel de estudios alcanzado");
         }
-
-        if (foto == null) {
-            throw new ErrorWeb("Ingrese una imagen");
-        }
+        
         if (posibleReubicacion == null) {
             throw new ErrorWeb("Ingrese si esta dispuesto a reubicarse");
         }

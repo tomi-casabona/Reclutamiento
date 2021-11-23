@@ -46,10 +46,9 @@ public class UsuarioControlador {
 
     @Autowired
     private CategoriaServicio categoriaServicio;
-    
+
     @Autowired
     private LocalidadServicio localidadServicio;
-    
 
     @GetMapping("/registro-empresa")
     public String registro() {
@@ -95,6 +94,7 @@ public class UsuarioControlador {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("empleado", empleado);
             model.addAttribute("categoria", categoriaServicio.listaCategorias());
+            model.addAttribute("localidad", localidadServicio.listarLocalidad());
             model.addAttribute("nombre_usuario", empleado.getNombre_usuario());
             return "registroEmpleado";
         }
