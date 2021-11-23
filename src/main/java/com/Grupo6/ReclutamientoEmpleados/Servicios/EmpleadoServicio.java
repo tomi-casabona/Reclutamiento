@@ -3,7 +3,6 @@ package com.Grupo6.ReclutamientoEmpleados.Servicios;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Categoria;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Foto;
 import com.Grupo6.ReclutamientoEmpleados.Entidades.Empleado;
-import com.Grupo6.ReclutamientoEmpleados.Entidades.Localidad;
 import com.Grupo6.ReclutamientoEmpleados.Enums.CarnetConducir;
 import com.Grupo6.ReclutamientoEmpleados.Enums.DisponibilidadHoraria;
 import com.Grupo6.ReclutamientoEmpleados.Enums.EstudiosAlcanzados;
