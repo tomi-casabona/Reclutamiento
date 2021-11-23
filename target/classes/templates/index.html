@@ -21,17 +21,17 @@
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle btn2" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    Menu
+                    Menú
                 </button>
                 <ul class="dropdown-menu" id="d-menu" aria-labelledby="dropdownMenuButton1">
                     <li>
                         <form th:action="@{/login}" sec:authorize="!isAuthenticated()">
-                            <button type="submit" class="btn2">Iniciar sesion</button>
+                            <button type="submit" class="btn2">Iniciar sesión</button>
                         </form>
                     </li>
                     <li>
                         <form th:action="@{/logout}" sec:authorize="isAuthenticated()">
-                            <button type="submit" class="btn2">Cerrar sesion</button>
+                            <button type="submit" class="btn2">Cerrar sesión</button>
                         </form>
                     </li>
                     <li>
@@ -100,7 +100,7 @@
         <div class="medio">
             <form th:action="@{/busqueda}" sec:authorize="hasRole('ROLE_EMPRESA')">
                 <div class="imgIndex">
-                    <button class="btnA" role="button">Comenzar busqueda
+                    <button class="btnA" role="button">Comenzar búsqueda
 
                     </button>
                 </div>
@@ -120,23 +120,24 @@
         </div>
         <div sec:authorize="!isAuthenticated()">
             <div class="cuadrados quienes-somos">
-                <h2 class="fs-2">¿Quienes somos?</h2>
+                <h2 class="fs-2">¿Quiénes somos?</h2>
                 <span class="fs-5"> Somos líderes en Argentina en la provisión de servicios de Capital Humano.
                     Conectamos el talento con las necesidades, apoyando a las personas y organizaciones para que alcancen su
-                    verdadero potencial</span>
+                    verdadero potencial.</span>
             </div>
             <div class="cuadrados crea-tu-cuenta">
                 <h2 class="fs-2">Crea tu cuenta</h2>
                 <span class="fs-5"> Con unas preguntas sencillas podemos llegar a conocerte mejor.</span>
             </div>
             <div class="cuadrados areas-de-trabajo">
-                <h2 class="fs-2">Nuestras areas de trabajo</h2>
-                <span class="fs-5"> Programacion, Electricidad, Cocina, Limpieza, Administracion, Cuidado personal,
-                    Veterinarias, Medicina...</span>
+
+                <h2 class="fs-2">Entre nuestras áreas de trabajo encontrarás</h2>
+                <span class="fs-5"> Programación, electricidad, gastronomía, limpieza, administración, cuidado personal,
+                    veterinaria, medicina... ¡y más!</span>
             </div>
             <div class="cuadrados busqueda-lab">
-                <h2 class="fs-2">Busqueda de personal</h2>
-                <span class="fs-5"> Buscamos a la persona que necesitás de manera ágil 100% online</span>
+                <h2 class="fs-2">Búsqueda de personal</h2>
+                <span class="fs-5"> Buscamos a la persona que necesitás de manera ágil y <strong>100% online</strong>.</span>
             </div>
         </div>
        

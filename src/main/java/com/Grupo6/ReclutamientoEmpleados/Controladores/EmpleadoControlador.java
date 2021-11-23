@@ -78,7 +78,7 @@ public class EmpleadoControlador {
     public String saveEmpleado(@RequestParam (required = false) String id ,Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleado empleado,MultipartFile imagen) throws IOException{
         try {
             empleadoServicio.save(id,empleado,imagen);
-            redirectAttributes.addFlashAttribute("success","Empleado cambiado con exito");
+            redirectAttributes.addFlashAttribute("success","Empleado cambiado con éxito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
             model.addAttribute("error",e.getMessage());

@@ -52,7 +52,7 @@ public class EmpleadorControlador {
     public String saveEmpleador(@RequestParam (required = false) String id,Model model,RedirectAttributes redirectAttributes,@ModelAttribute Empleador empleador){
         try {
             empleadorServicio.save(id,empleador);
-            redirectAttributes.addFlashAttribute("success","Empleador cambiado con exito");
+            redirectAttributes.addFlashAttribute("success","Empleador cambiado con éxito");
         } catch (ErrorWeb e) {
             e.printStackTrace();
             model.addAttribute("error",e.getMessage());

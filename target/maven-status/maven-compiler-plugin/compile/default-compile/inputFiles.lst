@@ -1,7 +1,10 @@
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Servicios\EmpleadorServicio.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Entidades\Categoria.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Servicios\UsuarioServicio.java
+<<<<<<< HEAD
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Entidades\Localidad.java
+=======
+>>>>>>> gabi
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Enums\CarnetConducir.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Security.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Controladores\BusquedaControlador.java
@@ -17,7 +20,10 @@ C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Enums\Sexo.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Controladores\ErrorsController.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Servicios\CategoriaServicio.java
+<<<<<<< HEAD
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Servicios\LocalidadServicio.java
+=======
+>>>>>>> gabi
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Entidades\Empleado.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Servicios\FotoServicio.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Entidades\Foto.java
@@ -28,7 +34,10 @@ C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Controladores\PortalControlador.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Repositorios\CategoriaRepositorio.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Servicios\MailService.java
+<<<<<<< HEAD
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Repositorios\LocalidadRepositorio.java
+=======
+>>>>>>> gabi
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Controladores\LoginController.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Controladores\FotoControlador.java
 C:\Users\gabri\Documents\NetBeansProjects\Reclutamiento\src\main\java\com\Grupo6\ReclutamientoEmpleados\Enums\MovilidadPropia.java

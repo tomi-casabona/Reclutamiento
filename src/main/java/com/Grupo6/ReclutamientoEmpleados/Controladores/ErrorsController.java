@@ -19,19 +19,19 @@ public class ErrorsController implements ErrorController{
         
         switch (codigoError){
             case 400:
-                mensajeError="El recurso solicitado no existe";
+                mensajeError="El recurso solicitado no existe.";
                 break;
             case 401:
-                mensajeError="No se encuentra autorizado para realizar esta peticion";
+                mensajeError="No se encuentra autorizado para realizar esta petición.";
                 break;
             case 403:
-                mensajeError="No tiene permisos para acceder al recurso";
+                mensajeError="No tiene permisos para acceder al recurso.";
                 break;
             case 404:
-                mensajeError="El recurso solicitado no se ha encontrado";
+                mensajeError="El recurso solicitado no se ha encontrado.";
                 break;
             case 500:
-                mensajeError = "El servidor no pudo realizar la peticion con exito";
+                mensajeError = "El servidor no pudo realizar la petición con éxito.";
                 break;
         }
         

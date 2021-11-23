@@ -56,8 +56,8 @@ public class EmpleadoServicio {
                 empleado.getApellido(), empleado.getFechaNac(), empleado.getEmail(), empleado.getSexo(), empleado.getEstudiosAlcanzados(), (MultipartFile) empleado.getFoto(), empleado.getPosiblereubicacion(), empleado.getNumeroTelefonico(), empleado.getMovilidadPropia(),
                 empleado.getCategorias(), empleado.getDisponibilidadHoraria(), empleado.getCarnetConducir());
 
-        if (empleado.getLocalidad() == null ) {
-            throw new ErrorWeb("Ingrese una localidad valida");
+        if (empleado.getLocalidad() == null) {
+            throw new ErrorWeb("Ingrese una localidad válida");
         }
 
         if (imagen == null) {
@@ -69,7 +69,7 @@ public class EmpleadoServicio {
         }
 
         if (empleado == null) {
-            throw new ErrorWeb("el empleado no existe");
+            throw new ErrorWeb("El empleado no existe");
         }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -89,18 +89,23 @@ public class EmpleadoServicio {
     ) throws ErrorWeb {
 
         if (username == null) {
-            throw new ErrorWeb("El nombre de usuario no debe estar vacio");
+            throw new ErrorWeb("El nombre de usuario no debe estar vacío");
         }
 
         if (password == null || password.isEmpty()) {
-            throw new ErrorWeb("La contraseña no debe estar vacia");
+            throw new ErrorWeb("La contraseña no debe estar vacía");
         }
         if (password2 == null || password2.isEmpty()) {
-            throw new ErrorWeb("Debe completar el capo de validacion de contraseña");
+            throw new ErrorWeb("Debe completar el campo de validación de contraseña");
         }
         if (password.length() < 6) {
-            throw new ErrorWeb("la contraseña debe tener al menos seis caracteres");
-        }       
+
+            throw new ErrorWeb("La contraseña debe tener al menos seis caracteres");
+        }
+
+        if (foto == null) {
+            throw new ErrorWeb("La foto no puede estar vacía.");
+        }
 
         if (nombre == null || nombre.length() < 3) {
             throw new ErrorWeb("El nombre debe contener al menos 3 caracteres");
@@ -109,7 +114,7 @@ public class EmpleadoServicio {
             throw new ErrorWeb("El apellido debe contener al menos 2 caracteres");
         }
         if (fechaNac == null) {
-            throw new ErrorWeb("Ingrese fecha de nacimiento");
+            throw new ErrorWeb("Ingrese su fecha de nacimiento");
         }
 
         Date hoy = new Date();
@@ -125,26 +130,26 @@ public class EmpleadoServicio {
             throw new ErrorWeb("Ingrese su sexo");
         }
         if (estudiosAlcanzados == null) {
-            throw new ErrorWeb("Ingrese nivel de estudios alcanzado");
+            throw new ErrorWeb("Ingrese el nivel de estudios alcanzado");
         }
         
         if (posibleReubicacion == null) {
-            throw new ErrorWeb("Ingrese si esta dispuesto a reubicarse");
+            throw new ErrorWeb("Ingrese si está dispuesto a reubicarse");
         }
         if (numeroTelefonico == null || numeroTelefonico.length() != 10) {
-            throw new ErrorWeb("Ingrese su numero telefonico con diez digitos, sin 0 y sin 15 ej: 3417123123");
+            throw new ErrorWeb("Ingrese su número telefónico con diez dígitos, sin 0 y sin 15 ej: 3417123123");
         }
         if (categorias.isEmpty()) {
-            throw new ErrorWeb("Ingrese al menos una categoria");
+            throw new ErrorWeb("Ingrese al menos una categoría");
         }
         if (disponibilidadHoraria == null) {
             throw new ErrorWeb("Ingrese su disponibilidad horaria");
         }
         if (carnetConducir == null) {
-            throw new ErrorWeb("Ingrese su tipo de carnet de conducir si posee, o no");
+            throw new ErrorWeb("Ingrese su tipo de carnet de conducir, si posee, o no");
         }
         if (categorias.isEmpty() || categorias == null) {
-            throw new ErrorWeb("El campo categoria esta vacio");
+            throw new ErrorWeb("El campo categoría está vacío");
 
         }
     }

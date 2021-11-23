@@ -33,7 +33,7 @@ public class MailController {
     public String enviarMail(@RequestParam (required=false) String id, @RequestParam String asunto, @RequestParam String contenido,RedirectAttributes redirectAttributes) {
         Empleado empleado= empleadoServicio.findById(id);
         mailService.enviarMail(empleado.getEmail(), asunto, contenido);
-        redirectAttributes.addFlashAttribute("success","Mail enviado con exito");
+        redirectAttributes.addFlashAttribute("success","Mail enviado con éxito");
         return "redirect:/";
     }
 }
